@@ -19,15 +19,15 @@ public class PlatformRepo : IPlatformRepo
             throw new ArgumentNullException(nameof(plat));
         }
 
-        _context.Platforms.Add(plat);
+        _context.Platforms?.Add(plat);
     }
     public IEnumerable<Platform?> GetAllPlatforms()
     {
-        return _context.Platforms.ToList();
+        return (_context.Platforms ?? throw new InvalidOperationException()).ToList();
     }
     public Platform? GetPlatformById(int id)
     {
-        return _context.Platforms.FirstOrDefault(p => p.Id == id);
+        return (_context.Platforms ?? throw new InvalidOperationException()).FirstOrDefault(p => p.Id == id);
     }
     public bool SaveChanges()
     {

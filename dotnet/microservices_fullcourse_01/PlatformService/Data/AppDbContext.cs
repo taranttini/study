@@ -5,10 +5,10 @@ namespace PlatformService.Data;
 
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> opt, DbSet<Platform> platforms) : base(opt)
+    public AppDbContext(DbContextOptions<AppDbContext> opt/*, DbSet<Platform> platforms*/) : base(opt)
     {
-        Platforms = platforms;
+        //Platforms = platforms;
     }
 
-    public DbSet<Platform> Platforms { get; set; }
+    public DbSet<Platform>? Platforms { get; set; }
 }
