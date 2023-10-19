@@ -52,7 +52,7 @@ public class PlatformController : ControllerBase
         var platformReadDto = _mapper.Map<PlatformReadDto>(platformModel);
 
         return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformReadDto.Id }, platformReadDto);
-
+        // create and send location
     }
 
 }
