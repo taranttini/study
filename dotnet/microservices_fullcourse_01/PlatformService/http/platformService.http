@@ -1,0 +1,24 @@
+﻿@URL = http://localhost:5215
+###
+GET {{URL}}/api/platform
+Accept: application/json
+
+###
+
+GET {{URL}}/api/platform/1
+Accept: application/json
+
+###
+
+POST {{URL}}/api/platform
+Content-Type: application/json
+
+{
+    "name": "teste",
+    "publisher": "teste",
+    "cost": "teste"
+}
+
+###
+http://localhost:5215/api/Platform/4
+Accept: application/json
