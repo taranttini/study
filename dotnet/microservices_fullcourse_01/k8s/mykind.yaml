@@ -1,0 +1,42 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: mykind
+nodes:
+- role: control-plane
+- role: worker
+
+
+
+#- role: worker
+#- role: worker
+#   extraPortMappings:
+#   - containerPort: 80
+#     hostPort: 8081
+#     listenAddress: "0.0.0.0"
+#     protocol: TCP
+# ---
+# kind: Pod
+# apiVersion: v1
+# metadata:
+#   name: mykind-pod
+# spec:
+#   #replicas: 3
+#   containers:
+#   - name: mykind-pod
+#     image: docker.io/taranttini/platformservice:latest
+#     ports:
+#     - containerPort: 5678
+#       hostPort: 80
+# ---
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name: platform-service
+# spec:
+#   type: NodePort
+#   ports:
+#   - name: http
+#     nodePort: 30950
+#   - port: 5678
+#   selector:
+#     app: mykind-pod

@@ -2,7 +2,15 @@
 @URL_LOCAL = http://localhost:5215
 @URL_DOCKER = http://localhost:8080
 
-@URL = {{URL_DOCKER}}
+@URL_KIND = https://127.0.0.1:60205
+
+@URL = {{URL_KIND}}
+
+###
+GET http://localhost:8081
+###
+GET 127.0.0.1:60859
+
 ###
 GET {{URL}}/api/platform
 Accept: application/json
