@@ -1,0 +1,36 @@
+# podman / docker
+@URL_LOCAL = http://localhost:6000
+@URL_DOCKER = http://localhost:8080
+
+@URL_KIND = https://127.0.0.1:60205
+
+@URL = {{URL_LOCAL}}
+
+###
+GET http://localhost:8081
+###
+GET 127.0.0.1:60859
+
+###
+GET {{URL}}/api/c/platforms
+Accept: application/json
+
+###
+
+GET {{URL}}/api/platform/1
+Accept: application/json
+
+###
+
+POST {{URL}}/api/platform
+Content-Type: application/json
+
+{
+    "name": "teste",
+    "publisher": "teste",
+    "cost": "teste"
+}
+
+###
+http://localhost:5215/api/Platform/4
+Accept: application/json
