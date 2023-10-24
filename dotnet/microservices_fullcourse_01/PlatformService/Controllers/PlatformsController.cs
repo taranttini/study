@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PlatformService.Dtos;
 using PlatformService.Models;
+using PlatformService.SyncDataService.Http;
 using PlatformServices.Data;
 
 namespace PlatformService.Controllers;
@@ -12,11 +13,18 @@ public class PlatformController : ControllerBase
 {
     private readonly IPlatformRepo _repository;
     private readonly IMapper _mapper;
+    private readonly ICommandDataClient _commandDataClient;
 
-    public PlatformController(IPlatformRepo repository, IMapper mapper)
+    public PlatformController(
+        IPlatformRepo repository,
+        IMapper mapper,
+        ICommandDataClient commandDataClient
+    )
     {
         _repository = repository;
         _mapper = mapper;
+        _commandDataClient = commandDataClient;
+
     }
 
     [HttpGet]
@@ -42,7 +50,7 @@ public class PlatformController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<PlatformReadDto> CreatePlatform(PlatformCreateDto platformCreateDto)
+    public async Task<ActionResult<PlatformReadDto>> CreatePlatform(PlatformCreateDto platformCreateDto)
     {
         Console.WriteLine("--> Saving platforms...");
         var platformModel = _mapper.Map<Platform>(platformCreateDto);
@@ -50,6 +58,15 @@ public class PlatformController : ControllerBase
         _repository.SaveChanges();
 
         var platformReadDto = _mapper.Map<PlatformReadDto>(platformModel);
+
+        try
+        {
+            await _commandDataClient.SendPlatformToCommand(platformReadDto);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"--> Could not send synchronously: {ex.Message}");
+        }
 
         return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformReadDto.Id }, platformReadDto);
         // create and send location
