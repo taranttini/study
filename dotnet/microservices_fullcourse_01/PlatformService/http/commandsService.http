@@ -2,12 +2,15 @@
 @URL_LOCAL = http://localhost:6000
 @URL_DOCKER = http://localhost:8080
 
-@URL_KIND = https://127.0.0.1:60205
+@URL_KIND = https://127.0.0.1:62349
+@URL_KIND = https://127.0.0.1:30407
 
-@URL = {{URL_LOCAL}}
+@URL = {{URL_KIND}}
 
 ###
 GET http://localhost:8081
+###
+GET http://localhost:8080
 ###
 GET 127.0.0.1:60859
 

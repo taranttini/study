@@ -4,7 +4,7 @@
 
 @URL_KIND = https://127.0.0.1:60205
 
-@URL = {{URL_KIND}}
+@URL = {{URL_LOCAL}}
 
 ###
 GET http://localhost:8081

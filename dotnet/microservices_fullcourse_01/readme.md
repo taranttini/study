@@ -10,17 +10,23 @@ podman login docker.io
 
 podman build -t taranttini/platformservice .
 
+podman build -t docker.io/taranttini/commandservice .
+
 ### excecutar imagem
 podman run -p 8080:80 -d taranttini/platformservice
 
+podman run -p 8080:80 -d docker.io/taranttini/commandservice
+
 ### inicial container
-docker start CONTAINER_ID
+podman start CONTAINER_ID
 
 ### parar container
-docker stop CONTAINER_ID
+podman stop CONTAINER_ID
 
 ### subir imagem para o docker
 podman push taranttini/platformservice
+
+podman push docker.io/taranttini/commandservice
 
 
 
@@ -45,6 +51,10 @@ kind delete cluster -n mykind
 /c/dev/kubectl apply -f platforms-depl.yaml
 
 /c/dev/kubectl apply -f platforms-np-srv.yaml
+
+/c/dev/kubectl apply -f commands-depl.yaml
+
+/c/dev/kubectl rollout restart deployment platforms-depl
 
 /c/dev/kubectl get all
 
