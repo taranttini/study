@@ -13,8 +13,8 @@ spec:
         app: commandservice
     spec:
       containers:
-      - name: commandservice
-        image: docker.io/taranttini/commandservice:latest
+        - name: commandservice
+          image: docker.io/taranttini/commandservice:latest
 ---
 kind: Service
 apiVersion: v1
