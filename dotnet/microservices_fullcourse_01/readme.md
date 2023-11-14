@@ -2,7 +2,15 @@
 
 dotnet dev-certs https -v
 
+https://www.youtube.com/watch?v=DgVjEo3OGBI&t=17152s
 
+https://www.youtube.com/watch?v=n0zkkoL8eNs
+
+https://www.youtube.com/watch?v=gMwAhKddHYQ&list=PLzYkqgWkHPKBcDIP5gzLfASkQyTdy0t4k&index=12
+
+https://www.youtube.com/watch?v=CqCDOosvZIk
+
+https://www.youtube.com/watch?v=Rqz9XiSqH3E
 
 #### podman
 
