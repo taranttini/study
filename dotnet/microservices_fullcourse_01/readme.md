@@ -72,6 +72,11 @@ kind delete cluster -n mykind
 /c/dev/kubectl get deployments
 /c/dev/kubectl get namespaces
 /c/dev/kubectl get storageclass
+/c/dev/kubectl get pv
+/c/dev/kubectl get pvc
+
+## para tentar acessar algum storage
+kubectl exec -it CONTAINER_NAME -- /bin/bash
 
 
 # para rodar esse serviço isolado
@@ -111,3 +116,19 @@ para que possamos chamar esse endereço e ele responder
 #
 
 /c/dev/kubectl apply -f ingress-srv.yaml
+
+# criando volume persistênte
+
+/c/dev/kubectl apply -f local-pvc.yaml
+
+## se necessário deletar
+
+/c/dev/kubectl delete pvc NOME_DO_ITEM
+
+# gerar base sql server
+
+/c/dev/kubectl create secret generic mssql --from-literal=SA_PASSWORD="pa55w0rd!"
+
+# executar o sqlserver
+
+/c/dev/kubectl apply -f mssql-plat-depl.yaml
