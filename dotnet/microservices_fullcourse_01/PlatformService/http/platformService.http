@@ -9,25 +9,26 @@
 @URL_KIND = https://127.0.0.1:30407
 
 @URL = {{URL_ACME}}
+#@URL = http://127.0.0.1:8080
 
 
 ###
-GET http://localhost:8081
+GET http://127.0.0.1:8080
 ###
 GET 127.0.0.1:60859
 
 ###
-GET {{URL}}/api/platform
+GET {{URL}}/api/platforms
 Accept: application/json
 
 ###
 
-GET {{URL}}/api/platform/1
+GET {{URL}}/api/platforms/1
 Accept: application/json
 
 ###
 
-POST {{URL}}/api/platform
+POST {{URL}}/api/platforms
 Content-Type: application/json
 
 {

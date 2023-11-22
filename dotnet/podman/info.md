@@ -5,3 +5,14 @@ wsl -d podman-machine-default enterns su user
 podman machine set --rootful
 
 su user
+
+
+# dotnet commandos
+
+dotnet tool install --global dotnet-ef --version 7.*
+
+# ferramenta 
+
+dotnet ef migrations add initialmigration
+
+~/.dotnet/tools/dotnet-ef migrations add initialmigration
