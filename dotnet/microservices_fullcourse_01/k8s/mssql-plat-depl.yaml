@@ -61,3 +61,5 @@ spec:
   - protocol: TCP
     port: 1433
     targetPort: 1433
+  #externalIPs:
+  #- "10.104.86.46"

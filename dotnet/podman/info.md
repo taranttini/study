@@ -16,3 +16,6 @@ dotnet tool install --global dotnet-ef --version 7.*
 dotnet ef migrations add initialmigration
 
 ~/.dotnet/tools/dotnet-ef migrations add initialmigration
+
+
+FN2 + 9 or 0 to change keyboard colors ou themes

@@ -5,17 +5,17 @@
 
 @URL_LOCAL = http://localhost
 
-@URL_KIND = https://127.0.0.1:62349
-@URL_KIND = https://127.0.0.1:30407
+@URL_MINIKUBE = http://10.105.167.179
+@URL_KIND = http://127.0.0.1:30407
 
 @URL = {{URL_ACME}}
-#@URL = http://127.0.0.1:8080
+@URL = {{URL_MINIKUBE}}
 
+#@URL = http://10.105.167.179
 
 ###
 GET http://127.0.0.1:8080
-###
-GET 127.0.0.1:60859
+
 
 ###
 GET {{URL}}/api/platforms
