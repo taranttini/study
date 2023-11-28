@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice Creator</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
+<style>
+  .remove-btn:hover {
+    background-color: #f87171;
+  }
+</style>
+</head>
+<body class="bg-gray-100">
+
+<div class="min-h-screen flex flex-col items-center justify-center p-6">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl">
+    <h1 class="text-2xl font-bold mb-4">My Invoice Creator</h1>
+    <form id="invoiceForm" class="mb-4">
+      <div class="grid grid-cols-4 gap-4 mb-2">
+        <input type="text" placeholder="Description" class="col-span-1 border p-2 rounded" id="description">
+        <input type="number" placeholder="Qty" class="col-span-1 border p-2 rounded" id="quantity">
+        <input type="text" placeholder="Price" class="col-span-1 border p-2 rounded" id="price">
+        <input type="text" placeholder="Discount" class="col-span-1 border p-2 rounded" id="discount">
+      </div>
+      <button type="button" id="addItem" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Add to Items</button>
+    </form>
+
+    <div id="itemsList" class="mb-4">
+      <!-- Items will be added here dynamically -->
+    </div>
+
+    <button id="generatePDF" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Make Invoicer to PDF</button>
+  </div>
+</div>
+
+<script>
+  const itemsList = document.getElementById('itemsList');
+  const addItemButton = document.getElementById('addItem');
+  const generatePDFButton = document.getElementById('generatePDF');
+
+  addItemButton.addEventListener('click', () => {
+    const description = document.getElementById('description').value;
+    const quantity = document.getElementById('quantity').value;
+    const price = document.getElementById('price').value;
+    const discount = document.getElementById('discount').value;
+
+    const itemRow = document.createElement('div');
+    itemRow.classList.add('flex', 'justify-between', 'items-center', 'p-2', 'border-b');
+
+    itemRow.innerHTML = `
+      <div>${quantity}x ${description}</div>
+      <div>${discount}</div>
+      <div>${(price * quantity).toFixed(2)}</div>
+      <button class="remove-btn text-white bg-red-500 p-2 rounded">Remove</button>
+    `;
+
+    itemRow.querySelector('.remove-btn').addEventListener('click', () => {
+      itemRow.remove();
+    });
+
+    itemsList.appendChild(itemRow);
+
+    document.getElementById('description').value = '';
+    document.getElementById('quantity').value = '';
+    document.getElementById('price').value = '';
+    document.getElementById('discount').value = '';
+  });
+
+  generatePDFButton.addEventListener('click', () => {
+    const invoiceContent = document.createElement('div');
+    invoiceContent.innerHTML = `
+      <h2 class="text-xl font-bold mb-4">INVOICE 1001</h2>
+      <div class="mb-4">
+        ${itemsList.innerHTML}
+      </div>
+    `;
+
+    var opt = {
+    margin:       1,
+    filename:     'myfile.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    // New Promise-based usage:
+    html2pdf().set(opt).from(invoiceContent).save();
+    //html2pdf().from(invoiceContent).save();
+  });
+</script>
+
+</body>
+</html>

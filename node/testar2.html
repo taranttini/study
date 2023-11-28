@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Order Form</title>
+
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+  <div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold text-center">Add Items</h2>
+
+    <form id="addItemForm">
+      <div class="flex flex-col mb-4">
+        <label class="block mb-2" for="description">Description:</label>
+        <input type="text" id="description" name="description" class="w-full p-2 border border-gray-300 rounded focus:border-blue-500">
+      </div>
+
+      <div class="flex flex-col mb-4">
+        <label class="block mb-2" for="price">Price:</label>
+        <input type="number" step="0.01" id="price" name="price" class="w-full p-2 border border-gray-300 rounded focus:border-blue-500">
+      </div>
+
+      <div class="flex flex-col mb-4">
+        <label class="block mb-2" for="quantity">Quantity:</label>
+        <input type="number" min="1" id="quantity" name="quantity" class="w-full p-2 border border-gray-300 rounded focus:border-blue-500">
+      </div>
+
+      <div class="flex flex-col mb-4">
+        <label class="block mb-2" for="discount">Discount (Optional):</label>
+        <input type="number" step="0.01" id="discount" name="discount" class="w-full p-2 border border-gray-300 rounded focus:border-blue-500">
+      </div>
+
+      <button type="button" id="send" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Add Item</button>
+    </form>
+
+    ----
+    <div id="itemList" class="mt-4"></div>
+    ----
+
+    <div class="flex justify-end mt-4">
+      <button id="generatePDF" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-700">Generate PDF</button>
+    </div>
+  </div>
+  
+  <script>
+    //var form = document.getElementById('addItemForm');
+    var form = document.getElementById('send');
+    var itemList = document.getElementById('itemList');
+    var generatePDFButton = document.getElementById('generatePDF');
+
+    // submit
+    form.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      var description = document.getElementById('description').value;
+      var price = parseFloat(document.getElementById('price').value);
+      var quantity = parseInt(document.getElementById('quantity').value);
+      var discount = parseFloat(document.getElementById('discount').value) || 0;
+
+      var itemPrice = price * quantity;
+      var totalDiscount = discount * quantity;
+      var itemTotal = itemPrice - totalDiscount;
+
+      var itemRow = document.createElement('div');
+      itemRow.classList.add('flex', 'items-center', 'justify-between', 'mb-2');
+
+      var itemDescription = document.createElement('div');
+      itemDescription.textContent = description;
+      itemDescription.classList.add('w-0.1');
+
+      var itemPriceInfo = document.createElement('div');
+      var itemPriceContent = `Price: ${price.toFixed(2)} | Quantity: ${quantity} | Total Price: ${itemPrice.toFixed(2)}`;
+      if (discount > 0) {
+        itemPriceContent += ` | Discount: ${discount.toFixed(2)} | Total Discount: ${totalDiscount.toFixed(2)}`;
+      }
+      itemPriceInfo.textContent = itemPriceContent;
+      itemPriceInfo.classList.add('w-0.1', 'text-right');
+
+      var removeItemButton = document.createElement('button');
+removeItemButton.textContent = 'Remove';
+removeItemButton.classList.add('bg-red-500', 'text-white', 'p-2', 'rounded-md', 'hover:bg-red-700');
+removeItemButton.addEventListener('click', () => {
+  itemRow.remove();
+});
+
+itemRow.appendChild(itemDescription);
+itemRow.appendChild(itemPriceInfo);
+itemRow.appendChild(removeItemButton);
+
+itemList.appendChild(itemRow);
+
+//form.reset();
+document.getElementById('description').focus();
+    });
+
+generatePDFButton.addEventListener('click', () => {
+  var invoiceContent = document.createElement('div');
+  invoiceContent.classList.add('p-4');
+
+  var invoiceTitle = document.createElement('h2');
+  invoiceTitle.textContent = 'Invoice';
+  invoiceTitle.classList.add('text-2xl', 'font-bold', 'text-center');
+
+  var invoiceTable = document.createElement('table');
+  invoiceTable.classList.add('w-full', 'border-collapse', 'border-gray-300');
+
+  var invoiceTableHead = document.createElement('thead');
+  var invoiceTableHeadRow = document.createElement('tr');
+  var invoiceTableHeadings = ['Description', 'Price', 'Quantity', 'Discount', 'Total'];
+  for (var heading of invoiceTableHeadings) {
+    var invoiceTableHeadCell = document.createElement('th');
+    invoiceTableHeadCell.textContent = heading;
+    invoiceTableHeadCell.classList.add('border-gray-300', 'p-2', 'text-left');
+    invoiceTableHeadRow.appendChild(invoiceTableHeadCell);
+  }
+  invoiceTableHead.appendChild(invoiceTableHeadRow);
+
+  var invoiceTableBody = document.createElement('tbody');
+  var items = itemList.querySelectorAll('div.flex.items-center.justify-between.mb-2');
+  for (var item of items) {
+    //class="w-1/2 text-right"
+    var itemDescription = item.querySelector('.w-0.1').textContent;
+    var itemPriceInfo = item.querySelector('.w-0.1 .text-right').textContent.split('|');
+    var itemPrice = parseFloat(itemPriceInfo[1].split(': ')[1]);
+    var itemQuantity = parseInt(itemPriceInfo[2].split(': ')[1]);
+    var itemDiscount = parseFloat(itemPriceInfo[5].split(': ')[1]) || 0;
+    var itemTotal = itemPrice * itemQuantity - itemDiscount;
+
+    var invoiceTableBodyRow = document.createElement('tr');
+    var invoiceTableBodyCells = [itemDescription, itemPrice.toFixed(2), itemQuantity, itemDiscount.toFixed(2), itemTotal.toFixed(2)];
+    for (var cellContent of invoiceTableBodyCells) {
+      var invoiceTableBodyCell = document.createElement('td');
+      invoiceTableBodyCell.textContent = cellContent;
+      invoiceTableBodyCell.classList.add('border-gray-300', 'p-2', 'text-left');
+      invoiceTableBodyRow.appendChild(invoiceTableBodyCell);
+    }
+    invoiceTableBody.appendChild(invoiceTableBodyRow);
+  }
+
+  invoiceTable.appendChild(invoiceTableHead);
+  invoiceTable.appendChild(invoiceTableBody);
+
+  invoiceContent.appendChild(invoiceTitle);
+  invoiceContent.appendChild(invoiceTable);
+
+  var invoiceFooter = document.createElement('div');
+  invoiceFooter.classList.add('flex', 'justify-end', 'mt-4');
+
+  var totalAmount = document.createElement('div');
+  totalAmount.textContent = `Total Amount: ${calculateTotalAmount()}`;
+  totalAmount.classList.add('font-bold');
+
+  invoiceFooter.appendChild(totalAmount);
+
+  invoiceContent.appendChild(invoiceFooter);
+
+  // Generate PDF from invoiceContent
+  // Use a PDF generation library like jsPDF or pdfmake to generate the PDF from the invoiceContent HTML
+});
+
+function calculateTotalAmount() {
+  var totalAmount = 0;
+  var items = itemList.querySelectorAll('div.flex.items-center.justify-between.mb-2');
+  for (var item of items) {
+    var itemPriceInfo = item.querySelector('div.w-0.1.text-right').textContent.split('|');
+    var itemTotal = parseFloat(itemPriceInfo[4].split(': ')[1]);
+    totalAmount += itemTotal;
+  }
+  return totalAmount.toFixed(2);
+}
+/*
+function generatePDF(invoiceContent) {
+  // Use a PDF generation library like jsPDF or pdfmake to generate the PDF from invoiceContent HTML
+  // Here's an example using jsPDF:
+
+  var doc = new jsPDF('landscape');
+  doc.autoTable({
+    html: invoiceContent.innerHTML,
+    theme: 'striped',
+    styles: {
+      title: {
+        fontSize: 20,
+        bold: true,
+        alignment: 'center'
+      },
+      cell: {
+        padding: 5
+      }
+    }
+  });
+  doc.save('invoice.pdf');
+}
+var invoiceContent = document.getElementById('invoiceContent');
+generatePDF(invoiceContent);
+*/
+
+
+</script>
+</body>
+</html>
+
+
