@@ -1,15 +1,41 @@
 # podman / docker
-@URL_LOCAL_8080 = http://localhost:6000
+@URL_LOCAL_6000 = http://localhost:6000
 @URL_ACME = http://acme.com
 @URL_DOCKER = http://localhost:8080
 
 @URL_LOCAL = http://localhost
 
-@URL_KIND = https://127.0.0.1:62349
-@URL_KIND = https://127.0.0.1:30407
+@URL_MINIKUBE = http://10.105.167.179
 
 @URL = {{URL_LOCAL}}
+@URL = {{URL_MINIKUBE}}
+@URL = {{URL_LOCAL_6000}}
 
-###
+### Test Inbound Connection
+POST {{URL}}/api/c/platforms
+Accept: application/json
+
+### Get All Platforms
 GET {{URL}}/api/c/platforms
 Accept: application/json
+
+### Get All Commands for Platform
+GET {{URL}}/api/c/platforms/1/commands
+Accept: application/json
+
+###  Get Command for Platform
+GET {{URL}}/api/c/platforms/1/commands/2
+Accept: application/json
+
+### POST Create Command for Platorm
+POST {{URL}}/api/c/platforms/1/commands
+Accept: application/json
+Content-Type: application/json
+
+{
+    "HowTo": "build a .net project",
+    "CommandLine" : "donet build"
+}
+
+####
+

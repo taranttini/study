@@ -1,15 +1,15 @@
 ﻿# podman / docker
-@URL_LOCAL_8080 = http://localhost:6000
+@URL_LOCAL_6000 = http://localhost:6000
 @URL_ACME = http://acme.com
 @URL_DOCKER = http://localhost:8080
 
 @URL_LOCAL = http://localhost
 
 @URL_MINIKUBE = http://10.105.167.179
-@URL_KIND = http://127.0.0.1:30407
 
 @URL = {{URL_ACME}}
 @URL = {{URL_MINIKUBE}}
+@URL = {{URL_LOCAL_6000}}
 
 #@URL = http://10.105.167.179
 
