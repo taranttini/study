@@ -36,9 +36,10 @@ public class CommandRepo : ICommandRepo
         return _context.Platforms.ToList();
     }
 
-    public Command GetCommand(int platformId, int commandId)
+    public Command? GetCommand(int platformId, int commandId)
     {
-        return _context.Commands
+        return _context
+            .Commands
             .Where(c => c.PlatformId == platformId && c.Id == commandId)
             .FirstOrDefault();
     }
@@ -57,6 +58,6 @@ public class CommandRepo : ICommandRepo
 
     public bool SaveChanges()
     {
-        return (_context.SaveChanges() >= 0);
+        return _context.SaveChanges() >= 0;
     }
 }
