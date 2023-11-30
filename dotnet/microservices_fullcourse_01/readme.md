@@ -37,6 +37,7 @@ dotnet dev-certs https -v
 
 https://youtu.be/DgVjEo3OGBI?si=19aJDNcCfVDI5B7c&t=20939
 https://youtu.be/DgVjEo3OGBI?si=GILOOar08UuBMtCq&t=21965
+https://youtu.be/DgVjEo3OGBI?si=bM4VfbUg6RZ9LXEF&t=26523
 
 https://www.youtube.com/watch?v=n0zkkoL8eNs
 
