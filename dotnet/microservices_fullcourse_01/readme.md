@@ -134,17 +134,18 @@ kubectl exec -it CONTAINER_NAME -- /bin/bash
 # para rodar esse serviço isolado
 kubectl port-forward service/platforms-clusterip-srv 80
 
-sudo -E kubectl port-forward service/platforms-clusterip-srv 80
+::: OU sudo -E kubectl port-forward service/platforms-clusterip-srv 80
 
 # para rodar esse serviço isolado
 kubectl port-forward service/commands-clusterip-srv 80
 
-sudo -E kubectl port-forward service/commands-clusterip-srv 80
+::: OU sudo -E kubectl port-forward service/commands-clusterip-srv 80
 
 # para rodar ambos serviços
+
 kubectl port-forward service/platformservice-srv 80
 
-sudo -E kubectl port-forward service/platformservice-srv 80
+::: OU sudo -E kubectl port-forward service/platformservice-srv 80
 
 kubectl delete deployment platforms-depl
 
@@ -171,11 +172,11 @@ incluir a linha
 
 para que possamos chamar esse endereço e ele responder
 
-#
+# para configurar o ingress
 
 kubectl apply -f ingress-srv.yaml
 
-sudo -E kubectl apply -f ingress-srv.yaml
+::: OU sudo -E kubectl apply -f ingress-srv.yaml
 
 **caso gere problemas**
 
@@ -201,7 +202,7 @@ kubectl apply -f mssql-plat-depl.yaml
 
 kubectl apply -f local-pvc.yaml
 
-sudo -E kubectl port-forward service/mssql-clusterip-srv 1433
+::: OU sudo -E kubectl port-forward service/mssql-clusterip-srv 1433
 
 # atualizar projeto docker
 
@@ -211,4 +212,8 @@ docker build -t taranttini/platformservice .
 docker push taranttini/platformservice
 
 
- kubectl rollout restart deployments platforms-depl
+kubectl rollout restart deployments platforms-depl
+
+# executar o rabbit
+
+kubectl apply -f rabbitmq-depl.yaml

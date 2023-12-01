@@ -14,5 +14,12 @@ kubectl apply -f mssql-plat-depl.yaml
 
 kubectl apply -f local-pvc.yaml
 
+kubectl apply -f rabbitmq-depl.yaml
+
 minikube tunnel
 
+# tentando rodar local
+# kubectl proxy --address='127.0.0.1' --disable-filter=true
+
+
+# export DOTNET_NUGET_SIGNATURE_VERIFICATION=false
