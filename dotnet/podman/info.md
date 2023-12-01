@@ -19,3 +19,8 @@ dotnet ef migrations add initialmigration
 
 
 FN2 + 9 or 0 to change keyboard colors ou themes
+
+
+# dotnet add rabbit mq
+
+dotnet add package RabbitMQ.Client
