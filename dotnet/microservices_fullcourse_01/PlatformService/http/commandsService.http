@@ -1,15 +1,32 @@
 # podman / docker
-@URL_LOCAL_6000 = http://localhost:6000
+@URL_LOCAL_NETCORE = http://localhost:6000
 @URL_ACME = http://acme.com
 @URL_DOCKER = http://localhost:8080
 
-@URL_LOCAL = http://localhost
+@URL_LOCALHOST = http://localhost
 
 @URL_MINIKUBE = http://10.105.167.179
 
-@URL = {{URL_LOCAL}}
+@URL = {{URL_ACME}}
 @URL = {{URL_MINIKUBE}}
-@URL = {{URL_LOCAL_6000}}
+@URL = {{URL_DOCKER}}
+@URL = {{URL_LOCAL_NETCORE}}
+@URL = {{URL_LOCALHOST}}
+
+#@URL = http://10.105.167.179
+###
+GET http://local:6000
+###
+GET {{URL_LOCAL_NETCORE}}
+###
+GET {{URL_ACME}}
+###
+GET {{URL_DOCKER}}
+###
+GET {{URL_LOCALHOST}}
+###
+GET {{URL_MINIKUBE}}
+
 
 ### Test Inbound Connection
 POST {{URL}}/api/c/platforms
