@@ -17,14 +17,14 @@ public class EventProcessor : IEventProcessor
         _serviceScopeFactory = serviceScopeFactory;
         _mapper = mapper;
     }
-    public void ProcessEvent(string menssage)
+    public void ProcessEvent(string message)
     {
-        var eventType = DetermineEvent(menssage);
+        var eventType = DetermineEvent(message);
 
         switch (eventType)
         {
             case EventType.PlatformPublished:
-                //to do
+                addPlatform(message);
                 break;
 
             default:
@@ -65,10 +65,11 @@ public class EventProcessor : IEventProcessor
             {
                 repo.CreatePlatform(plat);
                 repo.SaveChanges();
+                Console.WriteLine("--> Platform added!");
             }
             else
             {
-                Console.WriteLine("--> Platform already exists....");
+                Console.WriteLine("--> Platform already exists...");
             }
         }
         catch (System.Exception ex)
