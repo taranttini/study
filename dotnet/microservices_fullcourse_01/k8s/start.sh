@@ -23,3 +23,5 @@ minikube tunnel
 
 
 # export DOTNET_NUGET_SIGNATURE_VERIFICATION=false
+
+# minikube dashboard

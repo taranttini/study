@@ -53,7 +53,7 @@ public class CommandRepo : ICommandRepo
     {
         return _context.Commands
             .Where(c => c.PlatformId == platformId)
-            .OrderBy(c => c.Platform.Name);
+            .OrderBy(c => c.Platform!.Name);
     }
 
     public bool PlaftormExists(int platformId)

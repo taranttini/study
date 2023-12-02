@@ -75,9 +75,9 @@ public class PlatformsController : ControllerBase
         // Send async message
         try
         {
-            var pltatformPublishedDto = _mapper.Map<PlatformPublishedDto>(platformReadDto);
-            pltatformPublishedDto.Event = "Platform_Published";
-            _messageBusClient.PublishNewPlatform(pltatformPublishedDto);
+            var platformPublishedDto = _mapper.Map<PlatformPublishedDto>(platformReadDto);
+            platformPublishedDto.Event = "Platform_Published";
+            _messageBusClient.PublishNewPlatform(platformPublishedDto);
         }
         catch (Exception ex)
         {
