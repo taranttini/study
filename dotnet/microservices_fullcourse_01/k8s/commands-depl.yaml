@@ -1,5 +1,5 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: commands-depl
 spec:
@@ -16,8 +16,8 @@ spec:
         - name: commandservice
           image: docker.io/taranttini/commandservice:latest
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: commands-clusterip-srv
 spec:
@@ -27,5 +27,7 @@ spec:
   ports:
   - name: commandservice
     protocol: TCP
-    port: 80
+    port: 8082
     targetPort: 80
+  externalIPs:
+  - "10.100.100.1"

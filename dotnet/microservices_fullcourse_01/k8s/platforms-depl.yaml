@@ -1,5 +1,5 @@
-kind: Deployment
 apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: platforms-depl
 spec:
@@ -16,8 +16,8 @@ spec:
       - name: platformservice
         image: docker.io/taranttini/platformservice:latest
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
   name: platforms-clusterip-srv
 spec:
@@ -27,5 +27,7 @@ spec:
   ports:
   - name: platformservice
     protocol: TCP
-    port: 80
+    port: 8081
     targetPort: 80
+  externalIPs:
+  - "10.100.100.1"

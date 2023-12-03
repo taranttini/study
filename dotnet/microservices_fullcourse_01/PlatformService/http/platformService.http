@@ -11,11 +11,12 @@
 @URL = {{URL_MINIKUBE}}
 @URL = {{URL_DOCKER}}
 @URL = {{URL_LOCAL_NETCORE}}
+@URL = http://local
 #@URL = {{URL_LOCALHOST}}
 
 #@URL = http://10.105.167.179
 ###
-GET http://local:6000
+GET http://acme.com/api/platforms
 ###
 GET {{URL_LOCAL_NETCORE}}
 ###
@@ -27,6 +28,7 @@ GET {{URL_LOCALHOST}}
 ###
 GET {{URL_MINIKUBE}}
 
+GET {{URL}}/api/platforms
 
 ###
 GET {{URL}}/api/platforms
