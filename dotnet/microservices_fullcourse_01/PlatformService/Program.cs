@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlatformService.AsyncDataServices;
 using PlatformService.Data;
+using PlatformService.SyncDataService.Grpc;
 using PlatformService.SyncDataService.Http;
 using PlatformServices.Data;
 
@@ -25,6 +26,7 @@ else
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 builder.Services.AddSingleton<IMessageBusClient, MessageBusClient>();
+builder.Services.AddGrpc();
 
 builder.Services.AddControllers();
 // mapeando entidades
@@ -52,6 +54,14 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGrpcService<GrpcPlatformService>();
+app.MapGet("/protos/platforms.proto", async context =>
+    {
+        await context.Response.WriteAsync(
+            File.ReadAllText("Protos/platforms.proto")
+        );
+    });
 
 PrepDb.PrepPopulation(app, app.Environment.IsProduction());
 

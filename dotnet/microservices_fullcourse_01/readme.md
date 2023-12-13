@@ -221,3 +221,14 @@ kubectl rollout restart deployments platforms-depl
 # executar o rabbit
 
 kubectl apply -f rabbitmq-depl.yaml
+
+
+minikube addons enable ingress
+
+kubectl apply -f platforms-depl.yaml && \
+kubectl apply -f commands-depl.yaml && \
+kubectl apply -f platforms-np-srv.yaml && \
+kubectl apply -f ingress-srv.yaml
+
+https://youtu.be/DgVjEo3OGBI?si=1Y9kYnW22FF-HzjK&t=34499
+
