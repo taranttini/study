@@ -35,10 +35,8 @@ dotnet dev-certs https --trust
 
 dotnet dev-certs https -v
 
-https://youtu.be/DgVjEo3OGBI?si=19aJDNcCfVDI5B7c&t=20939
-https://youtu.be/DgVjEo3OGBI?si=GILOOar08UuBMtCq&t=21965
-https://youtu.be/DgVjEo3OGBI?si=bM4VfbUg6RZ9LXEF&t=26523
-https://youtu.be/DgVjEo3OGBI?si=5uSnZqI4rLazE9xy&t=31108
+https://youtu.be/DgVjEo3OGBI
+https://www.youtube.com/watch?v=DgVjEo3OGBI
 
 http://10.109.90.26:15672/#/
 
@@ -198,7 +196,7 @@ kubectl delete pvc NOME_DO_ITEM
 
 # gerar base sql server
 
-kubectl create secret generic mssql --from-literal=SA_PASSWORD="pa55w0rd" 
+kubectl create secret generic mssql --from-literal=SA_PASSWORD="my@KEY#123_yourPass" 
 
 # executar o sqlserver
 
@@ -229,6 +227,4 @@ kubectl apply -f platforms-depl.yaml && \
 kubectl apply -f commands-depl.yaml && \
 kubectl apply -f platforms-np-srv.yaml && \
 kubectl apply -f ingress-srv.yaml
-
-https://youtu.be/DgVjEo3OGBI?si=1Y9kYnW22FF-HzjK&t=34499
 
