@@ -8,5 +8,6 @@ public class Example
     public void Test()
     {
         Console.WriteLine();
+        //
     }
 }
