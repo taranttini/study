@@ -26,5 +26,5 @@ inside if content
 
 # run
 
-go run `file_name`
+go run `PATH/file_name`
 
