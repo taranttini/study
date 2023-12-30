@@ -4,12 +4,18 @@ import (
 	"fmt"
 )
 
-// structs
+// metodos com structs
 
 type Client struct {
 	ID     int
 	Name   string
 	Active bool
+}
+
+func (c *Client) Disable() {
+
+	c.Active = false
+	fmt.Printf("O cliente %s foi desativado \n", c.Name)
 }
 
 func main() {
@@ -19,9 +25,8 @@ func main() {
 		Active: true,
 	}
 	fmt.Println(client)
-	fmt.Printf("Nome: %s\n", client.Name)
-	client.Active = false
+	client.Disable()
 
-	fmt.Printf("is active? %t\n", client.Active)
+	fmt.Println(client)
 
 }
