@@ -12,10 +12,10 @@ var (
 )
 
 var (
-	b_atribuida bool    = true
-	c_atribuida int     = 10
-	d_atribuida string  = "Dev"
-	e_atribuida float64 = 1.2
+	b_setted bool    = true
+	c_setted int     = 10
+	d_setted string  = "Dev"
+	e_setted float64 = 1.2
 )
 
 func main() {
@@ -30,16 +30,16 @@ func main() {
 	var a_local string
 	print(a_local)
 
-	println(b_atribuida)
-	println(c_atribuida)
-	println(d_atribuida)
-	println(e_atribuida)
+	println(b_setted)
+	println(c_setted)
+	println(d_setted)
+	println(e_setted)
 
 	// var nao_usada string // caso não seja utilizada,  nao sera possível executar o programa
 
 	// declarando e setando valor na variavel
 	// apenas na primeira iteracao, se eu tentar replicar essa rotina, ele vai informar erro
-	var_setada := 10 // tipo inteiro
+	var_setted := 10 // tipo inteiro
 
-	println(var_setada)
+	println(var_setted)
 }
