@@ -73,7 +73,7 @@ func main() {
 	fmt.Println("\n\nleitura finalizada!")
 
 	//
-	// exclusao do arquivo //
+	// exclusao do arquivo
 	//
 	err = os.Remove("arquivo.txt")
 	if err != nil {
