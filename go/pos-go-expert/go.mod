@@ -1,1 +1,0 @@
-module pos-go-expert
