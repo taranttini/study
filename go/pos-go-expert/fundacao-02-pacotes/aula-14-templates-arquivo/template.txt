@@ -1,0 +1,7 @@
+Cursos
+========================
+{{ range. }}{{ if not (eq .CargaHoraria 40)}}
+Nome .........: {{ .Nome }}
+Carga Horaria : {{ .CargaHoraria }}
+------------------------
+{{ end }}{{ end }}
