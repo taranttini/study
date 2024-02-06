@@ -9,23 +9,15 @@ import (
 type Manufacturer struct {
 	ID   int `gorm:primaryKey`
 	Name string
-	Cars []Car
+	Cars []Car `gorm:"many2many:cars_manufacturers;"`
 }
 
 type Car struct {
-	ID             int `gorm:"primaryKey"`
-	Name           string
-	Price          float64
-	ManufacturerID int
-	Manufacturer   Manufacturer
-	SerialNumber   SerialNumber
+	ID            int `gorm:"primaryKey"`
+	Name          string
+	Price         float64
+	Manufacturers []Manufacturer `gorm:"many2many:cars_manufacturers;"`
 	gorm.Model
-}
-
-type SerialNumber struct {
-	ID     int `gorm:primaryKey`
-	Number string
-	CarID  int
 }
 
 func main() {
@@ -34,53 +26,42 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	// remover validacao da chave foreign
+	db.Exec("drop table if exists serial_numbers")
+	db.Exec("drop table if exists cars_manufacturers")
+	db.Exec("drop table if exists cars")
+	db.Exec("drop table if exists manufacturers")
+	db.Exec("drop table if exists product_gorms")
+
 	// auto migration - criar migracoes automaticas
-	err = db.AutoMigrate(&Car{}, &Manufacturer{}, &SerialNumber{})
+	err = db.AutoMigrate(&Car{}, &Manufacturer{})
 	if err != nil {
 		panic(err)
 	}
 
-	// remover validacao da chave foreign
-	db.Exec("SET FOREIGN_KEY_CHECKS = 0")
-	db.Exec("TRUNCATE cars ")
-	db.Exec("TRUNCATE manufacturers ")
-	db.Exec("TRUNCATE serial_numbers ")
-	db.Exec("SET FOREIGN_KEY_CHECKS = 1")
+	//db.Exec("SET FOREIGN_KEY_CHECKS = 0")
+	//db.Exec("TRUNCATE cars_manufacturies ")
+	//db.Exec("TRUNCATE cars ")
+	//db.Exec("TRUNCATE manufacturers ")
+	//db.Exec("SET FOREIGN_KEY_CHECKS = 1")
 
 	// create manufacture
-	manufacturerFerrari := &Manufacturer{Name: "ferrari"}
-	db.Create(&manufacturerFerrari)
+	manufacturerAbarth := Manufacturer{Name: "abarth"}
+	db.Create(&manufacturerAbarth)
 
-	manufacturerGM := &Manufacturer{Name: "gm"}
-	db.Create(&manufacturerGM)
+	manufacturerFiat := Manufacturer{Name: "fiat"}
+	db.Create(&manufacturerFiat)
 
 	// create cars
-	carF50 := &Car{Name: "F50", Price: 999999.99, ManufacturerID: manufacturerFerrari.ID}
-	carEnzo := &Car{Name: "Enzo", Price: 599999.99, ManufacturerID: manufacturerFerrari.ID}
-	carCorvette := &Car{Name: "Corvette", Price: 199999.99, ManufacturerID: manufacturerGM.ID}
-	carOnix := &Car{Name: "Onix", Price: 99999.99, ManufacturerID: manufacturerGM.ID}
+	carAbarth := &Car{Name: "abarth", Price: 999.99, Manufacturers: []Manufacturer{
+		manufacturerFiat, manufacturerAbarth}}
 
-	db.Create(carF50)
-	db.Create(carEnzo)
-	db.Create(carCorvette)
-	db.Create(carOnix)
-
-	// create serial numbers
-	db.Create(&SerialNumber{Number: "123", CarID: carF50.ID})
-	db.Create(&SerialNumber{Number: "456", CarID: carEnzo.ID})
-	db.Create(&SerialNumber{Number: "789", CarID: carCorvette.ID})
-	db.Create(&SerialNumber{Number: "147", CarID: carOnix.ID})
+	db.Create(carAbarth)
 
 	// mapear carros das marcas
 	var manufacturers []Manufacturer
-	// not load
-	// err = db.Model(&Manufacturer{}).Preload("Cars").Preload("SerialNumber").Find(&manufacturers).Error
-
-	// carrega corretamente
-	err = db.Model(&Manufacturer{}).Preload("Cars").Preload("Cars.SerialNumber").Find(&manufacturers).Error
-
-	// ou
-	// err = db.Model(&Manufacturer{}).Preload("Cars.SerialNumber").Find(&manufacturers).Error
+	err = db.Model(&Manufacturer{}).Preload("Cars").Find(&manufacturers).Error
 	if err != nil {
 		panic(err)
 	}
@@ -88,8 +69,7 @@ func main() {
 	for _, manufacture := range manufacturers {
 		fmt.Println(manufacture.Name, ":")
 		for _, car := range manufacture.Cars {
-			//fmt.Printf("- %v %.2f %v \n", car.Name, car.Price, car.SerialNumber.Number)
-			fmt.Printf("- %v %.2f %v \n", car.Name, car.Price, car.SerialNumber.Number)
+			fmt.Printf("- %v %.2f \n", car.Name, car.Price)
 		}
 	}
 

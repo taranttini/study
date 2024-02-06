@@ -27,14 +27,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	db.Exec("drop table if exists serial_numbers")
+	db.Exec("drop table if exists cars_manufacturers")
+	db.Exec("drop table if exists cars")
+	db.Exec("drop table if exists manufacturers")
+	db.Exec("drop table if exists product_gorms")
+
 	// auto migration - criar migracoes automaticas
 	db.AutoMigrate(Car{}, Manufacturer{})
-
-	// remover validacao da chave foreign
-	db.Exec("SET FOREIGN_KEY_CHECKS = 0")
-	db.Exec("TRUNCATE cars ")
-	db.Exec("TRUNCATE  manufacturers ")
-	db.Exec("SET FOREIGN_KEY_CHECKS = 1")
 
 	manufacturerFerrari := Manufacturer{Name: "ferrari"}
 	db.Create(&manufacturerFerrari)

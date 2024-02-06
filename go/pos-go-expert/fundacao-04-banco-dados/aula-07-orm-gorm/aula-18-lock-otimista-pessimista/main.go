@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 type Manufacturer struct {
@@ -40,37 +40,18 @@ func main() {
 		panic(err)
 	}
 
-	//db.Exec("SET FOREIGN_KEY_CHECKS = 0")
-	//db.Exec("TRUNCATE cars_manufacturies ")
-	//db.Exec("TRUNCATE cars ")
-	//db.Exec("TRUNCATE manufacturers ")
-	//db.Exec("SET FOREIGN_KEY_CHECKS = 1")
+	db.Create(&Manufacturer{Name: "abarth"})
 
-	// create manufacture
-	manufacturerAbarth := Manufacturer{Name: "abarth"}
-	db.Create(&manufacturerAbarth)
-
-	manufacturerFiat := Manufacturer{Name: "fiat"}
-	db.Create(&manufacturerFiat)
-
-	// create cars
-	carAbarth := &Car{Name: "abarth", Price: 999.99, Manufacturers: []Manufacturer{
-		manufacturerFiat, manufacturerAbarth}}
-
-	db.Create(carAbarth)
-
-	// mapear carros das marcas
-	var manufacturers []Manufacturer
-	err = db.Model(&Manufacturer{}).Preload("Cars").Find(&manufacturers).Error
+	// lock otimista cria versao
+	// lock pessimista, lock na tabela
+	tx := db.Begin()
+	var c Manufacturer
+	err = tx.Debug().Clauses(clause.Locking{Strength: "UPDATE"}).First(&c, 1).Error
 	if err != nil {
 		panic(err)
 	}
 
-	for _, manufacture := range manufacturers {
-		fmt.Println(manufacture.Name, ":")
-		for _, car := range manufacture.Cars {
-			fmt.Printf("- %v %.2f \n", car.Name, car.Price)
-		}
-	}
-
+	c.Name = "Novo dado"
+	tx.Debug().Save(&c)
+	tx.Commit()
 }

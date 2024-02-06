@@ -20,10 +20,15 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	db.Exec("drop table if exists cars_manufacturers")
+	db.Exec("drop table if exists serial_numbers")
+	db.Exec("drop table if exists cars")
+	db.Exec("drop table if exists manufacturers")
+	db.Exec("drop table if exists product_gorms")
+
 	// auto migration - criar migracoes automaticas
 	db.AutoMigrate(Car{})
-
-	db.Exec("TRUNCATE TABLE cars")
 
 	// insert
 	db.Create(&Car{

@@ -18,7 +18,14 @@ type Car struct {
 	Price          float64
 	ManufacturerID int
 	Manufacturer   Manufacturer
+	SerialNumber   SerialNumber
 	gorm.Model
+}
+
+type SerialNumber struct {
+	ID     int `gorm:primaryKey`
+	Number string
+	CarID  int
 }
 
 func main() {
@@ -27,38 +34,42 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	db.Exec("drop table if exists serial_numbers")
+	db.Exec("drop table if exists cars_manufacturers")
+	db.Exec("drop table if exists cars")
+	db.Exec("drop table if exists manufacturers")
+	db.Exec("drop table if exists product_gorms")
+
 	// auto migration - criar migracoes automaticas
-	db.AutoMigrate(Car{}, Manufacturer{})
+	err = db.AutoMigrate(&Car{}, &Manufacturer{}, &SerialNumber{})
+	if err != nil {
+		panic(err)
+	}
 
-	// remover validacao da chave foreign
-	db.Exec("SET FOREIGN_KEY_CHECKS = 0")
-	db.Exec("TRUNCATE cars ")
-	db.Exec("TRUNCATE  manufacturers ")
-	db.Exec("SET FOREIGN_KEY_CHECKS = 1")
-
-	manufacturerFerrari := Manufacturer{Name: "ferrari"}
+	// create manufacture
+	manufacturerFerrari := &Manufacturer{Name: "ferrari"}
 	db.Create(&manufacturerFerrari)
 
-	manufacturerBugatti := Manufacturer{Name: "bugatti"}
-	db.Create(&manufacturerBugatti)
-
-	manufacturerGM := Manufacturer{Name: "gm"}
-	db.Create(&manufacturerGM)
-
-	// insert many
-	cars := []Car{
-		{Name: "ferrari", Price: 999999.99, ManufacturerID: manufacturerFerrari.ID},
-		{Name: "bugatti", Price: 599999.99, ManufacturerID: manufacturerBugatti.ID},
-		{Name: "corvette", Price: 199999.99, ManufacturerID: manufacturerGM.ID},
+	// create car
+	car := &Car{
+		Name:           "458 italia",
+		Price:          999999.99,
+		ManufacturerID: manufacturerFerrari.ID,
 	}
-	//fmt.Println(cars)
-	db.Create(&cars)
+	db.Create(car)
+
+	// create serial number
+	db.Create(&SerialNumber{
+		Number: "12345678",
+		CarID:  car.ID,
+	})
 
 	// select all
 	var carsManufacturers []Car
-	db.Preload("Manufacturer").Find(&carsManufacturers)
+	db.Preload("Manufacturer").Preload("SerialNumber").Find(&carsManufacturers)
 	for _, car := range carsManufacturers {
-		fmt.Println(car.Name, car.Manufacturer.Name)
+		fmt.Println(car.Name, car.Manufacturer.Name, car.SerialNumber.Number)
 	}
 
 }
