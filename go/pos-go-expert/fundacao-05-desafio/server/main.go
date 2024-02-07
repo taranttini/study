@@ -180,9 +180,9 @@ func doSaveData(ctx context.Context, w http.ResponseWriter, data DataUsdToBrl) (
 	CREATE TABLE QUOTES (
 		ID 			INTEGER NOT NULL PRIMARY KEY,
 		CODE 		TEXT,
-		CODEIN  	TEXT,   
-		NAME   		TEXT,    
-		HIGH   		REAL,    
+		CODEIN  	TEXT,
+		NAME   		TEXT,
+		HIGH   		REAL,
 		LOW        	REAL,
 		VARBID     	INTEGER,
 		PCTCHANGE  	INTEGER,
@@ -199,7 +199,8 @@ func doSaveData(ctx context.Context, w http.ResponseWriter, data DataUsdToBrl) (
 	}
 
 	stmt, err := db.Prepare(`
-		INSERT INTO QUOTES (CODE, CODEIN, NAME, HIGH, LOW, VARBID, PCTCHANGE, BID, ASK, TIMESTAMP, CREATEDATE)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+		INSERT INTO QUOTES (CODE, CODEIN, NAME, HIGH, LOW, VARBID, PCTCHANGE, BID, ASK, TIMESTAMP, CREATEDATE)  
+		            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	`)
 	if err != nil {
 		return nil, err
@@ -207,7 +208,7 @@ func doSaveData(ctx context.Context, w http.ResponseWriter, data DataUsdToBrl) (
 	defer stmt.Close()
 
 	// atencao com a ordem dos campos
-	_, err = stmt.Exec(data.UsdToBrl.Code, data.UsdToBrl.CodeIn, data.UsdToBrl.Name, data.UsdToBrl.High, data.UsdToBrl.Low, data.UsdToBrl.VarBid, data.UsdToBrl.PctChange, data.UsdToBrl.Bid, data.UsdToBrl.Ask, data.UsdToBrl.Timestamp, data.UsdToBrl.CreateDate)
+	_, err = stmt.ExecContext(ctx, data.UsdToBrl.Code, data.UsdToBrl.CodeIn, data.UsdToBrl.Name, data.UsdToBrl.High, data.UsdToBrl.Low, data.UsdToBrl.VarBid, data.UsdToBrl.PctChange, data.UsdToBrl.Bid, data.UsdToBrl.Ask, data.UsdToBrl.Timestamp, data.UsdToBrl.CreateDate)
 	if err != nil {
 		return nil, err
 	}
@@ -222,7 +223,7 @@ func doSaveData(ctx context.Context, w http.ResponseWriter, data DataUsdToBrl) (
 		return nil, errors.New(msg)
 	}
 
-	return []byte("oi"), nil
+	return []byte("d"), nil
 
 }
 
