@@ -41,3 +41,6 @@ create table products (
 
 `describe TABLE_NAME`
 
+protocolo 
+
+003-245-622-070-157
