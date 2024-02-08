@@ -24,3 +24,23 @@ O client.go terá que salvar a cotação atual em um arquivo "cotacao.txt" no fo
 O endpoint necessário gerado pelo server.go para este desafio será: /cotacao e a porta a ser utilizada pelo servidor HTTP será a 8080.
  
 Ao finalizar, envie o link do repositório para correção.
+
+Payload sample
+
+```json
+{
+  "USDBRL": {
+    "code": "USD",
+    "codein": "BRL",
+    "name": "Dólar Americano/Real Brasileiro",
+    "high": "4.9717",
+    "low": "4.969",
+    "varBid": "0.0032",
+    "pctChange": "0.06",
+    "bid": "4.9712",
+    "ask": "4.9722",
+    "timestamp": "1707345004",
+    "create_date": "2024-02-07 19:30:04"
+  }
+}
+```

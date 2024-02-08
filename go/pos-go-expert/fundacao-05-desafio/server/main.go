@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -13,6 +12,18 @@ import (
 
 	_ "github.com/mattn/go-sqlite3"
 )
+
+const TIMEOUT_HTTP_CLIENT = 200 * time.Millisecond // 200ms
+const TIMEOUT_DB_WRITES = 10 * time.Millisecond    // 10ms
+const URL_API = "https://economia.awesomeapi.com.br/json/last/USD-BRL"
+const ERROR_TIMEOUT_DATABASE_OR_CANCEL = "Timeout to save on database or request canceled!"
+const ERROR_TIMEOUT_API_OR_CANCEL = "Timeout get Quote API or request canceled"
+const ERROR_TIMEOUT_OR_CANCEL = "Request canceled or reached limit"
+const ERROR_500 = "500, internal error!\n"
+const ERROR_408 = "408, timeout!\n"
+const ERROR_TIMEOUT_API = "Timeout to catch data from quote api"
+const ERROR_READ_DATA = "Error to read data from quote api"
+const ERROR_JSON_PARSER = "Error to json parser from quote api"
 
 type UsdToBrl struct {
 	Code       string `json:"code"`
@@ -28,11 +39,12 @@ type UsdToBrl struct {
 	CreateDate string `json:"create_date"`
 }
 
-type DataUsdToBrl struct {
+type Payload struct {
 	UsdToBrl UsdToBrl `json:"USDBRL"`
 }
 
 func main() {
+	createDatabase()
 	println("Server start")
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/cotacao", handlerQuote)
@@ -44,9 +56,8 @@ func checkIfDone(ctx context.Context, w http.ResponseWriter) bool {
 	select {
 
 	case <-ctx.Done():
-		msg := "[ QUIT ] Request cancelada, ou limite atingido!\n"
-		log.Println(msg)
-		w.Write([]byte(msg))
+		log.Println(ERROR_TIMEOUT_OR_CANCEL)
+		w.Write([]byte(ERROR_TIMEOUT_OR_CANCEL))
 		return true
 
 	default:
@@ -56,34 +67,25 @@ func checkIfDone(ctx context.Context, w http.ResponseWriter) bool {
 
 func handlerQuote(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-	//for {
-	//	time.Sleep(300 * time.Millisecond)
-
-	//time.Sleep(4 * time.Second)
-	dt, err := doGetUsdQuote(ctx, w)
+	//time.Sleep(1000 * time.Millisecond)
+	result, err := doGetUsdQuote(ctx, w)
 	if err != nil {
-		println(err.Error())
+		log.Println(err.Error())
 		w.Write([]byte(err.Error()))
 		return
 	}
-	time.Sleep(4)
 
 	if checkIfDone(ctx, w) {
 		return
 	}
 
-	fmt.Sprint(dt)
-
-	cc, err := doSaveData(ctx, w, dt)
+	err = doSaveData(ctx, w, result)
 	if err != nil {
-		println(err.Error())
+		log.Println(err.Error())
 		//ctx.Done()
-		w.Write(cc) //[]byte(cc))
 		return
 	}
-	println(string(cc))
-
-	//log.Println(i)
+	//log.Println(string(actualBid))
 
 	if checkIfDone(ctx, w) {
 		return
@@ -93,138 +95,142 @@ func handlerQuote(w http.ResponseWriter, r *http.Request) {
 
 	case <-ctx.Done():
 		// no console print
-		log.Println("Request cancelada, ou limite atingido!")
-		w.Write([]byte("Request cancelada, ou limite atingido!"))
+		log.Println(ERROR_TIMEOUT_OR_CANCEL)
+		w.Write([]byte(ERROR_TIMEOUT_OR_CANCEL))
 		return
 
 	default:
-
-		log.Println("44")
-		w.Write([]byte("OK"))
+		// response data to client
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(result.UsdToBrl)
 	}
 }
 
-func doGetUsdQuote(ctx context.Context, w http.ResponseWriter) (DataUsdToBrl, error) {
+func doGetUsdQuote(ctx context.Context, w http.ResponseWriter) (Payload, error) {
 
-	//ctxInterno, cancelInterno := context.WithTimeout(context.Background(), 200 * time.Millisecond)
-	//defer cancelInterno()
+	ctxInterno, cancelInterno := context.WithTimeout(context.Background(), TIMEOUT_HTTP_CLIENT)
+	defer cancelInterno()
 
 	//-----------------------
 
 	log.Println("Request [start] /cotacao")
 	defer log.Println("Request [end] /cotacao")
 
-	client := http.Client{Timeout: 200 * time.Millisecond}
-	response, err := client.Get("https://economia.awesomeapi.com.br/json/last/USD-BRL")
+	client := http.Client{} //Timeout: TIMEOUT_HTTP_CLIENT}
+	response, err := client.Get(URL_API)
 
 	if err != nil {
-		println("timeout ao acessar a api de cotacoes")
-		w.Write([]byte("408, timeout!\n"))
-		return DataUsdToBrl{}, err
+		log.Println(ERROR_TIMEOUT_API)
+		w.Write([]byte(ERROR_408))
+		return Payload{}, err
 	}
 
 	defer response.Body.Close()
 	body, err := io.ReadAll(response.Body)
 
 	if err != nil {
-		println("erro ao ler dados da api de cotacoes")
-		w.Write([]byte("500, internal error!\n"))
-		return DataUsdToBrl{}, err
+		log.Println(ERROR_READ_DATA)
+		w.Write([]byte(ERROR_500))
+		return Payload{}, err
 	}
 
-	var usd DataUsdToBrl
-	err = json.Unmarshal(body, &usd)
+	var payload Payload
+	err = json.Unmarshal(body, &payload)
 	if err != nil {
-		println("erro ao fazer parser do json da api de cotacoes")
-		w.Write([]byte("500, internal error!\n"))
-		return DataUsdToBrl{}, err
+		log.Println(ERROR_JSON_PARSER)
+		w.Write([]byte(ERROR_500))
+		return Payload{}, err
 	}
-	//println("\n", usd.UsdToBrl.Bid, "\n")
 
 	//-----------------------
-	msg := "Erro ao buscar os dados"
 	if checkIfDone(ctx, w) {
-		return DataUsdToBrl{}, errors.New(msg)
+		return Payload{}, errors.New(ERROR_TIMEOUT_API_OR_CANCEL)
 	}
-	//if checkIfDone(ctxInterno, w) {
-	//	return nil, errors.New(msg)
-	//}
+	if checkIfDone(ctxInterno, w) {
+		return Payload{}, errors.New(ERROR_TIMEOUT_API_OR_CANCEL)
+	}
 
-	return usd, nil
 	//return []byte(body), nil
-
+	return payload, nil
 }
 
-func doSaveData(ctx context.Context, w http.ResponseWriter, data DataUsdToBrl) ([]byte, error) {
-	log.Println("salvar dados...")
+func createDatabase() {
+	db, err := sql.Open("sqlite3", "./db.sqlite")
 
-	ctxInterno, cancelInterno := context.WithTimeout(context.Background(), 10*time.Second)
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
+	sqlStmt := `
+	--DROP TABLE IF EXISTS QUOTES;
+
+	CREATE TABLE IF NOT EXISTS QUOTES (
+		ID 			INTEGER NOT NULL PRIMARY KEY,
+		CODE 		TEXT,
+		CODEIN  	TEXT,
+		NAME   		TEXT,
+		HIGH   		TEXT,
+		LOW        	TEXT,
+		VARBID     	TEXT,
+		PCTCHANGE  	TEXT,
+		BID        	TEXT,
+		ASK        	TEXT,
+		TIMESTAMP  	TEXT,
+		CREATEDATE 	TEXT,
+		REQUEST_AT  TEXT
+	);
+	`
+	_, err = db.Exec(sqlStmt)
+	if err != nil {
+		log.Printf("%q: %s\n", err, sqlStmt)
+		panic(err)
+	}
+}
+
+func doSaveData(ctx context.Context, w http.ResponseWriter, payload Payload) error {
+
+	ctxInterno, cancelInterno := context.WithTimeout(context.Background(), TIMEOUT_DB_WRITES)
 	defer cancelInterno()
 
 	//time.Sleep(1 * time.Second)
 	db, err := sql.Open("sqlite3", "./db.sqlite")
 
 	if err != nil {
-		panic(err)
-		println("erro ao conectar base de dados")
-		w.Write([]byte("500, internal error!\n"))
-		return nil, err
+		//panic(err)
+		log.Println("Error to connect database")
+		w.Write([]byte(ERROR_500))
+		return err
 	}
 	defer db.Close()
 
-	print(db)
-
-	sqlStmt := `
-	DROP TABLE IF EXISTS QUOTES;
-
-	CREATE TABLE QUOTES (
-		ID 			INTEGER NOT NULL PRIMARY KEY,
-		CODE 		TEXT,
-		CODEIN  	TEXT,
-		NAME   		TEXT,
-		HIGH   		REAL,
-		LOW        	REAL,
-		VARBID     	INTEGER,
-		PCTCHANGE  	INTEGER,
-		BID        	INTEGER,
-		ASK        	REAL,
-		TIMESTAMP  	INTEGER,
-		CREATEDATE 	TEXT
-	);
-	`
-	_, err = db.ExecContext(ctxInterno, sqlStmt)
-	if err != nil {
-		log.Printf("%q: %s\n", err, sqlStmt)
-		return nil, errors.New("Erro ao criar tabela de dados")
-	}
+	//print(db)
 
 	stmt, err := db.Prepare(`
-		INSERT INTO QUOTES (CODE, CODEIN, NAME, HIGH, LOW, VARBID, PCTCHANGE, BID, ASK, TIMESTAMP, CREATEDATE)  
-		            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		INSERT INTO QUOTES (CODE, CODEIN, NAME, HIGH, LOW, VARBID, PCTCHANGE, BID, ASK, TIMESTAMP, CREATEDATE, REQUEST_AT)  
+		            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now','localtime'))
 	`)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	defer stmt.Close()
 
 	// atencao com a ordem dos campos
-	_, err = stmt.ExecContext(ctx, data.UsdToBrl.Code, data.UsdToBrl.CodeIn, data.UsdToBrl.Name, data.UsdToBrl.High, data.UsdToBrl.Low, data.UsdToBrl.VarBid, data.UsdToBrl.PctChange, data.UsdToBrl.Bid, data.UsdToBrl.Ask, data.UsdToBrl.Timestamp, data.UsdToBrl.CreateDate)
+	_, err = stmt.ExecContext(ctx, payload.UsdToBrl.Code, payload.UsdToBrl.CodeIn, payload.UsdToBrl.Name, payload.UsdToBrl.High, payload.UsdToBrl.Low, payload.UsdToBrl.VarBid, payload.UsdToBrl.PctChange, payload.UsdToBrl.Bid, payload.UsdToBrl.Ask, payload.UsdToBrl.Timestamp, payload.UsdToBrl.CreateDate)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	print("Dados salvos com sucesso")
+	log.Print("Successful data saved")
 
-	msg := "Erro ao salvar os dados"
 	if checkIfDone(ctx, w) {
-		return nil, errors.New(msg)
+		return errors.New(ERROR_TIMEOUT_DATABASE_OR_CANCEL)
 	}
 
 	if checkIfDone(ctxInterno, w) {
-		return nil, errors.New(msg)
+		return errors.New(ERROR_TIMEOUT_DATABASE_OR_CANCEL)
 	}
 
-	return []byte("d"), nil
-
+	return nil
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
