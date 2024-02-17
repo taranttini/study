@@ -1,0 +1,1 @@
+go mod init github.com/taranttini/study/pos-go-expert/fundacao-06-empacotamento/aula-01-go-mod
