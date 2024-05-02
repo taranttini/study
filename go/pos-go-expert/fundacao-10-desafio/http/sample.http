@@ -1,5 +1,5 @@
 @CEP = 02765000
-### 
+###
 # @name brasilapi
 GET https://brasilapi.com.br/api/cep/v1/{{CEP}}
 

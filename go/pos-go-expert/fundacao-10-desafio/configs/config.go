@@ -1,16 +1,17 @@
 package configs
 
 import (
+	_ "time"
+
 	"github.com/spf13/viper"
 )
 
 var cfg *conf
 
 type conf struct {
-	HttpTimeout   int    `mapstructure:"HTTP_TIMEOUT"`
-	UrlBrasilApi  string `mapstructure:"URL_BRASILAPI"`
-	UrlViaCep     string `mapstructure:"URL_VIACEP"`
-	WebServerPort string `mapstructure:"WEB_SERVER_PORT"`
+	HttpTimeout  int32  `mapstructure:"HTTP_TIMEOUT"`
+	UrlBrasilApi string `mapstructure:"URL_BRASILAPI"`
+	UrlViaCep    string `mapstructure:"URL_VIACEP"`
 }
 
 func LoadConfig(path string) (*conf, error) {
