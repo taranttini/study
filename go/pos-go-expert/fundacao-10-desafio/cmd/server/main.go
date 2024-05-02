@@ -61,7 +61,7 @@ func main() {
 	go callApi(ctx, config.UrlBrasilApi, cep, &waitGroup, &payload)
 	go callApi(ctx, config.UrlViaCep, cep, &waitGroup, &payload)
 
-	time.Sleep(time.Duration(config.HttpTimeout) * time.Millisecond)
+	time.Sleep(time.Duration(config.HttpTimeout) * time.Millisecond * 2)
 }
 
 type Payload struct {
@@ -105,11 +105,12 @@ func payloadAny(body []byte, url string, wg *sync.WaitGroup, p *Payload) error {
 	switch url {
 	case config.UrlBrasilApi:
 		//if url == config.UrlBrasilApi {
+
 		data, err := payloadBrasilApi(body)
 		if err != nil {
 			return err
 		}
-		//time.Sleep(900 * time.Millisecond) // forcar atraso
+		// time.Sleep(900 * time.Millisecond) // forcar atraso
 		if len(p.ViaCep.Cep) == 0 {
 			p.BrasilApi = data
 
@@ -123,7 +124,7 @@ func payloadAny(body []byte, url string, wg *sync.WaitGroup, p *Payload) error {
 		if err != nil {
 			return err
 		}
-		//time.Sleep(900 * time.Millisecond) //forcar atraso
+		// time.Sleep(900 * time.Millisecond) //forcar atraso
 		if len(p.BrasilApi.Cep) == 0 {
 			p.ViaCep = data
 
@@ -165,7 +166,7 @@ func doGetDataFromUrl(ctx context.Context, url string, cep string, wg *sync.Wait
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(config.HttpTimeout)*time.Millisecond)
 	defer cancel()
-
+	//time.Sleep(1000 * time.Millisecond) //forcar timeout
 	// criar request contexto
 	req, err := http.NewRequestWithContext(ctx, "GET", makeUrl(url, cep), nil)
 	if err != nil {
@@ -185,6 +186,7 @@ func doGetDataFromUrl(ctx context.Context, url string, cep string, wg *sync.Wait
 		//print("ERR 3 \n")
 		return err
 	}
+
 	// processa o dado
 	err = payloadAny(body, url, wg, p)
 	if err != nil {
