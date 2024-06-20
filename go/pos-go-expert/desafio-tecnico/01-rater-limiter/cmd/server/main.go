@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/taranttini/study/go/pos-go-expert/desafio-tecnico/01-rater-limiter/configs"
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
 
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
+	"github.com/taranttini/study/go/pos-go-expert/desafio-tecnico/01-rater-limiter/configs"
 )
 
 var sl []string
