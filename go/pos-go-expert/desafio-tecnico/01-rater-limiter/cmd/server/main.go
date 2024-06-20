@@ -3,20 +3,19 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strings"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-
 	"github.com/taranttini/study/go/pos-go-expert/desafio-tecnico/01-rater-limiter/configs"
 )
 
 var sl []string
 
 func main() {
-
-	_, err := configs.LoadConfig(".")
+	_, err := configs.LoadConfig("../../")
 	if err != nil {
 		panic(err)
 	}
@@ -46,8 +45,8 @@ func Rota(w http.ResponseWriter, r *http.Request) {
 
 func LogRequest(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		//log.Println("_METHOD_", r.Method, "_PATH_", r.URL.Path, r.Host) //, "_IP_", GetUserIp(r))
-		//limitOver :=
+		log.Println("_METHOD_", r.Method, "_PATH_", r.URL.Path, r.Host, "_IP_", GetUserIp(r))
+
 		if RequestLimitEnd(w, r) {
 			return
 		}
@@ -58,16 +57,19 @@ func LogRequest(next http.Handler) http.Handler {
 
 func RequestLimitEnd(w http.ResponseWriter, r *http.Request) bool {
 	tk := GetToken(r)
-	//print("xxx", tk)
+
+	config, _ := configs.LoadConfig(".")
+
 	if tk != "" {
-		existsToken := RequestValid("TOKEN", tk, 10)
+
+		existsToken := RequestValid("TOKEN", tk, config.QTY_REQUEST_TOKEN)
 		if existsToken {
 			ResearchLimitHasEnd(w)
 			return true
 		}
 	} else {
 		ip := GetUserIp(r)
-		exists := RequestValid("IP", ip, 5)
+		exists := RequestValid("IP", ip, config.QTY_REQUEST_IP)
 		if exists {
 			ResearchLimitHasEnd(w)
 			return true
