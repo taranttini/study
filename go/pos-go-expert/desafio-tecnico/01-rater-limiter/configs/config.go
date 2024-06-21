@@ -5,9 +5,11 @@ import (
 )
 
 type localConfig struct {
-	QTY_REQUEST_IP    int    `mapstructure:"QTY_REQUEST_IP"`
-	QTY_REQUEST_TOKEN int    `mapstructure:"QTY_REQUEST_TOKEN"`
-	TIME_LIMIT        string `mapstructure:"TIME_LIMIT"`
+	QTY_REQUEST_IP              int `mapstructure:"QTY_REQUEST_IP"`
+	QTY_REQUEST_TOKEN           int `mapstructure:"QTY_REQUEST_TOKEN"`
+	KEEP_REQUEST_PER_X_SECONDS  int `mapstructure:"KEEP_REQUEST_PER_X_SECONDS"`
+	BLOCKED_TOKEN_PER_X_SECONDS int `mapstructure:"BLOCKED_TOKEN_PER_X_SECONDS"`
+	BLOCKED_IP_PER_X_SECONDS    int `mapstructure:"BLOCKED_IP_PER_X_SECONDS"`
 }
 
 func LoadConfig(path string) (*localConfig, error) {
