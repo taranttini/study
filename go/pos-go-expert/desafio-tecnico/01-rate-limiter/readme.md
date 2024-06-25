@@ -36,6 +36,10 @@ curl --request GET \
   --header 'user-agent: vscode-restclient'
 ```
 
+como estrategia para mudar o redis, caso necessario para outro sistema de armazenamento de dados, foi criada uma interface com o insert/count que é necessário para o funcionamento do caso de uso, então se formos implementar outro mecanismo, basta seguir a interface e injentar a mesma dentro do código main, e assim deixarmos de usar o redis.
+
+então a estratégia seria fazer uso do ddd / injeção de dependência via construtor, e ter um novo mecânico de repositório de dados com a mesma lógica principal do projeto/desafio proposto
+
 # Desafio
 
 **Objetivo:** Desenvolver um rate limiter em Go que possa ser configurado para limitar o número máximo de requisições por segundo com base em um endereço IP específico ou em um token de acesso.
