@@ -40,6 +40,17 @@ como estrategia para mudar o redis, caso necessario para outro sistema de armaze
 
 então a estratégia seria fazer uso do ddd / injeção de dependência via construtor, e ter um novo mecânico de repositório de dados com a mesma lógica principal do projeto/desafio proposto
 
+TESTAR
+
+podemos realizar alguns testes através do comando, que através do diretório raiz do projeto ira validar algumas situações
+
+```sh
+go test ./...
+```
+
+
+go test -cover ./...
+
 # Desafio
 
 **Objetivo:** Desenvolver um rate limiter em Go que possa ser configurado para limitar o número máximo de requisições por segundo com base em um endereço IP específico ou em um token de acesso.

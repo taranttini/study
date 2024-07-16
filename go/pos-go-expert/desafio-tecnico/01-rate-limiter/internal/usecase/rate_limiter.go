@@ -44,7 +44,7 @@ func GetUserIp(r *http.Request) string {
 	return IPAddress
 }
 
-func (c *RateLimiterUseCase) _RequestIsValid(keyType string, keyValue string, qtyRequestAcceptable int, keepRequest int) bool {
+func (c *RateLimiterUseCase) _RequestIsInvalid(keyType string, keyValue string, qtyRequestAcceptable int, keepRequest int) bool {
 
 	//config, _ := configs.LoadConfig(".")
 
@@ -108,7 +108,7 @@ func (c *RateLimiterUseCase) RequestLimitEnd(w http.ResponseWriter, r *http.Requ
 		return true
 	}
 
-	if c._RequestIsValid(keyType, keyValue, requestQty, config.KEEP_REQUEST_PER_X_SECONDS) {
+	if c._RequestIsInvalid(keyType, keyValue, requestQty, config.KEEP_REQUEST_PER_X_SECONDS) {
 		c._BlockItem(keyType, keyValue, blockedTime)
 		//c.ResearchLimitHasEnd(w)
 		return true
