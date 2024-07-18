@@ -29,7 +29,7 @@ func NewRateLimiterRepository(db *redis.Client) *RateLimiterRepository {
 
 func (r *RateLimiterRepository) Insert(rateType string, value string, expiresTimeInSecond int) error {
 	key := fmt.Sprintf("%s:%s-%s", rateType, value, uuid.New())
-	fmt.Print("ITEM ", key, " DURAR ", expiresTimeInSecond, "\n")
+	fmt.Print("ITEM ", key, " DURAR ", expiresTimeInSecond, "s \n")
 	err := r.DB.Set(ctx, key, "1", time.Duration(expiresTimeInSecond)*time.Second).Err()
 	if err != nil {
 		return err //panic(err)

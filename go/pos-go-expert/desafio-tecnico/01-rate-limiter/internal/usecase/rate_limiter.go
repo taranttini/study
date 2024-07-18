@@ -103,12 +103,17 @@ func (c *RateLimiterUseCase) RequestLimitEnd(w http.ResponseWriter, r *http.Requ
 		blockedTime = config.BLOCKED_IP_PER_X_SECONDS
 	}
 
+	return c._CheckLimitEnd(keyType, keyValue, requestQty, config.KEEP_REQUEST_PER_X_SECONDS, blockedTime)
+}
+
+func (c *RateLimiterUseCase) _CheckLimitEnd(keyType string, keyValue string, requestQty int, requestDuration int, blockedTime int) bool {
+
 	if c._RequestIsBlocked(keyType, keyValue) {
 		//ResearchLimitHasEnd(w)
 		return true
 	}
 
-	if c._RequestIsInvalid(keyType, keyValue, requestQty, config.KEEP_REQUEST_PER_X_SECONDS) {
+	if c._RequestIsInvalid(keyType, keyValue, requestQty, requestDuration) {
 		c._BlockItem(keyType, keyValue, blockedTime)
 		//c.ResearchLimitHasEnd(w)
 		return true
