@@ -4,15 +4,17 @@ abrir terminal e acessar o diretório `01-rate-limiter` | `go/pos-go-expert/desa
 
 dentro do diretório `01-rate-limiter`
 
-executar o comando `docker-compose up`
 
-abrir outro terminal e acessar o diretório `01-rate-limiter`
 
-executar o comando `go mod tidy` *para recuperar os pacotes*
+<strike>abrir outro terminal e acessar o diretório `01-rate-limiter`</strike>
+
+<strike>executar o comando `go mod tidy` *para recuperar os pacotes*</strike>
 
 validar o arquivo `.env` e modificar as variáveis de configuração caso necessario, para configurar limite de request ou tempo de bloqueio
 
-executar o comando `go run cmd/server/main.go`
+executar o comando `docker-compose up`
+
+<strike>executar o comando `go run cmd/server/main.go`</strike>
 
 no diretório `http` temos o arquivo `test.http` onde podemos fazer as validações por token ou ip
 
@@ -50,6 +52,8 @@ go test ./...
 
 
 go test -cover ./...
+
+**Detalhe** até então não foi informado que o programa precisava rodar no docker, apenas o redis, e esse foi um desafio pois não conectava por nada os serviços, mas acredito que consegui vencer esse objetivo, espero que agora esteja ok, pois se não eu nem imagino para onde tenha que correr para fazer esse desafio funcionar, isso porque ainda tenho os demais para entregar, e ruim não ter opção de responder os comentários quando tem devolutiva do exercício
 
 # Desafio
 

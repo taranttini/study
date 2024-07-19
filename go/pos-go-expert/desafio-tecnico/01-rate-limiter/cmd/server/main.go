@@ -18,16 +18,24 @@ import (
 var rateLimiterUseCase *usecase.RateLimiterUseCase
 
 func main() {
+
+	fmt.Print("##### DOCKER step 1 \n")
+
 	_, err := configs.LoadConfig("../../")
 	if err != nil {
 		panic(err)
 	}
 
+	fmt.Print("##### DOCKER step 2 \n")
+
 	db := *redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr: "redis:6379",
+		//Addr:     "localhost:6379",
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
+
+	fmt.Print("##### DOCKER step 3 \n")
 
 	rateLimiterUseCase = usecase.NewRateLimiterUseCase(
 		database.NewRateLimiterRepository(&db),
