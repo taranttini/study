@@ -53,7 +53,8 @@ go test ./...
 
 go test -cover ./...
 
-**Detalhe** até então não foi informado que o programa precisava rodar no docker, apenas o redis, e esse foi um desafio pois não conectava por nada os serviços, mas acredito que consegui vencer esse objetivo, espero que agora esteja ok, pois se não eu nem imagino para onde tenha que correr para fazer esse desafio funcionar, isso porque ainda tenho os demais para entregar, e ruim não ter opção de responder os comentários quando tem devolutiva do exercício
+
+  **Detalhe** eu não tinha entendido que o programa precisava rodar no docker, apenas o redis, e esse foi um desafio pois não conectava por nada os serviços, mas acredito que consegui vencer esse objetivo, espero que agora esteja ok, pois se não eu nem imagino para onde tenha que correr para fazer esse desafio funcionar, isso porque ainda tenho os demais para entregar, e ruim não ter opção de responder os comentários quando tem devolutiva do exercício
 
 # Desafio
 
