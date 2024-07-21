@@ -1,0 +1,10 @@
+
+###
+GET http://naogoogle.com
+
+###
+
+GET http://google.com/x
+###
+
+GET https://google.com
