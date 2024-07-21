@@ -1,6 +1,9 @@
 # Execução
 
-go run cmd/cli/main.go -u http://google.com -r 20 -c 2
+go run cmd/cli/main.go --url http://google.com --concurrency 10 --requests 100
+
+
+docker run taranttini/stress-test --url http://google.com --concurrency 2 --requests 4
 
 # DESAFIO
 

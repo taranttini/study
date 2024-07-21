@@ -66,6 +66,12 @@ func NewStressTest(url string, requestTotal int, concurrency int) {
 		fmt.Printf("== %s|.%s ==\n", vKey, vValue)
 		total += value
 	}
+	if total < requestTotal {
+		vKey := CompleteTextWith("Lost request", ".", textLeftSize)
+		vValue := CompleteTextWith(fmt.Sprintf("%v", requestTotal-total), ".", textRightSize)
+		fmt.Printf("== %s|.%s ==\n", vKey, vValue)
+		total = requestTotal
+	}
 
 	fmt.Printf("== %s ==\n", CompleteTextWith(" ", " ", lineSize))
 	text = fmt.Sprintf("Total of requests %v ", total)
@@ -125,7 +131,7 @@ func ConcurrencyTask(wg *sync.WaitGroup, qty int) {
 
 func GetUrlStatusCode(url string) string {
 
-	timeInSecond := 1 * time.Second
+	timeInSecond := 30 * time.Second
 	ctx, cancel := context.WithTimeout(context.Background(), timeInSecond)
 	defer cancel()
 

@@ -18,9 +18,9 @@ func main() {
 		return
 	}
 
-	urlArg, existsUrl := checkArg("-u")
-	requestArg, existsRequest := checkArg("-r")
-	concurrencyArg, existsConcurrency := checkArg("-c")
+	urlArg, existsUrl := checkArg("--url")
+	requestArg, existsRequest := checkArg("--requests")
+	concurrencyArg, existsConcurrency := checkArg("--concurrency")
 
 	if !existsConcurrency || !existsRequest || !existsUrl {
 		ErroArguments()
@@ -82,10 +82,11 @@ func checkArg(argParam string) (string, bool) {
 }
 
 func ErroArguments() {
-	fmt.Println("Args necessary: -u  -r  -c")
-	fmt.Println("  -u URL                  // url used in requests")
-	fmt.Println("  -r Quantity of Request  // quantity of requests you need")
-	fmt.Println("  -c Concurrency          // quantity request in same time")
+
+	fmt.Println("Args necessary: --url --requests --concurrency")
+	fmt.Println("  --url: URL do serviço a ser testado")
+	fmt.Println("  --requests: Número total de requests")
+	fmt.Println("  --concurrency: Número de chamadas simultâneas")
 	fmt.Println("example:")
-	fmt.Println("main.go -u https://google.com -r 100 -c 10")
+	fmt.Println("main.go --url https://google.com --requests 100 --concurrency 10")
 }
