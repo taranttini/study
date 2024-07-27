@@ -19,7 +19,13 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o stress-test cmd/cli/main.go
 #ENTRYPOINT ["./stress-test"]
 #CMD ["./stress-test"]
 
-FROM scratch
-COPY --from=0 /app/stress-test /bin/stress-test
-ENTRYPOINT ["/bin/stress-test"]
-#CMD ["stress-test"]
+FROM alpine:latest
+
+RUN mkdir /app
+
+COPY --from=0 /app/stress-test /app/stress-test
+
+RUN apk --no-cache add ca-certificates
+
+ENTRYPOINT ["/app/stress-test"]
+#CMD ["/app/stress-test"]

@@ -118,7 +118,8 @@ func ConcurrencyTask(wg *sync.WaitGroup, qty int) {
 	for i := 0; i < qty; i++ {
 
 		statusCode := GetUrlStatusCode(urlCheck)
-		if len(statusCodes) > 0 {
+
+		if len(statusCode) > 0 {
 			increment(statusCode, 1)
 		} else {
 			increment("500 Internal Error", 1)
@@ -137,13 +138,14 @@ func GetUrlStatusCode(url string) string {
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
+		fmt.Println(err.Error())
 		return "500 Internal Error"
-		//err.Error()
 		//return "INTERNAL_ERROR"
 		//panic(err)
 	}
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
+		fmt.Println(err.Error())
 		return "500 Internal Error"
 		//err.Error()
 		//return "INTERNAL_ERROR"

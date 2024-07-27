@@ -5,6 +5,19 @@ go run cmd/cli/main.go --url http://google.com --concurrency 10 --requests 100
 
 docker run taranttini/stress-test --url http://google.com --concurrency 2 --requests 4
 
+## docker helper
+
+
+docker build --rm -t taranttini/stress-test . 
+
+docker run taranttini/stress-test:latest --url http://fullcycle.com --concurrency 2 --requests 4
+
+docker rmi $(docker images -f "dangling=true" -q)
+
+docker container prune
+
+docker image push taranttini/stress-test
+
 # DESAFIO
 
 Objetivo: Criar um sistema CLI em Go para realizar testes de carga em um serviço web. O usuário deverá fornecer a URL do serviço, o número total de requests e a quantidade de chamadas simultâneas.
