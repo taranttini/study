@@ -1,0 +1,14 @@
+### valid request pa
+GET http://localhost:8080/?zipcode=66035145
+### valid request sp
+GET http://localhost:8080/?zipcode=01310200
+### valid request rs
+GET http://localhost:8080/?zipcode=96230000
+
+### invalid zipcode when empty
+GET http://localhost:8080/?zipcode=
+### invalid zipcode
+GET http://localhost:8080/?zipcode=abcd
+### zipcode notfound
+GET http://localhost:8080/?zipcode=90000123
+###
