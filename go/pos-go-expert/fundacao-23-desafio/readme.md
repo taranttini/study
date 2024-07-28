@@ -1,5 +1,11 @@
 # Execução
 
+Foi publicado no google cloudrun `https://taranttini-weather-xtht6htpbq-uc.a.run.app` o codigo para validar o tempo baseado no cep.
+
+Mas a api de weather pelo que vi é temporaria ou está no trial.
+
+No arquivo `http/test.http` tem os valores para testar
+
 
 ## docker helpers
 

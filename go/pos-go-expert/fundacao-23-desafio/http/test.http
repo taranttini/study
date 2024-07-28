@@ -12,3 +12,22 @@ GET http://localhost:8080/?zipcode=abcd
 ### zipcode notfound
 GET http://localhost:8080/?zipcode=90000123
 ###
+
+#########
+###
+#########
+https://taranttini-weather-xtht6htpbq-uc.a.run.app/?zipcode=66035145
+###
+### valid request pa
+GET https://taranttini-weather-xtht6htpbq-uc.a.run.app/?zipcode=66035145
+### valid request sp
+GET https://taranttini-weather-xtht6htpbq-uc.a.run.app/?zipcode=01310200
+### valid request rs
+GET https://taranttini-weather-xtht6htpbq-uc.a.run.app/?zipcode=96230000
+
+### invalid zipcode when empty
+GET https://taranttini-weather-xtht6htpbq-uc.a.run.app/?zipcode=
+### invalid zipcode
+GET https://taranttini-weather-xtht6htpbq-uc.a.run.app/?zipcode=abcd
+### zipcode notfound
+GET https://taranttini-weather-xtht6htpbq-uc.a.run.app/?zipcode=90000123
