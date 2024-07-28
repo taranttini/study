@@ -1,16 +1,16 @@
 # Execução
 
-go run cmd/cli/main.go --url http://google.com --concurrency 10 --requests 100
+go run cmd/cli/main.go --url http://fullcycle.com.br --concurrency 10 --requests 100
 
 
-docker run taranttini/stress-test --url http://google.com --concurrency 2 --requests 4
+docker run taranttini/stress-test:latest --url http://fullcycle.com.br --concurrency 12 --requests 30
 
 ## docker helper
 
 
 docker build --rm -t taranttini/stress-test . 
 
-docker run taranttini/stress-test:latest --url http://fullcycle.com --concurrency 2 --requests 4
+docker run taranttini/stress-test:latest --url http://fullcycle.com.br --concurrency 2 --requests 4
 
 docker rmi $(docker images -f "dangling=true" -q)
 
