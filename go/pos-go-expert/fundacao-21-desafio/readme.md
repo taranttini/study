@@ -1,3 +1,24 @@
+
+printf '//go:build tools\npackage tools\nimport (_ "github.com/99designs/gqlgen"\n _ "github.com/99designs/gqlgen/graphql/introspection")' | gofmt > tools.go
+
+go mod tidy
+
+--
+
+go run github.com/99designs/gqlgen init
+
+go mod tidy
+
+--
+
+go run server.go
+
+--
+
+go run github.com/99designs/gqlgen generate
+
+https://plataforma.fullcycle.com.br/courses/c2957fa4-1e88-4425-be86-5a17ad2664ca/302/190/177/conteudos?capitulo=177&conteudo=9875
+
 # Clean Architect
 
 Olá devs!
