@@ -1,0 +1,14 @@
+version: '3'
+
+
+services:
+
+  postgres:
+    image: postgres
+    volumes:
+      - ./migration/01-db.sql:/docker-entrypoint-initdb.d/01-db.sql
+    environment:
+      POSTGRES_USER: "uDB"
+      POSTGRES_PASSWORD: "pDB!"
+    ports:
+      - "5432:5432"

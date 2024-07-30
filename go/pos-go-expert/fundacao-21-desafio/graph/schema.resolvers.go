@@ -31,7 +31,19 @@ func (r *mutationResolver) CreateItem(ctx context.Context, input model.NewItem) 
 
 // Orders is the resolver for the orders field.
 func (r *queryResolver) Orders(ctx context.Context) ([]*model.Order, error) {
-	panic(fmt.Errorf("not implemented: Orders - orders"))
+	orders, err := r.OrderDB.FindAll()
+	if err != nil {
+		return nil, err
+	}
+	var ordersModel []*model.Order
+	for _, order := range orders {
+		ordersModel = append(ordersModel, &model.Order{
+			ID:   order.Id,
+			Data: order.Data,
+		})
+	}
+	return ordersModel, nil
+	//panic(fmt.Errorf("not implemented: Orders - orders"))
 }
 
 // Items is the resolver for the items field.

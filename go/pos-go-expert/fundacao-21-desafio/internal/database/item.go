@@ -21,7 +21,7 @@ func NewItem(db *sql.DB) *Item {
 
 func (i *Item) Create(orderId string, description string, qty int, value float64) (Item, error) {
 	id := uuid.New().String()
-	query := "INSERT INTO items (ID, Description, Qty, Value, OrderId) VALUES ($1, $2, $3, $4, $5)"
+	query := `INSERT INTO "Items" ("ID", "Description", "Qty", "Value", "OrderId") VALUES ($1, $2, $3, $4, $5)`
 	_, err := i.db.Exec(query, id, description, qty, value, orderId)
 
 	if err != nil {

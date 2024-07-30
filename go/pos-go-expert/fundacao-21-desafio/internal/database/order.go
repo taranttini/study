@@ -19,8 +19,9 @@ func NewOrder(db *sql.DB) *Order {
 
 func (o *Order) Create(data string) (Order, error) {
 	id := uuid.New().String()
-	query := "INSERT INTO orders (ID, data) VALUES ($1, $2)"
-	_, err := o.db.Exec(query, data)
+
+	query := `INSERT INTO "Orders" ("Id", "Data") VALUES ($1, $2)`
+	_, err := o.db.Exec(query, id, data)
 
 	if err != nil {
 		return Order{}, err
@@ -31,5 +32,27 @@ func (o *Order) Create(data string) (Order, error) {
 		Data:  data,
 		Items: []Item{},
 	}, nil
+
+}
+
+func (o *Order) FindAll() ([]Order, error) {
+	query := `SELECT "Id", "Data" FROM "Orders"`
+	rows, err := o.db.Query(query)
+
+	if err != nil {
+		return []Order{}, err
+	}
+	defer rows.Close()
+
+	orders := []Order{}
+	for rows.Next() {
+		var id, data string
+		if err := rows.Scan(&id, &data); err != nil {
+			return nil, err
+		}
+		orders = append(orders, Order{Id: id, Data: data})
+	}
+
+	return orders, nil
 
 }
