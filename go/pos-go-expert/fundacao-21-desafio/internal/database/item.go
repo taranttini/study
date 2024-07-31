@@ -21,7 +21,10 @@ func NewItem(db *sql.DB) *Item {
 
 func (i *Item) Create(orderId string, description string, qty int, value float64) (*Item, error) {
 	id := uuid.New().String()
-	query := `INSERT INTO "Items" ("Id", "Description", "Qty", "Value", "OrderId") VALUES ($1, $2, $3, $4, $5)`
+	query := `
+		INSERT INTO "Items" ("Id", "Description", "Qty", "Value", "OrderId") 
+		VALUES ($1, $2, $3, $4, $5)
+	`
 	_, err := i.db.Exec(query, id, description, qty, value, orderId)
 
 	if err != nil {
@@ -38,7 +41,16 @@ func (i *Item) Create(orderId string, description string, qty int, value float64
 }
 
 func (i *Item) FindAll() ([]Item, error) {
-	query := `SELECT "Id", "Description", "Qty", "Value", "OrderId" FROM "Items"`
+	query := `
+		SELECT 
+			"Id", 
+			"Description", 
+			"Qty", 
+			"Value", 
+			"OrderId" 
+		FROM 
+			"Items"
+	`
 	rows, err := i.db.Query(query)
 
 	if err != nil {
@@ -61,7 +73,18 @@ func (i *Item) FindAll() ([]Item, error) {
 }
 
 func (i *Item) FindByOrderId(orderId string) ([]Item, error) {
-	query := `SELECT "Id", "Description", "Qty", "Value", "OrderId" FROM "Items" WHERE "OrderId" = $1`
+	query := `
+		SELECT 
+			"Id", 
+			"Description", 
+			"Qty", 
+			"Value", 
+			"OrderId" 
+		FROM 
+			"Items" 
+		WHERE 
+			"OrderId" = $1
+	`
 	rows, err := i.db.Query(query, orderId)
 
 	if err != nil {

@@ -6,9 +6,26 @@ package graph
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/graph/model"
 )
+
+// Order is the resolver for the order field.
+func (r *itemResolver) Order(ctx context.Context, obj *model.Item) (*model.Order, error) {
+	order, err := r.OrderDB.FindByItemId(obj.ID)
+
+	if err != nil {
+		fmt.Println(err.Error())
+		return nil, err
+	}
+
+	return &model.Order{
+		ID:   order.Id,
+		Data: order.Data,
+	}, nil
+	//panic(fmt.Errorf("not implemented: Order - order"))
+}
 
 // CreateOrder is the resolver for the createOrder field.
 func (r *mutationResolver) CreateOrder(ctx context.Context, input model.NewOrder) (*model.Order, error) {
@@ -16,6 +33,7 @@ func (r *mutationResolver) CreateOrder(ctx context.Context, input model.NewOrder
 	if err != nil {
 		return nil, err
 	}
+
 	return &model.Order{
 		ID:   order.Id,
 		Data: order.Data,
@@ -29,6 +47,7 @@ func (r *mutationResolver) CreateItem(ctx context.Context, input model.NewItem) 
 	if err != nil {
 		return nil, err
 	}
+
 	return &model.Item{
 		ID:          item.Id,
 		Description: item.Description,
@@ -45,6 +64,7 @@ func (r *orderResolver) Items(ctx context.Context, obj *model.Order) ([]*model.I
 	if err != nil {
 		return nil, err
 	}
+
 	var itemsModel []*model.Item
 	for _, item := range items {
 		itemsModel = append(itemsModel, &model.Item{
@@ -54,6 +74,7 @@ func (r *orderResolver) Items(ctx context.Context, obj *model.Order) ([]*model.I
 			Value:       item.Value,
 		})
 	}
+
 	return itemsModel, nil
 	//panic(fmt.Errorf("not implemented: Items - items"))
 }
@@ -64,6 +85,7 @@ func (r *queryResolver) Orders(ctx context.Context) ([]*model.Order, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	var ordersModel []*model.Order
 	for _, order := range orders {
 		ordersModel = append(ordersModel, &model.Order{
@@ -71,6 +93,7 @@ func (r *queryResolver) Orders(ctx context.Context) ([]*model.Order, error) {
 			Data: order.Data,
 		})
 	}
+
 	return ordersModel, nil
 	//panic(fmt.Errorf("not implemented: Orders - orders"))
 }
@@ -81,6 +104,7 @@ func (r *queryResolver) Items(ctx context.Context) ([]*model.Item, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	var itemsModel []*model.Item
 	for _, item := range items {
 		itemsModel = append(itemsModel, &model.Item{
@@ -90,9 +114,13 @@ func (r *queryResolver) Items(ctx context.Context) ([]*model.Item, error) {
 			Value:       item.Value,
 		})
 	}
+
 	return itemsModel, nil
 	//panic(fmt.Errorf("not implemented: Items - items"))
 }
+
+// Item returns ItemResolver implementation.
+func (r *Resolver) Item() ItemResolver { return &itemResolver{r} }
 
 // Mutation returns MutationResolver implementation.
 func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
@@ -103,6 +131,7 @@ func (r *Resolver) Order() OrderResolver { return &orderResolver{r} }
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
+type itemResolver struct{ *Resolver }
 type mutationResolver struct{ *Resolver }
 type orderResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }

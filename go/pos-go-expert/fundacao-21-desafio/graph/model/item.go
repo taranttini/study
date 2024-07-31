@@ -5,5 +5,5 @@ type Item struct {
 	Description string  `json:"description"`
 	Qty         int     `json:"qty"`
 	Value       float64 `json:"value"`
-	Order       *Order  `json:"order"`
+	//Order       *Order  `json:"order"`
 }

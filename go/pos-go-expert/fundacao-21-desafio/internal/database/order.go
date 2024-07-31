@@ -20,7 +20,10 @@ func NewOrder(db *sql.DB) *Order {
 func (o *Order) Create(data string) (Order, error) {
 	id := uuid.New().String()
 
-	query := `INSERT INTO "Orders" ("Id", "Data") VALUES ($1, $2)`
+	query := `
+		INSERT INTO "Orders" ("Id", "Data") 
+		VALUES ($1, $2)
+	`
 	_, err := o.db.Exec(query, id, data)
 
 	if err != nil {
@@ -36,7 +39,13 @@ func (o *Order) Create(data string) (Order, error) {
 }
 
 func (o *Order) FindAll() ([]Order, error) {
-	query := `SELECT "Id", "Data" FROM "Orders"`
+	query := `
+		SELECT 
+			"Id", 
+			"Data" 
+		FROM 
+			"Orders"
+	`
 	rows, err := o.db.Query(query)
 
 	if err != nil {
@@ -54,5 +63,27 @@ func (o *Order) FindAll() ([]Order, error) {
 	}
 
 	return orders, nil
+}
 
+func (o *Order) FindByItemId(itemId string) (Order, error) {
+	query := `
+		SELECT 
+			"o"."Id", 
+			"o"."Data" 
+		FROM 
+			"Orders" "o" 
+		INNER JOIN 
+			"Items" "i" 
+				ON "i"."OrderId" = "o"."Id" 
+		WHERE 
+			"i"."Id" = $1
+	`
+	var id, data string
+	err := o.db.QueryRow(query, itemId).Scan(&id, &data)
+
+	if err != nil {
+		return Order{}, err
+	}
+
+	return Order{Id: id, Data: data}, nil
 }

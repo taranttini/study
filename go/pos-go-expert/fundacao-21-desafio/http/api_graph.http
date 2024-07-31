@@ -1,0 +1,58 @@
+mutation createOrder {
+  createOrder(input: {data: "teste"}) {
+    id
+    data
+  }
+}
+
+query queryOrder {
+  orders {
+    id
+    data
+  }
+}
+
+query queryOrderAndItem {
+  orders {
+    id
+    data
+    items {
+      id
+      description
+      qty
+      value
+    }
+  }
+}
+
+mutation createItem {
+  createItem(
+    input: {orderId: "083ad4b0-ff18-4704-aa6f-11b424ba9dd6", description: "item 2", qty: 2, value: 9.99}
+  ) {
+    id
+    description
+    qty
+    value
+  }
+}
+
+query queryItem {
+  items {
+    id
+    description
+    qty
+    value
+  }
+}
+
+query queryItemAndOrder {
+  items {
+    id
+    description
+    qty
+    value
+    order {
+      id
+    }
+  }
+}
