@@ -2,14 +2,6 @@
 
 package model
 
-type Item struct {
-	ID          string  `json:"id"`
-	Description string  `json:"description"`
-	Qty         int     `json:"qty"`
-	Value       float64 `json:"value"`
-	Order       *Order  `json:"order"`
-}
-
 type Mutation struct {
 }
 
@@ -22,12 +14,6 @@ type NewItem struct {
 
 type NewOrder struct {
 	Data string `json:"data"`
-}
-
-type Order struct {
-	ID    string  `json:"id"`
-	Data  string  `json:"data"`
-	Items []*Item `json:"items"`
 }
 
 type Query struct {

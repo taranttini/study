@@ -6,7 +6,6 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/graph/model"
 )
@@ -26,7 +25,37 @@ func (r *mutationResolver) CreateOrder(ctx context.Context, input model.NewOrder
 
 // CreateItem is the resolver for the createItem field.
 func (r *mutationResolver) CreateItem(ctx context.Context, input model.NewItem) (*model.Item, error) {
-	panic(fmt.Errorf("not implemented: CreateItem - createItem"))
+	item, err := r.ItemDB.Create(input.OrderID, input.Description, input.Qty, input.Value)
+	if err != nil {
+		return nil, err
+	}
+	return &model.Item{
+		ID:          item.Id,
+		Description: item.Description,
+		Qty:         item.Qty,
+		Value:       item.Value,
+		//Order: ,
+	}, nil
+	//panic(fmt.Errorf("not implemented: CreateItem - createItem"))
+}
+
+// Items is the resolver for the items field.
+func (r *orderResolver) Items(ctx context.Context, obj *model.Order) ([]*model.Item, error) {
+	items, err := r.ItemDB.FindByOrderId(obj.ID)
+	if err != nil {
+		return nil, err
+	}
+	var itemsModel []*model.Item
+	for _, item := range items {
+		itemsModel = append(itemsModel, &model.Item{
+			ID:          item.Id,
+			Description: item.Description,
+			Qty:         item.Qty,
+			Value:       item.Value,
+		})
+	}
+	return itemsModel, nil
+	//panic(fmt.Errorf("not implemented: Items - items"))
 }
 
 // Orders is the resolver for the orders field.
@@ -48,14 +77,32 @@ func (r *queryResolver) Orders(ctx context.Context) ([]*model.Order, error) {
 
 // Items is the resolver for the items field.
 func (r *queryResolver) Items(ctx context.Context) ([]*model.Item, error) {
-	panic(fmt.Errorf("not implemented: Items - items"))
+	items, err := r.ItemDB.FindAll()
+	if err != nil {
+		return nil, err
+	}
+	var itemsModel []*model.Item
+	for _, item := range items {
+		itemsModel = append(itemsModel, &model.Item{
+			ID:          item.Id,
+			Description: item.Description,
+			Qty:         item.Qty,
+			Value:       item.Value,
+		})
+	}
+	return itemsModel, nil
+	//panic(fmt.Errorf("not implemented: Items - items"))
 }
 
 // Mutation returns MutationResolver implementation.
 func (r *Resolver) Mutation() MutationResolver { return &mutationResolver{r} }
 
+// Order returns OrderResolver implementation.
+func (r *Resolver) Order() OrderResolver { return &orderResolver{r} }
+
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
+type orderResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
