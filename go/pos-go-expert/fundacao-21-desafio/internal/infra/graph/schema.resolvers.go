@@ -8,7 +8,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/graph/model"
+	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/internal/infra/graph/model"
 )
 
 // Order is the resolver for the order field.

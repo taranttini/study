@@ -14,7 +14,7 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/99designs/gqlgen/graphql/introspection"
-	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/graph/model"
+	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/internal/infra/graph/model"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 )

@@ -8,8 +8,8 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/graph"
 	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/internal/database"
+	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/internal/infra/graph"
 
 	_ "github.com/lib/pq"
 )
