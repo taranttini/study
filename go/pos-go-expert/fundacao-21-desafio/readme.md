@@ -1,37 +1,43 @@
 
+```sh
+
+# graphQL
+
+# instalar
 printf '//go:build tools\npackage tools\nimport (_ "github.com/99designs/gqlgen"\n _ "github.com/99designs/gqlgen/graphql/introspection")' | gofmt > tools.go
-
+# carregar modulos
 go mod tidy
 
---
-
+# iniciar
 go run github.com/99designs/gqlgen init
-
+# carregar modulos
 go mod tidy
 
---
-
+# verificar ser
 go run server.go
 
---
-
+# gerar
 go run github.com/99designs/gqlgen generate
 
---
+## gRPC
+# Install
 
 go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.34.2
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.5.1
 
-sudo apt install -y protobuf-compiler
-
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-Install
-
 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 
--- docker
+sudo apt install -y protobuf-compiler
+
+# export GOPATH=$HOME/go
+# export PATH=$PATH:$GOPATH/bin
+
+
+# para criar dentro da pasta pb os arquivos e entidades
+protoc --go_out=. --go-grpc_out=. proto/order_item.proto
+
+# exemplo docker
 
 FROM node:12-alpine
 RUN apk add --no-cache protoc
@@ -39,6 +45,7 @@ RUN apk add --no-cache protoc
 https://plataforma.fullcycle.com.br/courses/c2957fa4-1e88-4425-be86-5a17ad2664ca/302/190/177/conteudos?capitulo=177&conteudo=9875
 
 https://plataforma.fullcycle.com.br/courses/c2957fa4-1e88-4425-be86-5a17ad2664ca/302/190/177/conteudos?capitulo=177&conteudo=9928
+```
 
 # Clean Architect
 

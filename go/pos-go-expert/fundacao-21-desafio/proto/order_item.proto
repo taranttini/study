@@ -1,0 +1,41 @@
+syntax = "proto3";
+package pb;
+option go_package = "internal/pb";
+
+message blank {}
+
+message Order {
+    string id = 1;
+    string data = 2;
+}
+
+message CreateOrderRequest {
+    string data = 1;
+}
+
+message OrderResponse {
+    Order order = 1;
+}
+
+message OrderList {
+    repeated Order orders = 1;
+}
+
+message OrderGetRequest {
+    string id = 1;
+}
+
+service OrderService {
+    rpc CreateOrder(CreateOrderRequest) returns (Order) {}
+    rpc CreateOrderStream(stream CreateOrderRequest) returns (OrderList) {}
+    rpc CreateOrderStreamBidirectional(stream CreateOrderRequest) returns (stream Order) {}
+    rpc ListOrders(blank) returns (OrderList) {}
+    rpc GetOrder(OrderGetRequest) returns (Order) {}
+}
+
+//protoc --go_out=. --go-grpc_out=. internal/infra/proto/order_item.proto
+//protoc --go_out=. --go-grpc_out=. internal/proto/order_item.proto
+// protoc --go_out=. --go-grpc_out=. proto/order_item.proto
+
+// evans --path ./proto --proto order_item.proto --port 50051
+// evans repl --proto proto/order_item.proto --port 50051
