@@ -37,6 +37,16 @@ sudo apt install -y protobuf-compiler
 # para criar dentro da pasta pb os arquivos e entidades
 protoc --go_out=. --go-grpc_out=. proto/order_item.proto
 
+
+
+// protoc --go_out=. internal/infra/pb  --go-grpc_out=. internal/infra/proto/order_item.proto
+// protoc --go_out=. --go-grpc_out=. ./internal/infra/proto/order_item.proto
+
+// evans --path ./proto --proto order_item.proto --port 50051
+// evans repl --proto internal/infra/proto/order_item.proto --port 50051
+
+
+
 # exemplo docker
 
 FROM node:12-alpine

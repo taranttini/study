@@ -5,18 +5,19 @@ import (
 	"io"
 
 	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/internal/database"
-	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/internal/pb"
-	//"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/internal/infra/pb"
+	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/internal/infra/pb"
 )
 
 type OrderService struct {
 	pb.UnimplementedOrderServiceServer
 	OrderDB database.Order
+	ItemDB  database.Item
 }
 
-func NewOrderService(orderDB database.Order) *OrderService {
+func NewOrderService(orderDB database.Order, itemDB database.Item) *OrderService {
 	return &OrderService{
 		OrderDB: orderDB,
+		ItemDB:  itemDB,
 	}
 }
 
@@ -34,9 +35,25 @@ func (o *OrderService) CreateOrder(ctx context.Context, in *pb.CreateOrderReques
 	//return nil, status.Errorf(codes.Unavailable, "method CreateOrder not implemented")
 }
 
+func (o *OrderService) AddItem(ctx context.Context, in *pb.AddItemRequest) (*pb.Item, error) {
+	item, err := o.ItemDB.Create(in.OrderId, in.Description, int(in.Qty), float64(in.Value))
+	if err != nil {
+		return nil, err
+	}
+	itemResponse := &pb.Item{
+		OrderId:     item.OrderId,
+		Id:          item.Id,
+		Description: item.Description,
+		Qty:         int32(item.Qty),
+		Value:       float64(item.Value),
+	}
+
+	return itemResponse, nil
+}
+
 // list order
 func (o *OrderService) ListOrders(ctx context.Context, in *pb.Blank) (*pb.OrderList, error) {
-	orders, err := o.OrderDB.FindAll()
+	orders, err := o.OrderDB.FindAllIncludeItems()
 	if err != nil {
 		return nil, err
 	}
@@ -44,13 +61,29 @@ func (o *OrderService) ListOrders(ctx context.Context, in *pb.Blank) (*pb.OrderL
 	var ordersResponse []*pb.Order
 
 	for _, order := range orders {
+		var itemsReponse []*pb.Item
+
+		for _, item := range order.Items {
+			itemResponse := &pb.Item{
+				Id:          item.Id,
+				Description: item.Description,
+				Qty:         int32(item.Qty),
+				Value:       item.Value,
+			}
+
+			itemsReponse = append(itemsReponse, itemResponse)
+		}
+		//fmt.Println(itemsReponse)
+
 		orderResponse := &pb.Order{
-			Id:   order.Id,
-			Data: order.Data,
+			Id:    order.Id,
+			Data:  order.Data,
+			Items: itemsReponse,
 		}
 
 		ordersResponse = append(ordersResponse, orderResponse)
 	}
+	//fmt.Println(ordersResponse)
 
 	return &pb.OrderList{Orders: ordersResponse}, nil
 }
@@ -77,6 +110,7 @@ func (o *OrderService) CreateOrderStream(stream pb.OrderService_CreateOrderStrea
 		if err == io.EOF {
 			return stream.SendAndClose(orders)
 		}
+
 		if err != nil {
 			return err
 		}
@@ -99,6 +133,7 @@ func (c *OrderService) CreateOrderStreamBidirectional(stream pb.OrderService_Cre
 		if err == io.EOF {
 			return nil
 		}
+
 		if err != nil {
 			return err
 		}

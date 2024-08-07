@@ -21,21 +21,27 @@ CREATE TABLE "Items" (
 ---
 
 INSERT INTO "Orders"("Id", "Data")
-VALUES ('0001', '2024-07-29');
+VALUES ('000000-000000-000001', '2024-07-29');
 
 INSERT INTO "Items"("Id", "Description", "Qty", "Value", "OrderId")
-VALUES ('0001', 'note', 2, 2.50, '0001');
+VALUES ('000000-000001-000001', 'note', 2, 2.50, '000000-000000-000001');
 
 INSERT INTO "Items"("Id", "Description", "Qty", "Value", "OrderId")
-VALUES ('0002', 'pencil', 1, 0.50, '0001');
+VALUES ('000000-000001-000002', 'pencil', 1, 0.50, '000000-000000-000001');
 
 ---
 
 INSERT INTO "Orders"("Id", "Data")
-VALUES ('0002', '2024-07-29');
+VALUES ('000000-000000-000002', '2024-07-29');
 
 INSERT INTO "Items"("Id", "Description", "Qty", "Value", "OrderId")
-VALUES ('0003', 'computer', 1, 100.99, '0002');
+VALUES ('000000-000002-000003', 'computer', 1, 100.99, '000000-000000-000002');
 
 INSERT INTO "Items"("Id", "Description", "Qty", "Value", "OrderId")
-VALUES ('0004', 'monitor lcd', 1, 100.99, '0002');
+VALUES ('000000-000002-000004', 'monitor lcd', 1, 100.99, '000000-000000-000002');
+
+---
+
+
+INSERT INTO "Orders"("Id", "Data")
+VALUES ('000000-000000-000003', '2024-07-29');

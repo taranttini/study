@@ -1,12 +1,22 @@
 syntax = "proto3";
 package pb;
-option go_package = "internal/pb";
+option go_package = "internal/infra/pb";
 
 message blank {}
 
 message Order {
     string id = 1;
     string data = 2;
+    repeated Item items = 3;
+}
+
+message Item {
+    string orderId = 1;
+    string id = 2;
+    string description = 3;
+    int32 qty = 4;
+    double value = 5;
+
 }
 
 message CreateOrderRequest {
@@ -25,12 +35,20 @@ message OrderGetRequest {
     string id = 1;
 }
 
+message AddItemRequest {
+    string orderId = 1;
+    string description = 2;
+    int32 qty = 3;
+    double value = 4;
+}
+
 service OrderService {
     rpc CreateOrder(CreateOrderRequest) returns (Order) {}
     rpc CreateOrderStream(stream CreateOrderRequest) returns (OrderList) {}
     rpc CreateOrderStreamBidirectional(stream CreateOrderRequest) returns (stream Order) {}
     rpc ListOrders(blank) returns (OrderList) {}
     rpc GetOrder(OrderGetRequest) returns (Order) {}
+    rpc AddItem(AddItemRequest) returns (Item) {}
 }
 
 //protoc --go_out=. --go-grpc_out=. internal/infra/proto/order_item.proto

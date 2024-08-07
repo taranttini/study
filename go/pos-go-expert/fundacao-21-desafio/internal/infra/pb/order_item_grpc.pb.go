@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.12.4
-// source: proto/order_item.proto
+// source: internal/infra/proto/order_item.proto
 
 package pb
 
@@ -24,6 +24,7 @@ const (
 	OrderService_CreateOrderStreamBidirectional_FullMethodName = "/pb.OrderService/CreateOrderStreamBidirectional"
 	OrderService_ListOrders_FullMethodName                     = "/pb.OrderService/ListOrders"
 	OrderService_GetOrder_FullMethodName                       = "/pb.OrderService/GetOrder"
+	OrderService_AddItem_FullMethodName                        = "/pb.OrderService/AddItem"
 )
 
 // OrderServiceClient is the client API for OrderService service.
@@ -35,6 +36,7 @@ type OrderServiceClient interface {
 	CreateOrderStreamBidirectional(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[CreateOrderRequest, Order], error)
 	ListOrders(ctx context.Context, in *Blank, opts ...grpc.CallOption) (*OrderList, error)
 	GetOrder(ctx context.Context, in *OrderGetRequest, opts ...grpc.CallOption) (*Order, error)
+	AddItem(ctx context.Context, in *AddItemRequest, opts ...grpc.CallOption) (*Item, error)
 }
 
 type orderServiceClient struct {
@@ -101,6 +103,16 @@ func (c *orderServiceClient) GetOrder(ctx context.Context, in *OrderGetRequest, 
 	return out, nil
 }
 
+func (c *orderServiceClient) AddItem(ctx context.Context, in *AddItemRequest, opts ...grpc.CallOption) (*Item, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Item)
+	err := c.cc.Invoke(ctx, OrderService_AddItem_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderServiceServer is the server API for OrderService service.
 // All implementations must embed UnimplementedOrderServiceServer
 // for forward compatibility.
@@ -110,6 +122,7 @@ type OrderServiceServer interface {
 	CreateOrderStreamBidirectional(grpc.BidiStreamingServer[CreateOrderRequest, Order]) error
 	ListOrders(context.Context, *Blank) (*OrderList, error)
 	GetOrder(context.Context, *OrderGetRequest) (*Order, error)
+	AddItem(context.Context, *AddItemRequest) (*Item, error)
 	mustEmbedUnimplementedOrderServiceServer()
 }
 
@@ -134,6 +147,9 @@ func (UnimplementedOrderServiceServer) ListOrders(context.Context, *Blank) (*Ord
 }
 func (UnimplementedOrderServiceServer) GetOrder(context.Context, *OrderGetRequest) (*Order, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrder not implemented")
+}
+func (UnimplementedOrderServiceServer) AddItem(context.Context, *AddItemRequest) (*Item, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddItem not implemented")
 }
 func (UnimplementedOrderServiceServer) mustEmbedUnimplementedOrderServiceServer() {}
 func (UnimplementedOrderServiceServer) testEmbeddedByValue()                      {}
@@ -224,6 +240,24 @@ func _OrderService_GetOrder_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderService_AddItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).AddItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderService_AddItem_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).AddItem(ctx, req.(*AddItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OrderService_ServiceDesc is the grpc.ServiceDesc for OrderService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -243,6 +277,10 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "GetOrder",
 			Handler:    _OrderService_GetOrder_Handler,
 		},
+		{
+			MethodName: "AddItem",
+			Handler:    _OrderService_AddItem_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -257,5 +295,5 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "proto/order_item.proto",
+	Metadata: "internal/infra/proto/order_item.proto",
 }
