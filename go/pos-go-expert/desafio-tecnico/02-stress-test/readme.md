@@ -5,10 +5,18 @@ go run cmd/cli/main.go --url http://fullcycle.com.br --concurrency 10 --requests
 
 docker run taranttini/stress-test:latest --url http://fullcycle.com.br --concurrency 12 --requests 30
 
+
+OU
+
+docker-compose up
+
+docker run 02-stress-test-app --url http://uol.com.br --requests 1 --concurr
+ency 1
+
 ## docker helper
 
 
-docker build --rm -t taranttini/stress-test . 
+docker build --rm -t taranttini/stress-test .
 
 docker run taranttini/stress-test:latest --url http://fullcycle.com.br --concurrency 2 --requests 4
 
