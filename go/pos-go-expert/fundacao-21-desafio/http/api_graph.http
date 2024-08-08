@@ -1,3 +1,17 @@
+
+query ListOrders {
+  orders {
+    id
+    data
+    items {
+      id
+      description
+      qty
+      value
+    }
+  }
+}
+
 mutation createOrder {
   createOrder(input: {data: "teste"}) {
     id
@@ -27,7 +41,7 @@ query queryOrderAndItem {
 
 mutation createItem {
   createItem(
-    input: {orderId: "083ad4b0-ff18-4704-aa6f-11b424ba9dd6", description: "item 2", qty: 2, value: 9.99}
+    input: {orderId: "96379b15-82ed-4516-b0eb-48b27b80eab2", description: "item 1", qty: 2, value: 9.99}
   ) {
     id
     description

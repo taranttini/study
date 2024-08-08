@@ -1,0 +1,25 @@
+### create_order
+# @name create_order
+POST http://localhost:8080/order-create
+
+{
+ "data": "xpto"
+}
+
+### add item
+# necessario rodar o create_order ou list_orders
+# e pegar um guid valido
+POST http://localhost:8080/order-add-item
+
+{
+    "orderId": "e4d269db-4056-4d89-8804-4b5273907baa",
+    "description": "item xpto novo 2",
+    "qty": 2,
+    "value": 4
+}
+
+### list_orders
+# @name list_orders
+GET http://localhost:8080/order
+
+###

@@ -4,8 +4,10 @@ import (
 	"database/sql"
 
 	"github.com/google/uuid"
+	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/internal/entity"
 )
 
+/*
 type Item struct {
 	db          *sql.DB
 	Id          string
@@ -14,15 +16,20 @@ type Item struct {
 	Value       float64
 	OrderId     string
 }
+*/
 
-func NewItem(db *sql.DB) *Item {
-	return &Item{db: db}
+type ItemRepository struct {
+	db *sql.DB
 }
 
-func (i *Item) Create(orderId string, description string, qty int, value float64) (*Item, error) {
+func NewItemRepository(db *sql.DB) *ItemRepository {
+	return &ItemRepository{db: db}
+}
+
+func (i *ItemRepository) Create(orderId string, description string, qty int, value float64) (*entity.Item, error) {
 	id := uuid.New().String()
 	query := `
-		INSERT INTO "Items" ("Id", "Description", "Qty", "Value", "OrderId") 
+		INSERT INTO "Items" ("Id", "Description", "Qty", "Value", "OrderId")
 		VALUES ($1, $2, $3, $4, $5)
 	`
 	_, err := i.db.Exec(query, id, description, qty, value, orderId)
@@ -31,7 +38,7 @@ func (i *Item) Create(orderId string, description string, qty int, value float64
 		return nil, err
 	}
 
-	return &Item{
+	return &entity.Item{
 		Id:          id,
 		Description: description,
 		Qty:         qty,
@@ -40,15 +47,15 @@ func (i *Item) Create(orderId string, description string, qty int, value float64
 	}, nil
 }
 
-func (i *Item) FindAll() ([]Item, error) {
+func (i *ItemRepository) FindAll() ([]entity.Item, error) {
 	query := `
-		SELECT 
-			"Id", 
-			"Description", 
-			"Qty", 
-			"Value", 
-			"OrderId" 
-		FROM 
+		SELECT
+			"Id",
+			"Description",
+			"Qty",
+			"Value",
+			"OrderId"
+		FROM
 			"Items"
 	`
 	rows, err := i.db.Query(query)
@@ -58,7 +65,7 @@ func (i *Item) FindAll() ([]Item, error) {
 	}
 	defer rows.Close()
 
-	items := []Item{}
+	items := []entity.Item{}
 	for rows.Next() {
 		var id, description, orderId string
 		var qty int
@@ -66,23 +73,23 @@ func (i *Item) FindAll() ([]Item, error) {
 		if err := rows.Scan(&id, &description, &qty, &value, &orderId); err != nil {
 			return nil, err
 		}
-		items = append(items, Item{Id: id, Description: description, Qty: qty, Value: value, OrderId: orderId})
+		items = append(items, entity.Item{Id: id, Description: description, Qty: qty, Value: value, OrderId: orderId})
 	}
 
 	return items, nil
 }
 
-func (i *Item) FindByOrderId(orderId string) ([]Item, error) {
+func (i *ItemRepository) FindByOrderId(orderId string) ([]entity.Item, error) {
 	query := `
-		SELECT 
-			"Id", 
-			"Description", 
-			"Qty", 
-			"Value", 
-			"OrderId" 
-		FROM 
-			"Items" 
-		WHERE 
+		SELECT
+			"Id",
+			"Description",
+			"Qty",
+			"Value",
+			"OrderId"
+		FROM
+			"Items"
+		WHERE
 			"OrderId" = $1
 	`
 	rows, err := i.db.Query(query, orderId)
@@ -92,7 +99,7 @@ func (i *Item) FindByOrderId(orderId string) ([]Item, error) {
 	}
 	defer rows.Close()
 
-	items := []Item{}
+	items := []entity.Item{}
 	for rows.Next() {
 		var id, description, orderId string
 		var qty int
@@ -100,7 +107,7 @@ func (i *Item) FindByOrderId(orderId string) ([]Item, error) {
 		if err := rows.Scan(&id, &description, &qty, &value, &orderId); err != nil {
 			return nil, err
 		}
-		items = append(items, Item{Id: id, Description: description, Qty: qty, Value: value, OrderId: orderId})
+		items = append(items, entity.Item{Id: id, Description: description, Qty: qty, Value: value, OrderId: orderId})
 	}
 
 	return items, nil

@@ -10,11 +10,11 @@ import (
 
 type OrderService struct {
 	pb.UnimplementedOrderServiceServer
-	OrderDB database.Order
-	ItemDB  database.Item
+	OrderDB database.OrderRepository
+	ItemDB  database.ItemRepository
 }
 
-func NewOrderService(orderDB database.Order, itemDB database.Item) *OrderService {
+func NewOrderService(orderDB database.OrderRepository, itemDB database.ItemRepository) *OrderService {
 	return &OrderService{
 		OrderDB: orderDB,
 		ItemDB:  itemDB,

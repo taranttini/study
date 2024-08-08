@@ -4,20 +4,43 @@ import (
 	"database/sql"
 
 	"github.com/google/uuid"
+	"github.com/taranttini/study/go/pos-go-expert/fundacao-21-desafio/internal/entity"
 )
 
-type Order struct {
-	db    *sql.DB
-	Id    string
-	Data  string
-	Items []Item
+/*
+	type Order struct {
+		db    *sql.DB
+		Id    string
+		Data  string
+		Items []Item
+	}
+*/
+type OrderRepository struct {
+	db *sql.DB
 }
 
-func NewOrder(db *sql.DB) *Order {
-	return &Order{db: db}
+func NewOrderRepository(db *sql.DB) *OrderRepository {
+	return &OrderRepository{db: db}
 }
 
-func (o *Order) Create(data string) (Order, error) {
+func (o *OrderRepository) AddItem(orderId string, descrition string, qty int, value float64) (entity.Item, error) {
+
+	println(orderId)
+	item, err := NewItemRepository(o.db).Create(orderId, descrition, qty, value)
+	if err != nil {
+		return entity.Item{}, err
+	}
+	return entity.Item{
+		Id:          item.Id,
+		OrderId:     item.OrderId,
+		Description: item.Description,
+		Qty:         item.Qty,
+		Value:       item.Value,
+	}, nil
+}
+
+// func (o *Order) Create(data string) (Order, error) {
+func (o *OrderRepository) Create(data string) (entity.Order, error) {
 	id := uuid.New().String()
 
 	query := `
@@ -27,18 +50,19 @@ func (o *Order) Create(data string) (Order, error) {
 	_, err := o.db.Exec(query, id, data)
 
 	if err != nil {
-		return Order{}, err
+		return entity.Order{}, err
 	}
 
-	return Order{
+	return entity.Order{
 		Id:    id,
 		Data:  data,
-		Items: []Item{},
+		Items: []entity.Item{},
 	}, nil
 
 }
 
-func (o *Order) FindAll() ([]Order, error) {
+// func (o *Order) FindAll() ([]Order, error) {
+func (o *OrderRepository) FindAll() ([]entity.Order, error) {
 	query := `
 		SELECT
 			"Id",
@@ -49,23 +73,24 @@ func (o *Order) FindAll() ([]Order, error) {
 	rows, err := o.db.Query(query)
 
 	if err != nil {
-		return []Order{}, err
+		return []entity.Order{}, err
 	}
 	defer rows.Close()
 
-	orders := []Order{}
+	orders := []entity.Order{}
 	for rows.Next() {
 		var id, data string
 		if err := rows.Scan(&id, &data); err != nil {
 			return nil, err
 		}
-		orders = append(orders, Order{Id: id, Data: data})
+		orders = append(orders, entity.Order{Id: id, Data: data})
 	}
 
 	return orders, nil
 }
 
-func (o *Order) FindByItemId(itemId string) (Order, error) {
+// func (o *Order) FindByItemId(itemId string) (Order, error) {
+func (o *OrderRepository) FindByItemId(itemId string) (entity.Order, error) {
 	query := `
 		SELECT
 			"o"."Id",
@@ -77,15 +102,16 @@ func (o *Order) FindByItemId(itemId string) (Order, error) {
 				ON "i"."OrderId" = "o"."Id"
 		WHERE
 			"i"."Id" = $1
+		ORDER BY "o"."Id", "i"."Id"
 	`
 	var id, data string
 	err := o.db.QueryRow(query, itemId).Scan(&id, &data)
 
 	if err != nil {
-		return Order{}, err
+		return entity.Order{}, err
 	}
 
-	return Order{Id: id, Data: data}, nil
+	return entity.Order{Id: id, Data: data}, nil
 }
 
 type NullableString struct{ sql.NullString }
@@ -111,7 +137,8 @@ func (ns *NullableFloat64) ValueOrDefault(defaultValue float64) float64 {
 	return defaultValue
 }
 
-func (o *Order) FindAllIncludeItems() ([]Order, error) {
+// func (o *Order) FindAllIncludeItems() ([]Order, error) {
+func (o *OrderRepository) FindAllIncludeItems() ([]entity.Order, error) {
 	query := `
 	SELECT
 		"o"."Id" AS "OrderId",
@@ -128,12 +155,12 @@ func (o *Order) FindAllIncludeItems() ([]Order, error) {
 	rows, err := o.db.Query(query)
 
 	if err != nil {
-		return []Order{}, err
+		return []entity.Order{}, err
 	}
 	defer rows.Close()
 
-	orders := []Order{}
-	items := []Item{}
+	orders := []entity.Order{}
+	items := []entity.Item{}
 	var lastItemId string
 	for rows.Next() {
 		var orderId, data string
@@ -151,16 +178,16 @@ func (o *Order) FindAllIncludeItems() ([]Order, error) {
 
 		if lastItemId != orderId {
 			//fmt.Printf(".. novo item %v orderId %v \n", id, orderId)
-			items = []Item{}
+			items = []entity.Item{}
 			if len(id) > 0 {
-				items = append(items, Item{Id: id, Description: description, Qty: int(qty), Value: value})
+				items = append(items, entity.Item{Id: id, Description: description, Qty: int(qty), Value: value})
 			}
-			orders = append(orders, Order{Id: orderId, Data: data, Items: items})
+			orders = append(orders, entity.Order{Id: orderId, Data: data, Items: items})
 			lastItemId = orderId
 
 		} else {
 			//fmt.Printf(">>  add item %v orderId %v \n", id, orderId)
-			items = append(items, Item{Id: id, Description: description, Qty: int(qty), Value: value})
+			items = append(items, entity.Item{Id: id, Description: description, Qty: int(qty), Value: value})
 
 			if len(id) > 0 {
 				orders[len(orders)-1].Items = items
@@ -171,7 +198,8 @@ func (o *Order) FindAllIncludeItems() ([]Order, error) {
 	return orders, nil
 }
 
-func (o *Order) FindByOrderIdIncludeItems(orderId string) ([]Order, error) {
+// func (o *Order) FindByOrderIdIncludeItems(orderId string) ([]Order, error) {
+func (o *OrderRepository) FindByOrderIdIncludeItems(orderId string) ([]entity.Order, error) {
 	query := `
 	SELECT
 		"o"."Id" AS "OrderId",
@@ -190,12 +218,12 @@ func (o *Order) FindByOrderIdIncludeItems(orderId string) ([]Order, error) {
 	rows, err := o.db.Query(query)
 
 	if err != nil {
-		return []Order{}, err
+		return []entity.Order{}, err
 	}
 	defer rows.Close()
 
-	orders := []Order{}
-	items := []Item{}
+	orders := []entity.Order{}
+	items := []entity.Item{}
 	lastItemId := ""
 	for rows.Next() {
 		var orderId, id, data, description string
@@ -207,15 +235,15 @@ func (o *Order) FindByOrderIdIncludeItems(orderId string) ([]Order, error) {
 
 		if lastItemId != orderId {
 			//fmt.Printf(".. novo item %v orderId %v \n", id, orderId)
-			items = []Item{}
-			items = append(items, Item{Id: id, Description: description, Qty: int(qty), Value: value})
+			items = []entity.Item{}
+			items = append(items, entity.Item{Id: id, Description: description, Qty: int(qty), Value: value})
 
-			orders = append(orders, Order{Id: orderId, Data: data, Items: items})
+			orders = append(orders, entity.Order{Id: orderId, Data: data, Items: items})
 			lastItemId = orderId
 
 		} else {
 			//fmt.Printf(">>  add item %v orderId %v \n", id, orderId)
-			items = append(items, Item{Id: id, Description: description, Qty: int(qty), Value: value})
+			items = append(items, entity.Item{Id: id, Description: description, Qty: int(qty), Value: value})
 
 			orders[len(orders)-1].Items = items
 		}

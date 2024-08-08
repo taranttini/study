@@ -1,3 +1,42 @@
+# SOLUÇÃO
+
+Acessar a pasta do projeto go/pos-go-expert/fundacao-21-desafio
+
+executar o comando docker-compose up
+
+Aguardar ser criado os serviços
+
+## API
+
+Na pasta http, temos o arquivo `api.http` com as funções
+
+- GET http://localhost:8080/order > que lista as ordens
+- POST http://localhost:8080/order-create > que criar uma nova ordem
+- POST http://localhost:8080/order-add-item > que adiciona item na ordem
+
+## GraphQL
+
+Temos também o arquivo `api_graph.http`
+
+é uma cola para ser usada ao acessar o endereço `http://localhost:8080/` no navegador, e assim colar o script para rodar o GraphQL
+
+A rotina `query queryOrderAndItem` lista as ordens
+
+## Grpc
+
+Não consegui em momento algum rodar o comando `evans repl -r --port 50051`, nem mesmo nas aulas do curso GoLang, mas ao rodar o comando `evans repl --proto internal/infra/proto/order_item.proto --port 50051` ai sim foi possível executar as chamadas necessárias para funcionar as rotinas do GRPC
+
+Então para acessar o evans é necessário rodar o comando `evans repl --proto internal/infra/proto/order_item.proto --port 50051` em sua máquina local
+
+A rotina `call ListOrders` lista as ordens
+
+CTRL+D para encerrar o Evans+Grpc
+
+**OBS** caso não tenha o EVANS instalado é necessário seguir o exemplo:
+
+https://github.com/ktr0731/evans?tab=readme-ov-file#installation
+
+### comando que me auxiliaram no processo
 
 ```sh
 
@@ -35,26 +74,12 @@ sudo apt install -y protobuf-compiler
 
 
 # para criar dentro da pasta pb os arquivos e entidades
-protoc --go_out=. --go-grpc_out=. proto/order_item.proto
-
-
-
-// protoc --go_out=. internal/infra/pb  --go-grpc_out=. internal/infra/proto/order_item.proto
 // protoc --go_out=. --go-grpc_out=. ./internal/infra/proto/order_item.proto
 
 // evans --path ./proto --proto order_item.proto --port 50051
 // evans repl --proto internal/infra/proto/order_item.proto --port 50051
 
 
-
-# exemplo docker
-
-FROM node:12-alpine
-RUN apk add --no-cache protoc
-
-https://plataforma.fullcycle.com.br/courses/c2957fa4-1e88-4425-be86-5a17ad2664ca/302/190/177/conteudos?capitulo=177&conteudo=9875
-
-https://plataforma.fullcycle.com.br/courses/c2957fa4-1e88-4425-be86-5a17ad2664ca/302/190/177/conteudos?capitulo=177&conteudo=9928
 ```
 
 # Clean Architect
