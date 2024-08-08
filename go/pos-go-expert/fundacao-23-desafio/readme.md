@@ -6,11 +6,18 @@ Mas a api de weather pelo que vi é temporaria ou está no trial.
 
 No arquivo `http/test.http` tem os valores para testar
 
+## Docker
+
+Acessar a pasta go/pos-go-expert/fundacao-23-desafio
+
+executar o comando `docker-compose up`
+
+e através do arquivo `https/test.http` realizar as validações necessárias
 
 ## docker helpers
 
 docker build --rm -t weather . && \
-docker run -p 8080:8080  weather:latest 
+docker run -p 8080:8080  weather:latest
 
 docker rmi $(docker images -f "dangling=true" -q)
 
