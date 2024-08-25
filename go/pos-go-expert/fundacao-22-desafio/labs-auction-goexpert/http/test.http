@@ -1,0 +1,66 @@
+@URL = http://localhost:8080
+
+###
+# @name list_all_auctions
+GET {{URL}}/auction?status=0
+
+###
+# @name list_auctions_comlete
+GET {{URL}}/auction?status=1
+
+
+###
+# @name list_auctions_active
+GET {{URL}}/auction?status=1&&category=test1
+
+
+###
+# @name get_auction_by_auction_id
+GET {{URL}}/auction/1f6f17ff-c665-4f21-898a-3bb28870bb68
+
+###
+# @name create_auction
+POST {{URL}}/auction
+
+{
+    "product_name": "prd1",
+    "category": "test1",
+    "description": "initial item",
+    "condition": 0
+}
+
+###
+# @name get_winner_by_auction_id
+GET {{URL}}/auction/winner/1f6f17ff-c665-4f21-898a-3bb28870bb68
+
+###
+# @name create_bid
+POST {{URL}}/bid
+
+{
+    "user_id": "00000001-0000-0000-0000-000000000000",
+    "auction_id": "1f6f17ff-c665-4f21-898a-3bb28870bb68",
+    "amount": 5.39
+}
+
+###
+# @name create_bid_u2
+POST {{URL}}/bid
+
+{
+    "user_id": "00000002-0000-0000-0000-000000000000",
+    "auction_id": "1f6f17ff-c665-4f21-898a-3bb28870bb68",
+    "amount": 4.29
+}
+###
+# @name get_bid_by_auction_id
+GET {{URL}}/bid/1f6f17ff-c665-4f21-898a-3bb28870bb68
+
+###
+# @name get_user_by_user_id
+GET {{URL}}/user/00000003-0000-0000-0000-000000000000
+
+
+
+//	router.GET("/bid/:auctionId", bidController.FindBidByAuctionId)
+//	router.GET("/user/:userId",

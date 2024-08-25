@@ -1,3 +1,26 @@
+# SOLUÇÃO
+
+Foi criado o arquivo `http/test.http` nele contem os endpoints para validação dos leilões ou criação de uma novo leilão.
+
+Foi implementada a goroutine para validar se o leião encerrou
+
+Foi criado o teste para validar se o leilão foi encerrado
+
+**execução**
+
+```bash
+docker-compose build && docker-compose up
+```
+
+**test**
+
+```bash
+go test ./...
+```
+
+# DESAFIO
+
+
 # Abertura e fechamento do Leilão - Go Routines
 
 Objetivo: Adicionar uma nova funcionalidade ao projeto já existente para o leilão fechar automaticamente a partir de um tempo definido.
@@ -21,7 +44,7 @@ Você deverá desenvolver:
     Lembre-se que estamos trabalhando com concorrência, implemente uma solução que solucione isso:
     Verifique como o cálculo de intervalo para checar se o leilão (auction) ainda é válido está sendo realizado na rotina de criação de bid;
     Para mais informações de como funciona uma goroutine, clique aqui e acesse nosso módulo de Multithreading no curso Go Expert;
-     
+
 
 ## Entrega:
 
