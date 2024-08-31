@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  app-weather:
+    build:
+      context: ./api-weather
+    ports:
+      - "8090:8090"
+
+
+  app-zipcode:
+    build:
+      context: ./api-zipcode
+    ports:
+      - "8080:8080"
+    depends_on:
+      - app-weather

@@ -1,0 +1,34 @@
+###
+# 422 invalid zipcode
+GET http://localhost:8080/?zipcode=xxx&only=zipcode
+###
+# 422 invalid zipcode
+GET http://localhost:8080/?zipcode=123456789&only=zipcode
+###
+# 404 not found zipcode
+GET http://localhost:8080/?zipcode=12345678&only=zipcode
+###
+# 400 ok
+GET http://localhost:8080/?zipcode=02765070&only=zipcode
+
+###
+###
+###
+# 422 invalid location
+GET http://localhost:8090/?city=sao+paulo&uf=sps
+###
+# 422 invalid location
+GET http://localhost:8090/?city=sp&uf=sp
+###
+# 404 not found
+GET http://localhost:8090/?city=nova+city&uf=
+###
+# 400 ok
+GET http://localhost:8090/?city=nova+olinda&uf=pi
+###
+# 400 ok
+GET http://localhost:8090/?city=sao+paulo&uf=sp
+
+###
+# 400 ok ZIPCODE + WEATHER
+GET http://localhost:8080/?zipcode=02765070
