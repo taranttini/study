@@ -1,10 +1,31 @@
+# INFO
+
+Esse desafio foi complicado, pois até mesmo a aula de telemetria do curso com os exemplos parecem não ter funcionado no meu ambiente com docker, fiz ajustes onde achei que conseguiria e onde parece ter sido possível, infelizmente o zipkin não tive tanto sucesso, perdi alguns dias fazendo, desfazendo, montando e desmontando mas não tive sucesso.
+
+Pediria um auxilio com essa tarefa, ou algo que eu possa fazer para ajudar.
+
+Parece que consegui fazer os log e span no jagger, mas não consigo entender como mostra a informação de log lá ou os dados que foram solicitados.
+
+Tinha feito também um exemplo usando o que o site informa, só que lá só deu certo via console, e ai mesmo fuçando não tive muito sucesso, então acredito que para essa tarefa eu não consegui aprender ou não consegui evoluir como gostaria, não sei se esse ponto que eu fiz atende para conclusão do curso, pois parece ser um item também fundamental, parece que não temos meio termo nesse curso para completar os desafios ou conseguir ser aprovado e assim receber o diploma.
+
+Grato pela atenção o responsável pela correção.
+
+Para rodar o projeto é possível acessar o diretório http e lá tem as chamadas para testar os serviços, eu acabei isolando o serviço de CEP, então ele é auto suficiente, já o serviço de temperatura ele processa com base no que ele receber então ambos funcionam separados e para completar o desafio eles funcionam em conjunto.
+
+para rodar o projeto precisamos fazer o comando `docker-compose up`
+
+E assim ele sobe todos os serviços que parecem ser necessários para fazer alguma telemetria.
+
+Fico no aguardo de dicas ou até mesmo de um meio aceite para que possamos completar a tarefa e o curso.
+
+
 # Tracing distribuído e span
 
 Objetivo: Desenvolver um sistema em Go que receba um CEP, identifica a cidade e retorna o clima atual (temperatura em graus celsius, fahrenheit e kelvin) juntamente com a cidade. Esse sistema deverá implementar OTEL(Open Telemetry) e Zipkin.
 
 Basedo no cenário conhecido "Sistema de temperatura por CEP" denominado Serviço B, será incluso um novo projeto, denominado Serviço A.
 
- 
+
 
 Requisitos - Serviço A (responsável pelo input):
 
