@@ -3,13 +3,15 @@ package entity
 import "math"
 
 type Temperature struct {
+	City       string  `json:"city"`
 	Celcius    float64 `json:"temp_C"`
 	Fahrenheit float64 `json:"temp_F"`
 	Kelvin     float64 `json:"temp_K"`
 }
 
-func TemperatureResponse(celcius float64) *Temperature {
+func TemperatureResponse(city string, celcius float64) *Temperature {
 	return &Temperature{
+		City:       city,
 		Celcius:    celcius,
 		Kelvin:     convertCelciusToKelvin(celcius),
 		Fahrenheit: convertCelciusToFahrenheit(celcius),

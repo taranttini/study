@@ -1,34 +1,65 @@
 ###
-# 422 invalid zipcode
-GET http://localhost:8080/?zipcode=xxx&only=zipcode
-###
-# 422 invalid zipcode
-GET http://localhost:8080/?zipcode=123456789&only=zipcode
-###
-# 404 not found zipcode
-GET http://localhost:8080/?zipcode=12345678&only=zipcode
-###
-# 400 ok
-GET http://localhost:8080/?zipcode=02765070&only=zipcode
-
 ###
 ###
+### zipcode
+GET http://localhost:8090/zipcode?zipcode=02765070
+Content-Type: application/json
+### weather
+GET http://localhost:8090/weather?city=brasilia&uf=df
+Content-Type: application/json
 ###
-# 422 invalid location
-GET http://localhost:8090/?city=sao+paulo&uf=sps
+# weather ok
+GET http://localhost:8090/weather?city=sp&uf=sp
+Content-Type: application/json
 ###
-# 422 invalid location
-GET http://localhost:8090/?city=sp&uf=sp
+# weather ok
+GET http://localhost:8090/weather?city=nova+city&uf=
+Content-Type: application/json
 ###
-# 404 not found
-GET http://localhost:8090/?city=nova+city&uf=
+# weather ok
+GET http://localhost:8090/weather?city=nova+olinda&uf=pi
+Content-Type: application/json
 ###
-# 400 ok
-GET http://localhost:8090/?city=nova+olinda&uf=pi
-###
-# 400 ok
-GET http://localhost:8090/?city=sao+paulo&uf=sp
+# 200 ok
+GET http://localhost:8090/weather?city=sao+paulo&uf=sp
+Content-Type: application/json
 
 ###
 # 400 ok ZIPCODE + WEATHER
-GET http://localhost:8080/?zipcode=02765070
+POST http://localhost:8080
+Content-Type: application/json
+
+{
+    "cep": "02765070"
+}
+
+###
+# 422 Unprocessable Entity
+POST http://localhost:8080
+Content-Type: application/json
+
+{
+    "cep": "0276507"
+}
+
+###
+# 404 not found
+POST http://localhost:8080
+Content-Type: application/json
+
+{
+    "cep": "12345678"
+}
+
+###
+# 422 not found
+POST http://localhost:8080
+Content-Type: application/json
+
+{
+    "cep": ""
+}
+###
+# 422 not found
+POST http://localhost:8080
+Content-Type: application/json
