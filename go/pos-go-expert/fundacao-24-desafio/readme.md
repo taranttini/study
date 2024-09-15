@@ -1,23 +1,22 @@
 # INFO
 
-Esse desafio foi complicado, pois até mesmo a aula de telemetria do curso com os exemplos parecem não ter funcionado no meu ambiente com docker, fiz ajustes onde achei que conseguiria e onde parece ter sido possível, infelizmente o zipkin não tive tanto sucesso, perdi alguns dias fazendo, desfazendo, montando e desmontando mas não tive sucesso.
+Apanhei para conseguir fazer esse zipkin captar os dados, mas parece que pelo otel parecia mais interessante a visualização.
 
-Pediria um auxilio com essa tarefa, ou algo que eu possa fazer para ajudar.
+Foi fazer, desfazer, tentar novamente, e por ai vai.
 
-Parece que consegui fazer os log e span no jagger, mas não consigo entender como mostra a informação de log lá ou os dados que foram solicitados.
+Temos o serviço A fazendo a validação do dado post do CEP, depois temos o serviço B, fazendo a busca da localização do CEP e depois fazendo a busca do dado retornado pelo CEP, obtendo a temperatura e fazendo a exibição da cidade + temperaturas
 
-Tinha feito também um exemplo usando o que o site informa, só que lá só deu certo via console, e ai mesmo fuçando não tive muito sucesso, então acredito que para essa tarefa eu não consegui aprender ou não consegui evoluir como gostaria, não sei se esse ponto que eu fiz atende para conclusão do curso, pois parece ser um item também fundamental, parece que não temos meio termo nesse curso para completar os desafios ou conseguir ser aprovado e assim receber o diploma.
+Para rodar o projeto é possível acessar o diretório http e lá tem as chamadas para testar os serviços.
 
-Grato pela atenção o responsável pela correção.
-
-Para rodar o projeto é possível acessar o diretório http e lá tem as chamadas para testar os serviços, eu acabei isolando o serviço de CEP, então ele é auto suficiente, já o serviço de temperatura ele processa com base no que ele receber então ambos funcionam separados e para completar o desafio eles funcionam em conjunto.
-
-para rodar o projeto precisamos fazer o comando `docker-compose up`
+Para rodar o projeto precisamos fazer o comando `docker-compose up`
 
 E assim ele sobe todos os serviços que parecem ser necessários para fazer alguma telemetria.
 
 Fico no aguardo de dicas ou até mesmo de um meio aceite para que possamos completar a tarefa e o curso.
 
+Através da URL: http://127.0.0.1:9411/zipkin/?lookback=15m&endTs=1726421451328&limit=100
+
+Será possível acompanhar os traces das chamadas e desvios.
 
 # Tracing distribuído e span
 

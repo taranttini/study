@@ -2,25 +2,6 @@ version: '3'
 
 services:
 
-  jaeger-all-in-one:
-    image: jaegertracing/all-in-one:latest
-    restart: always
-    ports:
-      - "16686:16686"
-      - "14268"
-      - "14250"
-
-
-  prometheus:
-    container_name: prometheus
-    image: prom/prometheus:latest
-    restart: always
-    volumes:
-      - ./telemetria/prometheus.yaml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
-
-
   otel-collector:
     image: otel/opentelemetry-collector:latest
     restart: always
@@ -28,60 +9,48 @@ services:
     volumes:
       - ./telemetria/otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
-      - "8888:8888"   # Prometheus metrics exposed by the collector
-      - "8889:8889"   # Prometheus exporter metrics
-      #- "4317:4317"   # OTLP gRPC receiver
-      - "4317:4318"   # OTLP HTTP receiver
-
+      - "4317:4317"
 
   zipkin:
-    image: openzipkin/zipkin
+    container_name: zipkin
+    image: openzipkin/zipkin-slim:latest
+    restart: always
+    depends_on:
+      - otel-collector
     ports:
       - "9411:9411"
 
-
-  app-weather:
+#http://app-zipcode:8080
+#http://app-weather:8090
+  api-temperature:
     build:
-      context: ./api-weather
+      context: ./api-temperature
     environment:
       - HTTP_PORT=:8090
       - TOKEN=2d4fc12c862a4c3bbd5234402242607
-      - TITLE=MS ZIPCODE
-      - CONTENT=BLABLA 1
-      - BACKGROUND_COLOR=green
-      - RESPONSE_TIME=1000
-      - EXTERNAL_CALL_URL=http://app-zipcode:8080
-      - EXTERNAL_CALL_METHOD=GET
-      - REQUEST_NAME_OTEL=ms-weather-request
-      - OTEL_SERVICE_NAME=ms-weather
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger-all-in-one:4318/v1/traces
+      - WEATHER_ENDPOINT=http://api-temperature:8090/weather
+      - ZIPKIN_ENDPOINT=http://zipkin:9411/api/v2/spans
+      - REQUEST_NAME_OTEL=ms-temperature-request
+      - SPAN_TRACE_NAME=service-b-temperature
     ports:
       - "8090:8090"
     depends_on:
-      - jaeger-all-in-one
-      - prometheus
+      - zipkin
       - otel-collector
 
 
-  app-zipcode:
+  api-zipcode:
     build:
-      context: ./api-zipcode
+      context: ./api-proxy
     environment:
       - HTTP_PORT=:8080
-      - WEATHER_ENDPOINT=http://app-weather:8090
-      - TITLE=MS ZIPCODE
-      - CONTENT=BLABLA 1
-      - BACKGROUND_COLOR=green
-      - RESPONSE_TIME=1000
-      - EXTERNAL_CALL_URL=http://app-weather:8090
-      - EXTERNAL_CALL_METHOD=GET
+      - WEATHER_ENDPOINT=http://api-temperature:8090
+      - ZIPKIN_ENDPOINT=http://zipkin:9411/api/v2/spans
       - REQUEST_NAME_OTEL=ms-zipcode-request
-      - OTEL_SERVICE_NAME=ms-zipcode
-      - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger-all-in-one:4318/v1/traces
+      - SPAN_TRACE_NAME=service-a-zipcode
     ports:
       - "8080:8080"
     depends_on:
-      - app-weather
-      - jaeger-all-in-one
-      - prometheus
+      - api-temperature
+      - zipkin
       - otel-collector
