@@ -2,18 +2,30 @@
 public class Main {
 
 	public static void main(String[] args) {
+		Cliente venilton = new Cliente();
+		venilton.setNome("Venilton");
+		
+		Conta cc1 = new ContaCorrente(venilton);
+		Conta poupanca1 = new ContaPoupanca(venilton);
+
+		cc1.depositar(100);
+		cc1.transferir(100, poupanca1);
+
+		cc1.imprimirExtrato();
+		poupanca1.imprimirExtrato();
+
 		Cliente jaspion = new Cliente();
 		jaspion.setNome("Jaspion");
 		
-		Conta cc = new ContaCorrente(jaspion);
-		Conta poupanca = new ContaPoupanca(jaspion);
+		Conta cc2 = new ContaCorrente(jaspion);
+		Conta poupanca2 = new ContaPoupanca(jaspion);
 
-		cc.depositar(500);
-		cc.depositar(99);
-		cc.transferir(150, poupanca);
+		cc2.depositar(500);
+		cc2.depositar(99);
+		cc2.transferir(150, poupanca2);
 		
-		cc.imprimirExtrato();
-		poupanca.imprimirExtrato();
+		cc2.imprimirExtrato();
+		poupanca2.imprimirExtrato();
 	}
 
 }
