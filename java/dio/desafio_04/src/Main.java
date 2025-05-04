@@ -5,14 +5,27 @@ public class Main {
 		Cliente venilton = new Cliente();
 		venilton.setNome("Venilton");
 		
-		Conta cc = new ContaCorrente(venilton);
-		Conta poupanca = new ContaPoupanca(venilton);
+		Conta cc1 = new ContaCorrente(venilton);
+		Conta poupanca1 = new ContaPoupanca(venilton);
 
-		cc.depositar(100);
-		cc.transferir(100, poupanca);
+		cc1.depositar(100);
+		cc1.transferir(100, poupanca1);
+
+		cc1.imprimirExtrato();
+		poupanca1.imprimirExtrato();
+
+		Cliente jaspion = new Cliente();
+		jaspion.setNome("Jaspion");
 		
-		cc.imprimirExtrato();
-		poupanca.imprimirExtrato();
+		Conta cc2 = new ContaCorrente(jaspion);
+		Conta poupanca2 = new ContaPoupanca(jaspion);
+
+		cc2.depositar(500);
+		cc2.depositar(99);
+		cc2.transferir(150, poupanca2);
+		
+		cc2.imprimirExtrato();
+		poupanca2.imprimirExtrato();
 	}
 
 }
