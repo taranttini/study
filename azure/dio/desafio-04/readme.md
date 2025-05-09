@@ -4,28 +4,28 @@ Realizando procedimentos para documentar a criação de alguns itens dentro da a
 
 **Tela do IA Foundry**
 
-![](01-tela-ia-foundry.png)
+![](images/01-tela-ia-foundry.png)
 
 **Configurando o Projeto/Hub de IA**
 
-![](02-configurando-servico.png)
+![](images/02-configurando-servico.png)
 
 **Visualizando Configurações**
 
-![](03-visualizando-configuracoes.png)
+![](images/03-visualizando-configuracoes.png)
 
 **Processo de Criação...**
 
-![](04-criando-servico.png)
+![](images/04-criando-servico.png)
 
 **Vizualizando as configurações**
 
-![](05-apos-criacao.png)
+![](images/05-apos-criacao.png)
 
 **Testando Extract Information**
 
-![](06-testando-extract-information.png)
+![](images/06-testando-extract-information.png)
 
 **Testando Sumarize Text**
 
-![](07-testando-summarize-text.png)
+![](images/07-testando-summarize-text.png)
