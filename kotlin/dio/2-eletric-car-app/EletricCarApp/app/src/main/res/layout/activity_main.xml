@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tv_titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_carros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/cars"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_favoritos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/favorites"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tv_carros"
+        app:layout_constraintTop_toTopOf="@id/tv_carros"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_car1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/car1_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_carros" />
+
+    <ImageView
+        android:id="@+id/iv_car1_img"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="24dp"
+        android:src="@drawable/ferrari_amalfi_2026"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_car1"
+
+        />
+
+
+    <TextView
+        android:id="@+id/tv_car1_preco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/car1_info_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_car1_img" />
+
+    <!-- INFO -->
+
+    <TextView
+        android:id="@+id/tv_car1_preco_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="R$ 7.000.000.00"
+        app:layout_constraintStart_toEndOf="@id/tv_car1_potency"
+        app:layout_constraintTop_toBottomOf="@id/iv_car1_img" />
+
+
+    <TextView
+        android:id="@+id/tv_car1_bateria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/car1_info_battery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_car1_preco" />
+
+    <TextView
+        android:id="@+id/tv_car1_bateria_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="300 kWh"
+        app:layout_constraintStart_toEndOf="@id/tv_car1_potency"
+        app:layout_constraintTop_toTopOf="@id/tv_car1_bateria" />
+
+
+    <TextView
+        android:id="@+id/tv_car1_potency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/car1_info_power"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_car1_bateria" />
+
+    <TextView
+        android:id="@+id/tv_car1_potency_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="800 cv"
+        app:layout_constraintStart_toEndOf="@id/tv_car1_potency"
+        app:layout_constraintTop_toTopOf="@id/tv_car1_potency" />
+
+
+    <TextView
+        android:id="@+id/tv_car1_recharger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="@string/car1_info_recharger"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_car1_potency" />
+
+    <TextView
+        android:id="@+id/tv_car1_recharger_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="30 min"
+        app:layout_constraintStart_toEndOf="@id/tv_car1_potency"
+        app:layout_constraintTop_toTopOf="@id/tv_car1_recharger" />
+
+
+    <!-- INFO -->
+
+    <TextView
+        android:id="@+id/tv_car2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/car2_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_car1_recharger" />
+
+
+    <ImageView
+        android:id="@+id/iv_car2_img"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ferrari_f80_2025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_car2"
+
+        />
+
+
+    <TextView
+        android:id="@+id/tv_car3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/car3_name"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_carros"
+        app:layout_constraintTop_toBottomOf="@id/iv_car2_img" />
+
+    <ImageView
+        android:id="@+id/iv_car3_img"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/ferrari_849_testarossa_2026"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_car3"
+
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
