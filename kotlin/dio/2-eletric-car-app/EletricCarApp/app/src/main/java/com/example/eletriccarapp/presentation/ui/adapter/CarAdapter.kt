@@ -1,6 +1,5 @@
-package com.example.eletriccarapp.presentation.ui
+package com.example.eletriccarapp.presentation.ui.adapter
 
-import android.net.Uri
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eletriccarapp.R
