@@ -5,219 +5,68 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.MainActivity">
 
     <TextView
         android:id="@+id/tv_titulo"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/title"
-        android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_carros"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/cars"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_titulo"
 
-        />
+        app:layout_constraintTop_toBottomOf="@id/tv_titulo" />
 
     <TextView
         android:id="@+id/tv_favoritos"
+        style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/favorites"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/tv_carros"
-        app:layout_constraintTop_toTopOf="@id/tv_carros"
 
-        />
-
-    <TextView
-        android:id="@+id/tv_car1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/car1_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_carros" />
-
-    <ImageView
-        android:id="@+id/iv_car1_img"
-        android:layout_width="230dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="24dp"
-        android:src="@drawable/ferrari_amalfi_2026"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_car1"
-
-        />
+        app:layout_constraintTop_toTopOf="@id/tv_carros" />
 
 
-    <TextView
-        android:id="@+id/tv_car1_preco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/car1_info_price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_car1_img" />
 
-    <!-- INFO -->
-
-    <TextView
-        android:id="@+id/tv_car1_preco_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="R$ 7.000.000.00"
-        app:layout_constraintStart_toEndOf="@id/tv_car1_potency"
-        app:layout_constraintTop_toBottomOf="@id/iv_car1_img" />
-
-
-    <TextView
-        android:id="@+id/tv_car1_bateria"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/car1_info_battery"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_car1_preco" />
-
-    <TextView
-        android:id="@+id/tv_car1_bateria_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="300 kWh"
-        app:layout_constraintStart_toEndOf="@id/tv_car1_potency"
-        app:layout_constraintTop_toTopOf="@id/tv_car1_bateria" />
-
-
-    <TextView
-        android:id="@+id/tv_car1_potency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/car1_info_power"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_car1_bateria" />
-
-    <TextView
-        android:id="@+id/tv_car1_potency_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="800 cv"
-        app:layout_constraintStart_toEndOf="@id/tv_car1_potency"
-        app:layout_constraintTop_toTopOf="@id/tv_car1_potency" />
-
-
-    <TextView
-        android:id="@+id/tv_car1_recharger"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="@string/car1_info_recharger"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_car1_potency" />
-
-    <TextView
-        android:id="@+id/tv_car1_recharger_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="30 min"
-        app:layout_constraintStart_toEndOf="@id/tv_car1_potency"
-        app:layout_constraintTop_toTopOf="@id/tv_car1_recharger" />
-
-
-    <EditText
-        android:id="@+id/et_input_price"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_carros"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_margin="16dp"
-        android:ems="10"
-        android:hint="@string/input_price"
-        android:inputType="numberDecimal"
-        android:maxLength="10"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_redirect"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_car1_recharger" />
-
-    <EditText
-        android:id="@+id/et_input_km_traveled"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:hint="@string/input_km_traveled"
-        android:inputType="numberDecimal"
-        android:maxLength="10"
-        app:layout_constraintEnd_toEndOf="@id/et_input_price"
-        app:layout_constraintStart_toStartOf="@id/et_input_price"
-        app:layout_constraintTop_toBottomOf="@id/et_input_price" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_carros"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+tools:listitem="@layout/car_item"
+        />
 
     <Button
-        android:id="@+id/btn_calculate"
+        android:id="@+id/btn_redirect"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_marginTop="4dp"
-        android:text="@string/button_calculate"
-        app:layout_constraintEnd_toEndOf="@id/et_input_km_traveled"
-        app:layout_constraintStart_toStartOf="@id/et_input_km_traveled"
-        app:layout_constraintTop_toBottomOf="@id/et_input_km_traveled"
+        android:text="Calcular"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
         />
-
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text=""
-
-
-        app:layout_constraintStart_toStartOf="@id/btn_calculate"
-        app:layout_constraintTop_toBottomOf="@id/btn_calculate"
-        />
-
-
-    <RadioGroup
-        android:id="@+id/rg_power"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@id/tv_result"
-        app:layout_constraintTop_toBottomOf="@id/tv_result"
-        >
-
-        <RadioButton
-            android:id="@+id/rb_power1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="KMH"
-            />
-
-        <RadioButton
-            android:id="@+id/rb_power2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MPH"
-            />
-    </RadioGroup>
 
     <!-- INFO -->
 
@@ -229,7 +78,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/car2_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rg_power" />
+        app:layout_constraintTop_toBottomOf="@id/btn_redirect" />
 
 
     <ImageView
