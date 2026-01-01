@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">EletricCarApp</string>
+    <string name="cars">Carros</string>
+    <string name="favorites">Favoritos</string>
+    <string name="title">Ferrari Car</string>
+
+    <string name="car1_name">Ferrari Amalfi - 2026</string>
+    <string name="car1_info_price">Preço</string>
+    <string name="car1_info_battery">Bateria</string>
+    <string name="car1_info_power">Potência</string>
+
+    <string name="input_price">Preço kwH</string>
+    <string name="input_km_traveled">Km Percorrido</string>
+    <string name="button_calculate">Calcular</string>
+    <string name="input_kind_power">Selecione o tipo de Potência</string>
+
+    <string name="car2_name">Ferrari F80 - 2025</string>
+    <string name="car3_name">Ferrari 849 Testarossa 2026</string>
+    <string name="car1_info_recharger">Recarga</string>
+    <string name="title_calculate_autonomy">Calcular Autonomia</string>
+
+
+</resources>
