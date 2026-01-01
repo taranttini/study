@@ -4,8 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="30dp"
+    android:paddingBottom="60dp"
     tools:context=".ui.MainActivity">
-
+    <!--
+        android:layout_margin="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="60dp"
+    -->
     <TextView
         android:id="@+id/tv_titulo"
         style="@style/TextAppearance.MaterialComponents.Headline5"
@@ -23,8 +29,8 @@
         android:layout_margin="16dp"
         android:ems="10"
         android:hint="@string/nome_usuario"
-        android:inputType="numberDecimal"
-        android:maxLength="10"
+        android:inputType="text"
+        android:maxLength="30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_titulo" />
