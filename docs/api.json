@@ -1,1 +1,650 @@
-oi
+[
+  {
+    "name": "Jogo 1 - Grupo A",
+    "stadium": { "name": "Estádio Azteca", "image": "stadium_azteca.png" },
+    "team1": "México",
+    "team1_flag": "https://flagcdn.com/w320/mx.png",
+    "team2": "África do Sul",
+    "team2_flag": "https://flagcdn.com/w320/za.png",
+    "date": "2026-06-11T16:00:00Z"
+  },
+  {
+    "name": "Jogo 2 - Grupo A",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Coreia do Sul",
+    "team1_flag": "https://flagcdn.com/w320/kr.png",
+    "team2": "A confirmar",
+    "team2_flag": "https://flagcdn.com/w320/un.png",
+    "date": "2026-06-11T23:00:00Z"
+  },
+  {
+    "name": "Jogo 3 - Grupo B",
+    "stadium": { "name": "BMO Field", "image": "stadium_toronto.png" },
+    "team1": "Canadá",
+    "team1_flag": "https://flagcdn.com/w320/ca.png",
+    "team2": "A confirmar",
+    "team2_flag": "https://flagcdn.com/w320/un.png",
+    "date": "2026-06-12T16:00:00Z"
+  },
+  {
+    "name": "Jogo 4 - Grupo D",
+    "stadium": { "name": "SoFi Stadium", "image": "stadium_sofi.png" },
+    "team1": "Estados Unidos",
+    "team1_flag": "https://flagcdn.com/w320/us.png",
+    "team2": "Paraguai",
+    "team2_flag": "https://flagcdn.com/w320/py.png",
+    "date": "2026-06-12T22:00:00Z"
+  },
+  {
+    "name": "Jogo 5 - Grupo B",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Catar",
+    "team1_flag": "https://flagcdn.com/w320/qa.png",
+    "team2": "Suíça",
+    "team2_flag": "https://flagcdn.com/w320/ch.png",
+    "date": "2026-06-13T16:00:00Z"
+  },
+  {
+    "name": "Jogo 6 - Grupo C",
+    "stadium": { "name": "MetLife Stadium", "image": "stadium_metlife.png" },
+    "team1": "Brasil",
+    "team1_flag": "https://flagcdn.com/w320/br.png",
+    "team2": "Marrocos",
+    "team2_flag": "https://flagcdn.com/w320/ma.png",
+    "date": "2026-06-13T19:00:00Z"
+  },
+  {
+    "name": "Jogo 7 - Grupo C",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Haiti",
+    "team1_flag": "https://flagcdn.com/w320/ht.png",
+    "team2": "Escócia",
+    "team2_flag": "https://flagcdn.com/w320/gb-sct.png",
+    "date": "2026-06-13T22:00:00Z"
+  },
+  {
+    "name": "Jogo 8 - Grupo D",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Austrália",
+    "team1_flag": "https://flagcdn.com/w320/au.png",
+    "team2": "A confirmar",
+    "team2_flag": "https://flagcdn.com/w320/un.png",
+    "date": "2026-06-14T01:00:00Z"
+  },
+  {
+    "name": "Jogo 9 - Grupo E",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Alemanha",
+    "team1_flag": "https://flagcdn.com/w320/de.png",
+    "team2": "Curaçao",
+    "team2_flag": "https://flagcdn.com/w320/cw.png",
+    "date": "2026-06-14T14:00:00Z"
+  },
+  {
+    "name": "Jogo 10 - Grupo F",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Holanda",
+    "team1_flag": "https://flagcdn.com/w320/nl.png",
+    "team2": "Japão",
+    "team2_flag": "https://flagcdn.com/w320/jp.png",
+    "date": "2026-06-14T17:00:00Z"
+  },
+  {
+    "name": "Jogo 11 - Grupo E",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Costa do Marfim",
+    "team1_flag": "https://flagcdn.com/w320/ci.png",
+    "team2": "Equador",
+    "team2_flag": "https://flagcdn.com/w320/ec.png",
+    "date": "2026-06-14T20:00:00Z"
+  },
+  {
+    "name": "Jogo 12 - Grupo F",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "A confirmar",
+    "team1_flag": "https://flagcdn.com/w320/un.png",
+    "team2": "Tunísia",
+    "team2_flag": "https://flagcdn.com/w320/tn.png",
+    "date": "2026-06-14T23:00:00Z"
+  },
+  {
+    "name": "Jogo 13 - Grupo H",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Espanha",
+    "team1_flag": "https://flagcdn.com/w320/es.png",
+    "team2": "Cabo Verde",
+    "team2_flag": "https://flagcdn.com/w320/cv.png",
+    "date": "2026-06-15T13:00:00Z"
+  },
+  {
+    "name": "Jogo 14 - Grupo G",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Bélgica",
+    "team1_flag": "https://flagcdn.com/w320/be.png",
+    "team2": "Egito",
+    "team2_flag": "https://flagcdn.com/w320/eg.png",
+    "date": "2026-06-15T16:00:00Z"
+  },
+  {
+    "name": "Jogo 15 - Grupo H",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Arábia Saudita",
+    "team1_flag": "https://flagcdn.com/w320/sa.png",
+    "team2": "Uruguai",
+    "team2_flag": "https://flagcdn.com/w320/uy.png",
+    "date": "2026-06-15T19:00:00Z"
+  },
+  {
+    "name": "Jogo 16 - Grupo G",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Irã",
+    "team1_flag": "https://flagcdn.com/w320/ir.png",
+    "team2": "Nova Zelândia",
+    "team2_flag": "https://flagcdn.com/w320/nz.png",
+    "date": "2026-06-15T22:00:00Z"
+  },
+  {
+    "name": "Jogo 17 - Grupo I",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "França",
+    "team1_flag": "https://flagcdn.com/w320/fr.png",
+    "team2": "Senegal",
+    "team2_flag": "https://flagcdn.com/w320/sn.png",
+    "date": "2026-06-16T16:00:00Z"
+  },
+  {
+    "name": "Jogo 18 - Grupo I",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "A confirmar",
+    "team1_flag": "https://flagcdn.com/w320/un.png",
+    "team2": "Noruega",
+    "team2_flag": "https://flagcdn.com/w320/no.png",
+    "date": "2026-06-16T19:00:00Z"
+  },
+  {
+    "name": "Jogo 19 - Grupo J",
+    "stadium": { "name": "Arrowhead Stadium", "image": "stadium_kansas.png" },
+    "team1": "Argentina",
+    "team1_flag": "https://flagcdn.com/w320/ar.png",
+    "team2": "Argélia",
+    "team2_flag": "https://flagcdn.com/w320/dz.png",
+    "date": "2026-06-16T22:00:00Z"
+  },
+  {
+    "name": "Jogo 20 - Grupo J",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Áustria",
+    "team1_flag": "https://flagcdn.com/w320/at.png",
+    "team2": "Jordânia",
+    "team2_flag": "https://flagcdn.com/w320/jo.png",
+    "date": "2026-06-17T01:00:00Z"
+  },
+  {
+    "name": "Jogo 21 - Grupo K",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Portugal",
+    "team1_flag": "https://flagcdn.com/w320/pt.png",
+    "team2": "A confirmar",
+    "team2_flag": "https://flagcdn.com/w320/un.png",
+    "date": "2026-06-17T14:00:00Z"
+  },
+  {
+    "name": "Jogo 22 - Grupo L",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Inglaterra",
+    "team1_flag": "https://flagcdn.com/w320/gb-eng.png",
+    "team2": "Croácia",
+    "team2_flag": "https://flagcdn.com/w320/hr.png",
+    "date": "2026-06-17T17:00:00Z"
+  },
+  {
+    "name": "Jogo 23 - Grupo L",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Gana",
+    "team1_flag": "https://flagcdn.com/w320/gh.png",
+    "team2": "Panamá",
+    "team2_flag": "https://flagcdn.com/w320/pa.png",
+    "date": "2026-06-17T20:00:00Z"
+  },
+  {
+    "name": "Jogo 24 - Grupo K",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Uzbequistão",
+    "team1_flag": "https://flagcdn.com/w320/uz.png",
+    "team2": "Colômbia",
+    "team2_flag": "https://flagcdn.com/w320/co.png",
+    "date": "2026-06-17T23:00:00Z"
+  },
+  {
+    "name": "Jogo 25 - Grupo A",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "A confirmar",
+    "team1_flag": "https://flagcdn.com/w320/un.png",
+    "team2": "África do Sul",
+    "team2_flag": "https://flagcdn.com/w320/za.png",
+    "date": "2026-06-18T13:00:00Z"
+  },
+  {
+    "name": "Jogo 26 - Grupo B",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Suíça",
+    "team1_flag": "https://flagcdn.com/w320/ch.png",
+    "team2": "A confirmar",
+    "team2_flag": "https://flagcdn.com/w320/un.png",
+    "date": "2026-06-18T16:00:00Z"
+  },
+  {
+    "name": "Jogo 27 - Grupo B",
+    "stadium": { "name": "BC Place", "image": "stadium_vancouver.png" },
+    "team1": "Canadá",
+    "team1_flag": "https://flagcdn.com/w320/ca.png",
+    "team2": "Catar",
+    "team2_flag": "https://flagcdn.com/w320/qa.png",
+    "date": "2026-06-18T19:00:00Z"
+  },
+  {
+    "name": "Jogo 28 - Grupo A",
+    "stadium": { "name": "Estádio Akron", "image": "stadium_guadalajara.png" },
+    "team1": "México",
+    "team1_flag": "https://flagcdn.com/w320/mx.png",
+    "team2": "Coreia do Sul",
+    "team2_flag": "https://flagcdn.com/w320/kr.png",
+    "date": "2026-06-18T22:00:00Z"
+  },
+  {
+    "name": "Jogo 29 - Grupo D",
+    "stadium": { "name": "Lumen Field", "image": "stadium_seattle.png" },
+    "team1": "Estados Unidos",
+    "team1_flag": "https://flagcdn.com/w320/us.png",
+    "team2": "Austrália",
+    "team2_flag": "https://flagcdn.com/w320/au.png",
+    "date": "2026-06-19T16:00:00Z"
+  },
+  {
+    "name": "Jogo 30 - Grupo C",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Escócia",
+    "team1_flag": "https://flagcdn.com/w320/gb-sct.png",
+    "team2": "Marrocos",
+    "team2_flag": "https://flagcdn.com/w320/ma.png",
+    "date": "2026-06-19T19:00:00Z"
+  },
+  {
+    "name": "Jogo 31 - Grupo C",
+    "stadium": { "name": "Lincoln Financial Field", "image": "stadium_philly.png" },
+    "team1": "Brasil",
+    "team1_flag": "https://flagcdn.com/w320/br.png",
+    "team2": "Haiti",
+    "team2_flag": "https://flagcdn.com/w320/ht.png",
+    "date": "2026-06-19T22:00:00Z"
+  },
+  {
+    "name": "Jogo 32 - Grupo D",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "A confirmar",
+    "team1_flag": "https://flagcdn.com/w320/un.png",
+    "team2": "Paraguai",
+    "team2_flag": "https://flagcdn.com/w320/py.png",
+    "date": "2026-06-20T01:00:00Z"
+  },
+  {
+    "name": "Jogo 33 - Grupo F",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Holanda",
+    "team1_flag": "https://flagcdn.com/w320/nl.png",
+    "team2": "A confirmar",
+    "team2_flag": "https://flagcdn.com/w320/un.png",
+    "date": "2026-06-20T14:00:00Z"
+  },
+  {
+    "name": "Jogo 34 - Grupo E",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Alemanha",
+    "team1_flag": "https://flagcdn.com/w320/de.png",
+    "team2": "Costa do Marfim",
+    "team2_flag": "https://flagcdn.com/w320/ci.png",
+    "date": "2026-06-20T17:00:00Z"
+  },
+  {
+    "name": "Jogo 35 - Grupo E",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Equador",
+    "team1_flag": "https://flagcdn.com/w320/ec.png",
+    "team2": "Curaçao",
+    "team2_flag": "https://flagcdn.com/w320/cw.png",
+    "date": "2026-06-20T21:00:00Z"
+  },
+  {
+    "name": "Jogo 36 - Grupo F",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Tunísia",
+    "team1_flag": "https://flagcdn.com/w320/tn.png",
+    "team2": "Japão",
+    "team2_flag": "https://flagcdn.com/w320/jp.png",
+    "date": "2026-06-21T01:00:00Z"
+  },
+  {
+    "name": "Jogo 37 - Grupo H",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Espanha",
+    "team1_flag": "https://flagcdn.com/w320/es.png",
+    "team2": "Arábia Saudita",
+    "team2_flag": "https://flagcdn.com/w320/sa.png",
+    "date": "2026-06-21T13:00:00Z"
+  },
+  {
+    "name": "Jogo 38 - Grupo G",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Bélgica",
+    "team1_flag": "https://flagcdn.com/w320/be.png",
+    "team2": "Irã",
+    "team2_flag": "https://flagcdn.com/w320/ir.png",
+    "date": "2026-06-21T16:00:00Z"
+  },
+  {
+    "name": "Jogo 39 - Grupo H",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Uruguai",
+    "team1_flag": "https://flagcdn.com/w320/uy.png",
+    "team2": "Cabo Verde",
+    "team2_flag": "https://flagcdn.com/w320/cv.png",
+    "date": "2026-06-21T19:00:00Z"
+  },
+  {
+    "name": "Jogo 40 - Grupo G",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Nova Zelândia",
+    "team1_flag": "https://flagcdn.com/w320/nz.png",
+    "team2": "Egito",
+    "team2_flag": "https://flagcdn.com/w320/eg.png",
+    "date": "2026-06-21T22:00:00Z"
+  },
+  {
+    "name": "Jogo 41 - Grupo J",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Argentina",
+    "team1_flag": "https://flagcdn.com/w320/ar.png",
+    "team2": "Áustria",
+    "team2_flag": "https://flagcdn.com/w320/at.png",
+    "date": "2026-06-22T14:00:00Z"
+  },
+  {
+    "name": "Jogo 42 - Grupo I",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "França",
+    "team1_flag": "https://flagcdn.com/w320/fr.png",
+    "team2": "A confirmar",
+    "team2_flag": "https://flagcdn.com/w320/un.png",
+    "date": "2026-06-22T18:00:00Z"
+  },
+  {
+    "name": "Jogo 43 - Grupo I",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Noruega",
+    "team1_flag": "https://flagcdn.com/w320/no.png",
+    "team2": "Senegal",
+    "team2_flag": "https://flagcdn.com/w320/sn.png",
+    "date": "2026-06-22T21:00:00Z"
+  },
+  {
+    "name": "Jogo 44 - Grupo J",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Jordânia",
+    "team1_flag": "https://flagcdn.com/w320/jo.png",
+    "team2": "Argélia",
+    "team2_flag": "https://flagcdn.com/w320/dz.png",
+    "date": "2026-06-23T00:00:00Z"
+  },
+  {
+    "name": "Jogo 45 - Grupo K",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Portugal",
+    "team1_flag": "https://flagcdn.com/w320/pt.png",
+    "team2": "Uzbequistão",
+    "team2_flag": "https://flagcdn.com/w320/uz.png",
+    "date": "2026-06-23T14:00:00Z"
+  },
+  {
+    "name": "Jogo 46 - Grupo L",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Inglaterra",
+    "team1_flag": "https://flagcdn.com/w320/gb-eng.png",
+    "team2": "Gana",
+    "team2_flag": "https://flagcdn.com/w320/gh.png",
+    "date": "2026-06-23T17:00:00Z"
+  },
+  {
+    "name": "Jogo 47 - Grupo L",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Panamá",
+    "team1_flag": "https://flagcdn.com/w320/pa.png",
+    "team2": "Croácia",
+    "team2_flag": "https://flagcdn.com/w320/hr.png",
+    "date": "2026-06-23T20:00:00Z"
+  },
+  {
+    "name": "Jogo 48 - Grupo K",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Colômbia",
+    "team1_flag": "https://flagcdn.com/w320/co.png",
+    "team2": "A confirmar",
+    "team2_flag": "https://flagcdn.com/w320/un.png",
+    "date": "2026-06-23T23:00:00Z"
+  },
+  {
+    "name": "Jogo 49 - Grupo B",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Suíça",
+    "team1_flag": "https://flagcdn.com/w320/ch.png",
+    "team2": "Canadá",
+    "team2_flag": "https://flagcdn.com/w320/ca.png",
+    "date": "2026-06-24T16:00:00Z"
+  },
+  {
+    "name": "Jogo 50 - Grupo B",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "A confirmar",
+    "team1_flag": "https://flagcdn.com/w320/un.png",
+    "team2": "Catar",
+    "team2_flag": "https://flagcdn.com/w320/qa.png",
+    "date": "2026-06-24T16:00:00Z"
+  },
+  {
+    "name": "Jogo 51 - Grupo C",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Marrocos",
+    "team1_flag": "https://flagcdn.com/w320/ma.png",
+    "team2": "Haiti",
+    "team2_flag": "https://flagcdn.com/w320/ht.png",
+    "date": "2026-06-24T19:00:00Z"
+  },
+  {
+    "name": "Jogo 52 - Grupo C",
+    "stadium": { "name": "Hard Rock Stadium", "image": "stadium_miami.png" },
+    "team1": "Escócia",
+    "team1_flag": "https://flagcdn.com/w320/gb-sct.png",
+    "team2": "Brasil",
+    "team2_flag": "https://flagcdn.com/w320/br.png",
+    "date": "2026-06-24T19:00:00Z"
+  },
+  {
+    "name": "Jogo 53 - Grupo A",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "África do Sul",
+    "team1_flag": "https://flagcdn.com/w320/za.png",
+    "team2": "Coreia do Sul",
+    "team2_flag": "https://flagcdn.com/w320/kr.png",
+    "date": "2026-06-24T22:00:00Z"
+  },
+  {
+    "name": "Jogo 54 - Grupo A",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "A confirmar",
+    "team1_flag": "https://flagcdn.com/w320/un.png",
+    "team2": "México",
+    "team2_flag": "https://flagcdn.com/w320/mx.png",
+    "date": "2026-06-24T22:00:00Z"
+  },
+  {
+    "name": "Jogo 55 - Grupo E",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Curaçao",
+    "team1_flag": "https://flagcdn.com/w320/cw.png",
+    "team2": "Costa do Marfim",
+    "team2_flag": "https://flagcdn.com/w320/ci.png",
+    "date": "2026-06-25T17:00:00Z"
+  },
+  {
+    "name": "Jogo 56 - Grupo E",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Equador",
+    "team1_flag": "https://flagcdn.com/w320/ec.png",
+    "team2": "Alemanha",
+    "team2_flag": "https://flagcdn.com/w320/de.png",
+    "date": "2026-06-25T17:00:00Z"
+  },
+  {
+    "name": "Jogo 57 - Grupo F",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Tunísia",
+    "team1_flag": "https://flagcdn.com/w320/tn.png",
+    "team2": "Holanda",
+    "team2_flag": "https://flagcdn.com/w320/nl.png",
+    "date": "2026-06-25T20:00:00Z"
+  },
+  {
+    "name": "Jogo 58 - Grupo F",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Japão",
+    "team1_flag": "https://flagcdn.com/w320/jp.png",
+    "team2": "A confirmar",
+    "team2_flag": "https://flagcdn.com/w320/un.png",
+    "date": "2026-06-25T20:00:00Z"
+  },
+  {
+    "name": "Jogo 59 - Grupo D",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "A confirmar",
+    "team1_flag": "https://flagcdn.com/w320/un.png",
+    "team2": "Estados Unidos",
+    "team2_flag": "https://flagcdn.com/w320/us.png",
+    "date": "2026-06-25T23:00:00Z"
+  },
+  {
+    "name": "Jogo 60 - Grupo D",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Paraguai",
+    "team1_flag": "https://flagcdn.com/w320/py.png",
+    "team2": "Austrália",
+    "team2_flag": "https://flagcdn.com/w320/au.png",
+    "date": "2026-06-25T23:00:00Z"
+  },
+  {
+    "name": "Jogo 61 - Grupo I",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Noruega",
+    "team1_flag": "https://flagcdn.com/w320/no.png",
+    "team2": "França",
+    "team2_flag": "https://flagcdn.com/w320/fr.png",
+    "date": "2026-06-26T16:00:00Z"
+  },
+  {
+    "name": "Jogo 62 - Grupo I",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Senegal",
+    "team1_flag": "https://flagcdn.com/w320/sn.png",
+    "team2": "A confirmar",
+    "team2_flag": "https://flagcdn.com/w320/un.png",
+    "date": "2026-06-26T16:00:00Z"
+  },
+  {
+    "name": "Jogo 63 - Grupo H",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Cabo Verde",
+    "team1_flag": "https://flagcdn.com/w320/cv.png",
+    "team2": "Arábia Saudita",
+    "team2_flag": "https://flagcdn.com/w320/sa.png",
+    "date": "2026-06-26T21:00:00Z"
+  },
+  {
+    "name": "Jogo 64 - Grupo H",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Uruguai",
+    "team1_flag": "https://flagcdn.com/w320/uy.png",
+    "team2": "Espanha",
+    "team2_flag": "https://flagcdn.com/w320/es.png",
+    "date": "2026-06-26T21:00:00Z"
+  },
+  {
+    "name": "Jogo 65 - Grupo G",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Nova Zelândia",
+    "team1_flag": "https://flagcdn.com/w320/nz.png",
+    "team2": "Bélgica",
+    "team2_flag": "https://flagcdn.com/w320/be.png",
+    "date": "2026-06-27T00:00:00Z"
+  },
+  {
+    "name": "Jogo 66 - Grupo G",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Egito",
+    "team1_flag": "https://flagcdn.com/w320/eg.png",
+    "team2": "Irã",
+    "team2_flag": "https://flagcdn.com/w320/ir.png",
+    "date": "2026-06-27T00:00:00Z"
+  },
+  {
+    "name": "Jogo 67 - Grupo L",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Panamá",
+    "team1_flag": "https://flagcdn.com/w320/pa.png",
+    "team2": "Inglaterra",
+    "team2_flag": "https://flagcdn.com/w320/gb-eng.png",
+    "date": "2026-06-27T18:00:00Z"
+  },
+  {
+    "name": "Jogo 68 - Grupo L",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Croácia",
+    "team1_flag": "https://flagcdn.com/w320/hr.png",
+    "team2": "Gana",
+    "team2_flag": "https://flagcdn.com/w320/gh.png",
+    "date": "2026-06-27T18:00:00Z"
+  },
+  {
+    "name": "Jogo 69 - Grupo K",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Colômbia",
+    "team1_flag": "https://flagcdn.com/w320/co.png",
+    "team2": "Portugal",
+    "team2_flag": "https://flagcdn.com/w320/pt.png",
+    "date": "2026-06-27T20:30:00Z"
+  },
+  {
+    "name": "Jogo 70 - Grupo K",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "A confirmar",
+    "team1_flag": "https://flagcdn.com/w320/un.png",
+    "team2": "Uzbequistão",
+    "team2_flag": "https://flagcdn.com/w320/uz.png",
+    "date": "2026-06-27T20:30:00Z"
+  },
+  {
+    "name": "Jogo 71 - Grupo J",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Argélia",
+    "team1_flag": "https://flagcdn.com/w320/dz.png",
+    "team2": "Áustria",
+    "team2_flag": "https://flagcdn.com/w320/at.png",
+    "date": "2026-06-27T23:00:00Z"
+  },
+  {
+    "name": "Jogo 72 - Grupo J",
+    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "team1": "Jordânia",
+    "team1_flag": "https://flagcdn.com/w320/jo.png",
+    "team2": "Argentina",
+    "team2_flag": "https://flagcdn.com/w320/ar.png",
+    "date": "2026-06-27T23:00:00Z"
+  }
+]
