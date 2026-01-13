@@ -1,7 +1,7 @@
 [
   {
     "name": "Jogo 1 - Grupo A",
-    "stadium": { "name": "Estádio Azteca", "image": "stadium_azteca.png" },
+    "stadium": { "name": "Estádio Azteca", "image": "https://taranttini.github.io/study/statics/stadium_azteca.png" },
     "team1": "México",
     "team1_flag": "https://flagcdn.com/w320/mx.png",
     "team2": "África do Sul",
@@ -10,7 +10,7 @@
   },
   {
     "name": "Jogo 2 - Grupo A",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Coreia do Sul",
     "team1_flag": "https://flagcdn.com/w320/kr.png",
     "team2": "A confirmar",
@@ -19,7 +19,7 @@
   },
   {
     "name": "Jogo 3 - Grupo B",
-    "stadium": { "name": "BMO Field", "image": "stadium_toronto.png" },
+    "stadium": { "name": "BMO Field", "image": "https://taranttini.github.io/study/statics/stadium_toronto.png" },
     "team1": "Canadá",
     "team1_flag": "https://flagcdn.com/w320/ca.png",
     "team2": "A confirmar",
@@ -28,7 +28,7 @@
   },
   {
     "name": "Jogo 4 - Grupo D",
-    "stadium": { "name": "SoFi Stadium", "image": "stadium_sofi.png" },
+    "stadium": { "name": "SoFi Stadium", "image": "https://taranttini.github.io/study/statics/stadium_sofi.png" },
     "team1": "Estados Unidos",
     "team1_flag": "https://flagcdn.com/w320/us.png",
     "team2": "Paraguai",
@@ -37,7 +37,7 @@
   },
   {
     "name": "Jogo 5 - Grupo B",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Catar",
     "team1_flag": "https://flagcdn.com/w320/qa.png",
     "team2": "Suíça",
@@ -46,7 +46,7 @@
   },
   {
     "name": "Jogo 6 - Grupo C",
-    "stadium": { "name": "MetLife Stadium", "image": "stadium_metlife.png" },
+    "stadium": { "name": "MetLife Stadium", "image": "https://taranttini.github.io/study/statics/stadium_metlife.png" },
     "team1": "Brasil",
     "team1_flag": "https://flagcdn.com/w320/br.png",
     "team2": "Marrocos",
@@ -55,7 +55,7 @@
   },
   {
     "name": "Jogo 7 - Grupo C",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Haiti",
     "team1_flag": "https://flagcdn.com/w320/ht.png",
     "team2": "Escócia",
@@ -64,7 +64,7 @@
   },
   {
     "name": "Jogo 8 - Grupo D",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Austrália",
     "team1_flag": "https://flagcdn.com/w320/au.png",
     "team2": "A confirmar",
@@ -73,7 +73,7 @@
   },
   {
     "name": "Jogo 9 - Grupo E",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Alemanha",
     "team1_flag": "https://flagcdn.com/w320/de.png",
     "team2": "Curaçao",
@@ -82,7 +82,7 @@
   },
   {
     "name": "Jogo 10 - Grupo F",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Holanda",
     "team1_flag": "https://flagcdn.com/w320/nl.png",
     "team2": "Japão",
@@ -91,7 +91,7 @@
   },
   {
     "name": "Jogo 11 - Grupo E",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Costa do Marfim",
     "team1_flag": "https://flagcdn.com/w320/ci.png",
     "team2": "Equador",
@@ -100,7 +100,7 @@
   },
   {
     "name": "Jogo 12 - Grupo F",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "A confirmar",
     "team1_flag": "https://flagcdn.com/w320/un.png",
     "team2": "Tunísia",
@@ -109,7 +109,7 @@
   },
   {
     "name": "Jogo 13 - Grupo H",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Espanha",
     "team1_flag": "https://flagcdn.com/w320/es.png",
     "team2": "Cabo Verde",
@@ -118,7 +118,7 @@
   },
   {
     "name": "Jogo 14 - Grupo G",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Bélgica",
     "team1_flag": "https://flagcdn.com/w320/be.png",
     "team2": "Egito",
@@ -127,7 +127,7 @@
   },
   {
     "name": "Jogo 15 - Grupo H",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Arábia Saudita",
     "team1_flag": "https://flagcdn.com/w320/sa.png",
     "team2": "Uruguai",
@@ -136,7 +136,7 @@
   },
   {
     "name": "Jogo 16 - Grupo G",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Irã",
     "team1_flag": "https://flagcdn.com/w320/ir.png",
     "team2": "Nova Zelândia",
@@ -145,7 +145,7 @@
   },
   {
     "name": "Jogo 17 - Grupo I",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "França",
     "team1_flag": "https://flagcdn.com/w320/fr.png",
     "team2": "Senegal",
@@ -154,7 +154,7 @@
   },
   {
     "name": "Jogo 18 - Grupo I",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "A confirmar",
     "team1_flag": "https://flagcdn.com/w320/un.png",
     "team2": "Noruega",
@@ -163,7 +163,7 @@
   },
   {
     "name": "Jogo 19 - Grupo J",
-    "stadium": { "name": "Arrowhead Stadium", "image": "stadium_kansas.png" },
+    "stadium": { "name": "Arrowhead Stadium", "image": "https://taranttini.github.io/study/statics/stadium_kansas.png" },
     "team1": "Argentina",
     "team1_flag": "https://flagcdn.com/w320/ar.png",
     "team2": "Argélia",
@@ -172,7 +172,7 @@
   },
   {
     "name": "Jogo 20 - Grupo J",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Áustria",
     "team1_flag": "https://flagcdn.com/w320/at.png",
     "team2": "Jordânia",
@@ -181,7 +181,7 @@
   },
   {
     "name": "Jogo 21 - Grupo K",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Portugal",
     "team1_flag": "https://flagcdn.com/w320/pt.png",
     "team2": "A confirmar",
@@ -190,7 +190,7 @@
   },
   {
     "name": "Jogo 22 - Grupo L",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Inglaterra",
     "team1_flag": "https://flagcdn.com/w320/gb-eng.png",
     "team2": "Croácia",
@@ -199,7 +199,7 @@
   },
   {
     "name": "Jogo 23 - Grupo L",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Gana",
     "team1_flag": "https://flagcdn.com/w320/gh.png",
     "team2": "Panamá",
@@ -208,7 +208,7 @@
   },
   {
     "name": "Jogo 24 - Grupo K",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Uzbequistão",
     "team1_flag": "https://flagcdn.com/w320/uz.png",
     "team2": "Colômbia",
@@ -217,7 +217,7 @@
   },
   {
     "name": "Jogo 25 - Grupo A",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "A confirmar",
     "team1_flag": "https://flagcdn.com/w320/un.png",
     "team2": "África do Sul",
@@ -226,7 +226,7 @@
   },
   {
     "name": "Jogo 26 - Grupo B",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Suíça",
     "team1_flag": "https://flagcdn.com/w320/ch.png",
     "team2": "A confirmar",
@@ -235,7 +235,7 @@
   },
   {
     "name": "Jogo 27 - Grupo B",
-    "stadium": { "name": "BC Place", "image": "stadium_vancouver.png" },
+    "stadium": { "name": "BC Place", "image": "https://taranttini.github.io/study/statics/stadium_vancouver.png" },
     "team1": "Canadá",
     "team1_flag": "https://flagcdn.com/w320/ca.png",
     "team2": "Catar",
@@ -244,7 +244,7 @@
   },
   {
     "name": "Jogo 28 - Grupo A",
-    "stadium": { "name": "Estádio Akron", "image": "stadium_guadalajara.png" },
+    "stadium": { "name": "Estádio Akron", "image": "https://taranttini.github.io/study/statics/stadium_guadalajara.png" },
     "team1": "México",
     "team1_flag": "https://flagcdn.com/w320/mx.png",
     "team2": "Coreia do Sul",
@@ -253,7 +253,7 @@
   },
   {
     "name": "Jogo 29 - Grupo D",
-    "stadium": { "name": "Lumen Field", "image": "stadium_seattle.png" },
+    "stadium": { "name": "Lumen Field", "image": "https://taranttini.github.io/study/statics/stadium_seattle.png" },
     "team1": "Estados Unidos",
     "team1_flag": "https://flagcdn.com/w320/us.png",
     "team2": "Austrália",
@@ -262,7 +262,7 @@
   },
   {
     "name": "Jogo 30 - Grupo C",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Escócia",
     "team1_flag": "https://flagcdn.com/w320/gb-sct.png",
     "team2": "Marrocos",
@@ -271,7 +271,7 @@
   },
   {
     "name": "Jogo 31 - Grupo C",
-    "stadium": { "name": "Lincoln Financial Field", "image": "stadium_philly.png" },
+    "stadium": { "name": "Lincoln Financial Field", "image": "https://taranttini.github.io/study/statics/stadium_philly.png" },
     "team1": "Brasil",
     "team1_flag": "https://flagcdn.com/w320/br.png",
     "team2": "Haiti",
@@ -280,7 +280,7 @@
   },
   {
     "name": "Jogo 32 - Grupo D",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "A confirmar",
     "team1_flag": "https://flagcdn.com/w320/un.png",
     "team2": "Paraguai",
@@ -289,7 +289,7 @@
   },
   {
     "name": "Jogo 33 - Grupo F",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Holanda",
     "team1_flag": "https://flagcdn.com/w320/nl.png",
     "team2": "A confirmar",
@@ -298,7 +298,7 @@
   },
   {
     "name": "Jogo 34 - Grupo E",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Alemanha",
     "team1_flag": "https://flagcdn.com/w320/de.png",
     "team2": "Costa do Marfim",
@@ -307,7 +307,7 @@
   },
   {
     "name": "Jogo 35 - Grupo E",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Equador",
     "team1_flag": "https://flagcdn.com/w320/ec.png",
     "team2": "Curaçao",
@@ -316,7 +316,7 @@
   },
   {
     "name": "Jogo 36 - Grupo F",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Tunísia",
     "team1_flag": "https://flagcdn.com/w320/tn.png",
     "team2": "Japão",
@@ -325,7 +325,7 @@
   },
   {
     "name": "Jogo 37 - Grupo H",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Espanha",
     "team1_flag": "https://flagcdn.com/w320/es.png",
     "team2": "Arábia Saudita",
@@ -334,7 +334,7 @@
   },
   {
     "name": "Jogo 38 - Grupo G",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Bélgica",
     "team1_flag": "https://flagcdn.com/w320/be.png",
     "team2": "Irã",
@@ -343,7 +343,7 @@
   },
   {
     "name": "Jogo 39 - Grupo H",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Uruguai",
     "team1_flag": "https://flagcdn.com/w320/uy.png",
     "team2": "Cabo Verde",
@@ -352,7 +352,7 @@
   },
   {
     "name": "Jogo 40 - Grupo G",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Nova Zelândia",
     "team1_flag": "https://flagcdn.com/w320/nz.png",
     "team2": "Egito",
@@ -361,7 +361,7 @@
   },
   {
     "name": "Jogo 41 - Grupo J",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Argentina",
     "team1_flag": "https://flagcdn.com/w320/ar.png",
     "team2": "Áustria",
@@ -370,7 +370,7 @@
   },
   {
     "name": "Jogo 42 - Grupo I",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "França",
     "team1_flag": "https://flagcdn.com/w320/fr.png",
     "team2": "A confirmar",
@@ -379,7 +379,7 @@
   },
   {
     "name": "Jogo 43 - Grupo I",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Noruega",
     "team1_flag": "https://flagcdn.com/w320/no.png",
     "team2": "Senegal",
@@ -388,7 +388,7 @@
   },
   {
     "name": "Jogo 44 - Grupo J",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Jordânia",
     "team1_flag": "https://flagcdn.com/w320/jo.png",
     "team2": "Argélia",
@@ -397,7 +397,7 @@
   },
   {
     "name": "Jogo 45 - Grupo K",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Portugal",
     "team1_flag": "https://flagcdn.com/w320/pt.png",
     "team2": "Uzbequistão",
@@ -406,7 +406,7 @@
   },
   {
     "name": "Jogo 46 - Grupo L",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Inglaterra",
     "team1_flag": "https://flagcdn.com/w320/gb-eng.png",
     "team2": "Gana",
@@ -415,7 +415,7 @@
   },
   {
     "name": "Jogo 47 - Grupo L",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Panamá",
     "team1_flag": "https://flagcdn.com/w320/pa.png",
     "team2": "Croácia",
@@ -424,7 +424,7 @@
   },
   {
     "name": "Jogo 48 - Grupo K",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Colômbia",
     "team1_flag": "https://flagcdn.com/w320/co.png",
     "team2": "A confirmar",
@@ -433,7 +433,7 @@
   },
   {
     "name": "Jogo 49 - Grupo B",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Suíça",
     "team1_flag": "https://flagcdn.com/w320/ch.png",
     "team2": "Canadá",
@@ -442,7 +442,7 @@
   },
   {
     "name": "Jogo 50 - Grupo B",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "A confirmar",
     "team1_flag": "https://flagcdn.com/w320/un.png",
     "team2": "Catar",
@@ -451,7 +451,7 @@
   },
   {
     "name": "Jogo 51 - Grupo C",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Marrocos",
     "team1_flag": "https://flagcdn.com/w320/ma.png",
     "team2": "Haiti",
@@ -460,7 +460,7 @@
   },
   {
     "name": "Jogo 52 - Grupo C",
-    "stadium": { "name": "Hard Rock Stadium", "image": "stadium_miami.png" },
+    "stadium": { "name": "Hard Rock Stadium", "image": "https://taranttini.github.io/study/statics/stadium_miami.png" },
     "team1": "Escócia",
     "team1_flag": "https://flagcdn.com/w320/gb-sct.png",
     "team2": "Brasil",
@@ -469,7 +469,7 @@
   },
   {
     "name": "Jogo 53 - Grupo A",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "África do Sul",
     "team1_flag": "https://flagcdn.com/w320/za.png",
     "team2": "Coreia do Sul",
@@ -478,7 +478,7 @@
   },
   {
     "name": "Jogo 54 - Grupo A",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "A confirmar",
     "team1_flag": "https://flagcdn.com/w320/un.png",
     "team2": "México",
@@ -487,7 +487,7 @@
   },
   {
     "name": "Jogo 55 - Grupo E",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Curaçao",
     "team1_flag": "https://flagcdn.com/w320/cw.png",
     "team2": "Costa do Marfim",
@@ -496,7 +496,7 @@
   },
   {
     "name": "Jogo 56 - Grupo E",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Equador",
     "team1_flag": "https://flagcdn.com/w320/ec.png",
     "team2": "Alemanha",
@@ -505,7 +505,7 @@
   },
   {
     "name": "Jogo 57 - Grupo F",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Tunísia",
     "team1_flag": "https://flagcdn.com/w320/tn.png",
     "team2": "Holanda",
@@ -514,7 +514,7 @@
   },
   {
     "name": "Jogo 58 - Grupo F",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Japão",
     "team1_flag": "https://flagcdn.com/w320/jp.png",
     "team2": "A confirmar",
@@ -523,7 +523,7 @@
   },
   {
     "name": "Jogo 59 - Grupo D",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "A confirmar",
     "team1_flag": "https://flagcdn.com/w320/un.png",
     "team2": "Estados Unidos",
@@ -532,7 +532,7 @@
   },
   {
     "name": "Jogo 60 - Grupo D",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Paraguai",
     "team1_flag": "https://flagcdn.com/w320/py.png",
     "team2": "Austrália",
@@ -541,7 +541,7 @@
   },
   {
     "name": "Jogo 61 - Grupo I",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Noruega",
     "team1_flag": "https://flagcdn.com/w320/no.png",
     "team2": "França",
@@ -550,7 +550,7 @@
   },
   {
     "name": "Jogo 62 - Grupo I",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Senegal",
     "team1_flag": "https://flagcdn.com/w320/sn.png",
     "team2": "A confirmar",
@@ -559,7 +559,7 @@
   },
   {
     "name": "Jogo 63 - Grupo H",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Cabo Verde",
     "team1_flag": "https://flagcdn.com/w320/cv.png",
     "team2": "Arábia Saudita",
@@ -568,7 +568,7 @@
   },
   {
     "name": "Jogo 64 - Grupo H",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Uruguai",
     "team1_flag": "https://flagcdn.com/w320/uy.png",
     "team2": "Espanha",
@@ -577,7 +577,7 @@
   },
   {
     "name": "Jogo 65 - Grupo G",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Nova Zelândia",
     "team1_flag": "https://flagcdn.com/w320/nz.png",
     "team2": "Bélgica",
@@ -586,7 +586,7 @@
   },
   {
     "name": "Jogo 66 - Grupo G",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Egito",
     "team1_flag": "https://flagcdn.com/w320/eg.png",
     "team2": "Irã",
@@ -595,7 +595,7 @@
   },
   {
     "name": "Jogo 67 - Grupo L",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Panamá",
     "team1_flag": "https://flagcdn.com/w320/pa.png",
     "team2": "Inglaterra",
@@ -604,7 +604,7 @@
   },
   {
     "name": "Jogo 68 - Grupo L",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Croácia",
     "team1_flag": "https://flagcdn.com/w320/hr.png",
     "team2": "Gana",
@@ -613,7 +613,7 @@
   },
   {
     "name": "Jogo 69 - Grupo K",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Colômbia",
     "team1_flag": "https://flagcdn.com/w320/co.png",
     "team2": "Portugal",
@@ -622,7 +622,7 @@
   },
   {
     "name": "Jogo 70 - Grupo K",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "A confirmar",
     "team1_flag": "https://flagcdn.com/w320/un.png",
     "team2": "Uzbequistão",
@@ -631,7 +631,7 @@
   },
   {
     "name": "Jogo 71 - Grupo J",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Argélia",
     "team1_flag": "https://flagcdn.com/w320/dz.png",
     "team2": "Áustria",
@@ -640,7 +640,7 @@
   },
   {
     "name": "Jogo 72 - Grupo J",
-    "stadium": { "name": "A confirmar", "image": "stadium_tbd.png" },
+    "stadium": { "name": "A confirmar", "image": "https://taranttini.github.io/study/statics/stadium_tbd.png" },
     "team1": "Jordânia",
     "team1_flag": "https://flagcdn.com/w320/jo.png",
     "team2": "Argentina",
