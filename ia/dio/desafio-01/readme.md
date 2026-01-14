@@ -5,8 +5,13 @@ Um componente de interface de usuário (UI) moderno para preenchimento de dados 
 ## ✨ Funcionalidades
 
 - **Visualização Dinâmica:** Os dados digitados no formulário aparecem instantaneamente no cartão.
-- **Detecção de Bandeira:** - Começa com '4': **Visa**
+- **Detecção de Bandeira:**
+  - Começa com '4011' ou '4312': **Elo** 
+  - Começa com '4': **Visa**
   - Começa com '51' a '55': **Mastercard**
+  - Começa com '34' ou '37' **Amex**
+  - Começa com '300' a '305', '36' ou '38': **Diners**
+  - Começca com '60': **Cielo**
 - **Animação Flip:** O cartão vira automaticamente para o verso quando o usuário foca no campo de CVV.
 - **Máscaras de Input:** Formatação automática para o número do cartão (#### ####) e validade (MM/AA).
 
