@@ -134,6 +134,16 @@ Marina:
 
 ###
 
-criar um video em com perspectiva do horizonte, visão em primeira pessoa, visualizando o horizonte ao fundo, montanhas e arvores vindo a minha direção, como seu eu estivesse caminho até eles, fazer um ciclo que fique repetindo esse video de forma inifinita, criando um laço do inicio ao fim, para poder repetir
 
+## Prompt para criar o video
+
+```
+criar um video em com perspectiva do horizonte, visão em primeira pessoa, visualizando o horizonte ao fundo, montanhas e arvores vindo a minha direção, como seu eu estivesse caminho até eles, fazer um ciclo que fique repetindo esse video de forma inifinita, criando um laço do inicio ao fim, para poder repetir
+```
+
+### Projeto Finalizado
+
+Publicado em
+
+https://ruido-digital.web.app/
 
