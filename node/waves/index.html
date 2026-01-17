@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ondas Poligonais Roxo & Lilás</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #1a0033; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+
+<canvas id="canvasOndas"></canvas>
+
+<script>
+const canvas = document.getElementById('canvasOndas');
+const ctx = canvas.getContext('2d');
+
+let width, height;
+let waves = [];
+
+// Configurações das camadas (do fundo para a frente)
+// Cores: Roxo escuro -> Lilás claro
+const waveConfigs = [
+    { points: 6, speed: 0.005, amplitude: 80, color: '#2e004f' }, // Fundo
+    { points: 8, speed: 0.008, amplitude: 100, color: '#4b0082' },
+    { points: 7, speed: 0.012, amplitude: 120, color: '#6a0dad' },
+    { points: 10, speed: 0.015, amplitude: 140, color: '#9370db' },
+    { points: 9, speed: 0.018, amplitude: 160, color: '#e0b0ff' }  // Frente
+];
+
+function init() {
+    resize();
+    waves = waveConfigs.map((config, index) => ({
+        ...config,
+        offset: Math.random() * 100, // Diferencia o início de cada onda
+        yBase: height * (0.4 + (index * 0.1)) // Posiciona as camadas em alturas diferentes
+    }));
+    animate();
+}
+
+function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+}
+
+function drawWave(wave) {
+    ctx.fillStyle = wave.color;
+    ctx.beginPath();
+    
+    const segmentWidth = width / (wave.points - 1);
+    
+    ctx.moveTo(0, height); // Começa no canto inferior esquerdo
+
+    for (let i = 0; i < wave.points; i++) {
+        // O efeito poligonal vem de conectar pontos com linhas retas (lineTo)
+        // em vez de curvas suaves.
+        const x = i * segmentWidth;
+        const yVariation = Math.sin(wave.offset + (i * 0.8)) * wave.amplitude;
+        const y = wave.yBase + yVariation;
+        
+        ctx.lineTo(x, y);
+    }
+
+    ctx.lineTo(width, height); // Fecha a forma no canto inferior direito
+    ctx.closePath();
+    ctx.fill();
+
+    wave.offset += wave.speed; // Movimenta a onda
+}
+
+function animate() {
+    ctx.clearRect(0, 0, width, height);
+    
+    // Desenha cada camada de onda
+    waves.forEach(drawWave);
+    
+    requestAnimationFrame(animate);
+}
+
+window.addEventListener('resize', () => {
+    resize();
+    // Reposiciona a base das ondas no resize
+    waves.forEach((wave, index) => {
+        wave.yBase = height * (0.4 + (index * 0.1));
+    });
+});
+
+init();
+</script>
+
+</body>
+</html>
