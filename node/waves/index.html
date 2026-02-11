@@ -3,56 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fluxo Poligonal Roxo com Preenchimento</title>
+    <title>Fluxo de Ondas ou Poligono</title>
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            /* Fundo bem escuro */
-            background-color: #0d001a; 
-        }
+        body { margin: 0; overflow: hidden; background-color: #000 }
         canvas { display: block; }
     </style>
 </head>
 <body>
 
-<canvas id="canvasPoligonos"></canvas>
+<canvas id="canvas"></canvas>
 
 <script>
-const canvas = document.getElementById('canvasPoligonos');
+const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-
-let width, height;
-let mountains = [];
-
-// --- Configurações ---
-const mountainCount = 10; // Aumentei um pouco para ficar mais denso
-const speed = 0.0025;     // Um pouco mais lento para apreciar a profundidade
-const horizonYRatio = 0.4;
-const numPoints = 30;     // Mais pontos para polígonos mais detalhados
-
-// Paleta de cores HSLA
-const colors = {
-    back: { h: 265, s: 90, l: 10 }, // Roxo profundo quase preto
-    front: { h: 285, s: 90, l: 80 } // Lilás claro vibrante
-};
-
-function generateMountainShape() {
-    let points = [];
-    for (let i = 0; i < numPoints; i++) {
-        // Multiplicar random por random cria picos mais agudos ocasionais
-        points.push(Math.random() * Math.random());
-    }
-    return points;
+const bg = new Image()
+bg.src = "img1.jpeg"
+bg.onload = function() {
+    console.log('load img')
+    ctx.drawImage(bg,0,0,canvas.width, canvas.height)
 }
 
+let width, height;
+let waves = [];
+
+// --- Configurações ---
+const waveCount = 8;     // Total de ondas na tela
+const speed = 0.003;       // Velocidade do fluxo
+const numPoints = 60;       // Menos pontos para formas mais simples e largas
+const horizonY = 0.3;      // Ponto de origem no topo (30% da tela)
+
+
+const colors = {
+    back: { h: 230, s: 80, l: 15 }, // Roxo escuro
+    front: { h: 245, s: 90, l: 75 }, // Lilás claro
+    bg: {h: 230, s: 100, l: 3}
+};
+const colors3 = {
+    back: { h: 270, s: 80, l: 15 }, // Roxo escuro
+    front: { h: 285, s: 90, l: 75 }, // Lilás claro
+    bg: {h: 270, s: 100, l: 3}
+};
+
+const colors2 = {
+    back: { h: 190, s: 25, l: 15 }, // Roxo escuro
+    front: { h: 190, s: 90, l: 75 }, // Lilás claro
+    bg: {h: 195, s: 100, l: 3}
+};
+var background =  "#000";
 function init() {
+    background = `hsl(${colors.bg.h}, ${colors.bg.s}% , ${colors.bg.l}%)`;
+    document.body.style.backgroundColor= background
     resize();
-    mountains = [];
-    for (let i = 0; i < mountainCount; i++) {
-        mountains.push({
-            z: i / mountainCount,
-            shapePoints: generateMountainShape()
+    waves = [];
+    for (let i = 0; i < waveCount; i++) {
+        waves.push({
+            z: i / waveCount,
+            points: Array.from({length: numPoints}, () => Math.random())
         });
     }
     animate();
@@ -63,90 +69,103 @@ function resize() {
     height = canvas.height = window.innerHeight;
 }
 
-function lerp(start, end, t) {
-    return start * (1 - t) + end * t;
-}
+function drawWave(wave) {
 
-function drawMountain(mountain) {
-    // p = progresso (0 = fundo, 1 = frente) com curva para acelerar perto da tela
-    const p = 1 - Math.pow(mountain.z, 1.8); 
+    
 
-    const scale = lerp(0.1, 5.0, p);
-    const currentHorizonY = height * horizonYRatio;
-    const yBase = lerp(currentHorizonY, height * 1.3, p);
-    const amplitude = lerp(0, 800, p);
-    
-    // Cálculos de Cor
-    const h = lerp(colors.back.h, colors.front.h, p);
-    const l = lerp(colors.back.l, colors.front.l, p);
-    
-    // Alpha base para a linha (fica totalmente opaco na frente)
-    const strokeAlpha = lerp(0, 1, p * p * p); 
-    // Alpha do preenchimento é uma fração do alpha da linha (ex: 30% da força)
-    // Isso garante que o preenchimento seja sempre mais sutil que a linha.
-    const fillAlpha = strokeAlpha * 0.3;
+    // p vai de 0 (horizonte) a 1 (passou pelo observador)
+    const p = 1 - wave.z;
 
-    // Configura estilos
-    ctx.strokeStyle = `hsla(${h}, 80%, ${l}%, ${strokeAlpha})`;
-    ctx.fillStyle = `hsla(${h}, 80%, ${l}%, ${fillAlpha})`; // Cor de preenchimento
-    
-    ctx.lineWidth = lerp(0.8, 1, p);
-    ctx.lineJoin = 'bevel';
+    // Perspectiva: a onda desce e expande conforme p aumenta
+    // 6 ou 10
+    const scale = 1 + p * 2; 
+    const yBase = (height * horizonY) + (p * p * height * 1.2);
+    const amplitude = 10 + p * 150;
+
+    const h = (colors.back.h + (colors.front.h - colors.back.h) * p);
+    const l = (colors.back.l + (colors.front.l - colors.back.l) * p);
+    const alpha = Math.pow(p, 0.8); // .3 ou .8 // Aparece suavemente no fundo
+
+    ctx.strokeStyle = `hsla(${h}, 100%, ${l}%, ${alpha})`; //.9)` //
+    ctx.fillStyle = `hsla(${h}, 80%, ${l}%, ${alpha * 0.10})`; // Preenchimento transparente
+    ctx.lineWidth = -.8 + p * 1.2;
+    //ctx.lineJoin = 'bevel';
+
+    const waveWidth = width * scale;
+    const startX = (width - waveWidth) / 2;
+    const step = waveWidth / (numPoints - 1);
 
     ctx.beginPath();
     
-    const projectedWidth = width * scale;
-    const startX = (width - projectedWidth) / 2;
-    const segmentWidth = projectedWidth / (numPoints - 1);
-    let lastX = 0; // Variável para guardar a última posição X
+    // Ponto inicial (canto inferior esquerdo para fechar o preenchimento)
+    ctx.moveTo(startX, height * 2); 
+    
+    // Coordenadas dos pontos da onda
+    const coords = wave.points.map((val, i) => ({
+        x: startX + i * step,
+        y: yBase - (val * amplitude)
+    }));
 
-    // Desenha os picos superiores
-    for (let i = 0; i < numPoints; i++) {
-        const x = startX + (i * segmentWidth);
-        const y = yBase - (mountain.shapePoints[i] * amplitude);
+    // Desenha a linha arredondada usando curvas
+    ctx.lineTo(coords[0].x, coords[0].y);
 
-        if (i === 0) {
-            ctx.moveTo(x, y);
-        } else {
-            ctx.lineTo(x, y);
-        }
-        lastX = x; // Atualiza a última posição X
+    for (let i = 0; i < coords.length - 1; i++) {
+        const xc = (coords[i].x + coords[i + 1].x) / 2;
+        const yc = (coords[i].y + coords[i + 1].y) / 2;
+
+        linhaRedonda(ctx, coords, i, xc, yc)
+        //linhaPoligno(ctx, i, xc, yc) 
     }
+    
+    // Finaliza a curva até o último ponto
+    const last = coords[coords.length - 1];
+    ctx.lineTo(last.x, last.y);
 
-    // --- FECHAR O POLÍGONO PARA PREENCHIMENTO ---
-    // Desenha uma linha do último pico até bem abaixo da tela
-    ctx.lineTo(lastX, height * 2);
-    // Desenha uma linha até bem abaixo do ponto inicial
-    ctx.lineTo(startX, height * 2);
-    // Fecha o caminho voltando ao primeiro ponto (moveTo inicial)
+    // Fecha o polígono lá embaixo para o preenchimento
+    ctx.lineTo(last.x, height * 2);
     ctx.closePath();
 
-    // --- DESENHAR ---
-    // Preencher PRIMEIRO para que as linhas fiquem por cima
-    ctx.fill(); 
-    // Desenhar as linhas DEPOIS
+    ctx.fill();
     ctx.stroke();
+
+     
+}
+
+function linhaRedonda(ctx, coords, i, xc, yc) {
+    ctx.quadraticCurveTo(coords[i].x, coords[i].y, xc, yc);
+}
+
+function linhaPoligno(ctx, i, xc, yc) {
+    if (i === 0) {
+        ctx.moveTo(xc, yc);
+    } else {
+        ctx.lineTo(xc, yc);
+    }
 }
 
 function animate() {
-    // Limpa a tela (usando um clearRect total para evitar rastros do preenchimento)
-    ctx.clearRect(0, 0, width, height); 
-    
-    // Opcional: Redesenhar um fundo sólido se quiser mudar a cor base
-    ctx.fillStyle = '#0d001a';
-    ctx.fillRect(0,0, width, height);
+    // Limpa com um leve rastro escuro
+    ctx.fillStyle = background;
+    ctx.fillRect(0, 0, width, height);
 
-    mountains.sort((a, b) => b.z - a.z); // Desenha do fundo para a frente
+    // Ordena para desenhar as de trás primeiro
+    waves.sort((a, b) => b.z - a.z);
 
-    mountains.forEach(m => {
-        drawMountain(m);
-        m.z -= speed;
-        if (m.z <= 0) {
-            m.z = 1;
-            m.shapePoints = generateMountainShape();
+    //ctx.drawImage(bg,0,0,canvas.width, canvas.height)
+
+    waves.forEach(wave => {
+        drawWave(wave);
+        
+        // Move para frente
+        wave.z -= speed;
+
+        // Se a onda "passou" por nós (z < 0), ela volta para o horizonte (z = 1)
+        if (wave.z <= 0) {
+            wave.z = 1;
+            wave.points = Array.from({length: numPoints}, () => Math.random());
         }
     });
-    
+
     requestAnimationFrame(animate);
 }
 
